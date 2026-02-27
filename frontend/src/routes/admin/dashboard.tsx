@@ -39,8 +39,13 @@ function AdminDashboard() {
   const [period, setPeriod] = useState('7d')
   const [userSearch, setUserSearch] = useState('')
   const [userPage, setUserPage] = useState(1)
+  const [activeAnalyticsTab, setActiveAnalyticsTab] = useState<'overview' | 'traffic' | 'behavior'>('overview')
 
   const isAdmin = session?.user?.role === 'admin'
+
+  // GA4 Property ID and Clarity Project ID
+  const GA4_PROPERTY_ID = 'G-H6JP1LBZL4'
+  const CLARITY_PROJECT_ID = 'vhxcm4vtlx'
 
   // Fetch analytics
   const { data: analytics, isLoading: analyticsLoading } = useQuery({
