@@ -63,6 +63,12 @@ VITE_API_URL=https://admin-portal-401.preview.emergentagent.com/api
 - Analytics: users, lessons, revenue, active users
 - Subscription plan breakdown visualization
 - User management with search/pagination
+- **Website Analytics Section (GA4, Clarity, Bing):**
+  - Overview tab: Page Views, Sessions, Avg Duration, Bounce Rate metrics
+  - Traffic tab: Traffic Sources breakdown, Device Breakdown (Desktop/Mobile/Tablet)
+  - Behavior tab: Top Pages, Key Events tracked in Clarity
+  - Quick links to: Google Analytics, Microsoft Clarity, Bing Webmaster
+  - Status indicators showing GA4 Active, Clarity Recording, Bing Indexed
 - Admin credentials: hello@biblelessonplanner.com / Truman310
 
 ### 7. Mobile App (NEW - Feb 2026)
