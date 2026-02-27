@@ -325,6 +325,274 @@ function AdminDashboard() {
           )}
         </div>
 
+        {/* GA4 & Website Analytics Section */}
+        <div className="bg-white dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700 p-6 mb-8" data-testid="ga4-analytics">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <div>
+              <h3 className="font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
+                <Globe className="w-5 h-5 text-blue-600" />
+                Website Analytics
+              </h3>
+              <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                GA4, Microsoft Clarity & Bing data
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              {/* Analytics Tab Switcher */}
+              <div className="flex bg-stone-100 dark:bg-stone-700 rounded-lg p-1">
+                {(['overview', 'traffic', 'behavior'] as const).map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveAnalyticsTab(tab)}
+                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                      activeAnalyticsTab === tab
+                        ? 'bg-white dark:bg-stone-600 text-stone-900 dark:text-stone-100 shadow-sm'
+                        : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
+                    }`}
+                  >
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links to Analytics Platforms */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            <a
+              href={`https://analytics.google.com/analytics/web/#/p${GA4_PROPERTY_ID.replace('G-', '')}/reports/intelligenthome`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-lg text-xs font-medium hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+            >
+              <img src="https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg" alt="GA4" className="w-4 h-4" />
+              Google Analytics
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            <a
+              href={`https://clarity.microsoft.com/projects/view/${CLARITY_PROJECT_ID}/dashboard`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 rounded-lg text-xs font-medium hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              Microsoft Clarity
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            <a
+              href="https://www.bing.com/webmasters/home"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-400 rounded-lg text-xs font-medium hover:bg-teal-100 dark:hover:bg-teal-900/30 transition-colors"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3v18l4-1.5V18l7-2.5V8l-4 1.5V6.5l4-1.5V3l-11 4z"/></svg>
+              Bing Webmaster
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+
+          {/* Overview Tab */}
+          {activeAnalyticsTab === 'overview' && (
+            <div className="space-y-6">
+              {/* Key Metrics Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/10 rounded-xl p-4 border border-blue-100 dark:border-blue-800/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Eye className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                    <span className="text-xs font-medium text-blue-600 dark:text-blue-400">Page Views</span>
+                  </div>
+                  <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">--</p>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">View in GA4</p>
+                </div>
+                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-900/20 dark:to-emerald-800/10 rounded-xl p-4 border border-emerald-100 dark:border-emerald-800/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Users className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">Sessions</span>
+                  </div>
+                  <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">--</p>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">View in GA4</p>
+                </div>
+                <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 dark:from-amber-900/20 dark:to-amber-800/10 rounded-xl p-4 border border-amber-100 dark:border-amber-800/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Timer className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                    <span className="text-xs font-medium text-amber-600 dark:text-amber-400">Avg. Duration</span>
+                  </div>
+                  <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">--</p>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">View in GA4</p>
+                </div>
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-900/20 dark:to-purple-800/10 rounded-xl p-4 border border-purple-100 dark:border-purple-800/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MousePointerClick className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                    <span className="text-xs font-medium text-purple-600 dark:text-purple-400">Bounce Rate</span>
+                  </div>
+                  <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">--</p>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">View in GA4</p>
+                </div>
+              </div>
+
+              {/* GA4 Embed Placeholder */}
+              <div className="bg-stone-50 dark:bg-stone-900/50 rounded-xl p-6 border border-stone-200 dark:border-stone-700">
+                <div className="text-center">
+                  <Globe className="w-12 h-12 text-stone-300 dark:text-stone-600 mx-auto mb-3" />
+                  <h4 className="font-medium text-stone-700 dark:text-stone-300 mb-2">Live GA4 Analytics</h4>
+                  <p className="text-sm text-stone-500 dark:text-stone-400 mb-4 max-w-md mx-auto">
+                    Click the buttons above to view detailed analytics in Google Analytics, Microsoft Clarity, or Bing Webmaster Tools.
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded text-xs">
+                      <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                      GA4 Active
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded text-xs">
+                      <span className="w-1.5 h-1.5 bg-purple-500 rounded-full animate-pulse"></span>
+                      Clarity Recording
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 rounded text-xs">
+                      <span className="w-1.5 h-1.5 bg-teal-500 rounded-full animate-pulse"></span>
+                      Bing Indexed
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Traffic Tab */}
+          {activeAnalyticsTab === 'traffic' && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Traffic Sources */}
+                <div className="bg-stone-50 dark:bg-stone-900/50 rounded-xl p-5 border border-stone-200 dark:border-stone-700">
+                  <h4 className="font-medium text-stone-900 dark:text-stone-100 mb-4 flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-blue-600" />
+                    Traffic Sources
+                  </h4>
+                  <div className="space-y-3">
+                    {[
+                      { source: 'Organic Search', icon: '🔍', color: 'bg-emerald-500' },
+                      { source: 'Direct', icon: '🔗', color: 'bg-blue-500' },
+                      { source: 'Referral', icon: '↗️', color: 'bg-purple-500' },
+                      { source: 'Social', icon: '📱', color: 'bg-pink-500' },
+                    ].map((item) => (
+                      <div key={item.source} className="flex items-center gap-3">
+                        <span className="text-lg">{item.icon}</span>
+                        <div className="flex-1">
+                          <div className="flex justify-between text-sm mb-1">
+                            <span className="text-stone-700 dark:text-stone-300">{item.source}</span>
+                            <span className="text-stone-500 dark:text-stone-400">--</span>
+                          </div>
+                          <div className="h-1.5 bg-stone-200 dark:bg-stone-700 rounded-full overflow-hidden">
+                            <div className={`h-full ${item.color} rounded-full`} style={{ width: '0%' }}></div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-4 text-center">
+                    View detailed data in GA4
+                  </p>
+                </div>
+
+                {/* Device Breakdown */}
+                <div className="bg-stone-50 dark:bg-stone-900/50 rounded-xl p-5 border border-stone-200 dark:border-stone-700">
+                  <h4 className="font-medium text-stone-900 dark:text-stone-100 mb-4 flex items-center gap-2">
+                    <Smartphone className="w-4 h-4 text-purple-600" />
+                    Device Breakdown
+                  </h4>
+                  <div className="space-y-4">
+                    {[
+                      { device: 'Desktop', icon: Monitor, pct: '--' },
+                      { device: 'Mobile', icon: Smartphone, pct: '--' },
+                      { device: 'Tablet', icon: Monitor, pct: '--' },
+                    ].map((item) => (
+                      <div key={item.device} className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-white dark:bg-stone-800 flex items-center justify-center border border-stone-200 dark:border-stone-600">
+                          <item.icon className="w-5 h-5 text-stone-600 dark:text-stone-400" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-stone-900 dark:text-stone-100">{item.device}</p>
+                          <p className="text-xs text-stone-500 dark:text-stone-400">{item.pct} of sessions</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-4 text-center">
+                    View detailed data in GA4
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Behavior Tab */}
+          {activeAnalyticsTab === 'behavior' && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Top Pages */}
+                <div className="bg-stone-50 dark:bg-stone-900/50 rounded-xl p-5 border border-stone-200 dark:border-stone-700">
+                  <h4 className="font-medium text-stone-900 dark:text-stone-100 mb-4 flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-amber-600" />
+                    Top Pages
+                  </h4>
+                  <div className="space-y-2">
+                    {[
+                      { page: '/', name: 'Home' },
+                      { page: '/generate', name: 'Create Lesson' },
+                      { page: '/templates', name: 'Templates' },
+                      { page: '/pricing', name: 'Pricing' },
+                      { page: '/lessons', name: 'My Lessons' },
+                    ].map((item) => (
+                      <div key={item.page} className="flex items-center justify-between py-2 border-b border-stone-200 dark:border-stone-700 last:border-0">
+                        <div>
+                          <p className="text-sm font-medium text-stone-900 dark:text-stone-100">{item.name}</p>
+                          <p className="text-xs text-stone-500 dark:text-stone-400">{item.page}</p>
+                        </div>
+                        <span className="text-sm text-stone-500 dark:text-stone-400">--</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* User Flow Events */}
+                <div className="bg-stone-50 dark:bg-stone-900/50 rounded-xl p-5 border border-stone-200 dark:border-stone-700">
+                  <h4 className="font-medium text-stone-900 dark:text-stone-100 mb-4 flex items-center gap-2">
+                    <MousePointerClick className="w-4 h-4 text-emerald-600" />
+                    Key Events (Clarity)
+                  </h4>
+                  <div className="space-y-3">
+                    {[
+                      { event: 'Lesson Generated', desc: 'AI lesson creation' },
+                      { event: 'Sign Up', desc: 'New user registration' },
+                      { event: 'Template Used', desc: 'Template selection' },
+                      { event: 'PDF Export', desc: 'Lesson downloaded' },
+                      { event: 'Upgrade Click', desc: 'Pricing interest' },
+                    ].map((item) => (
+                      <div key={item.event} className="flex items-center justify-between py-2">
+                        <div>
+                          <p className="text-sm font-medium text-stone-900 dark:text-stone-100">{item.event}</p>
+                          <p className="text-xs text-stone-500 dark:text-stone-400">{item.desc}</p>
+                        </div>
+                        <span className="text-xs px-2 py-1 bg-stone-200 dark:bg-stone-700 rounded text-stone-600 dark:text-stone-400">
+                          --
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <a
+                    href={`https://clarity.microsoft.com/projects/view/${CLARITY_PROJECT_ID}/recordings`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 hover:underline"
+                  >
+                    View session recordings
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Daily Signups Chart */}
