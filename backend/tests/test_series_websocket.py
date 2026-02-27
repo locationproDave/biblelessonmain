@@ -8,7 +8,7 @@ import os
 import json
 from datetime import datetime
 
-BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://restore-app-3.preview.emergentagent.com/api').rstrip('/')
+BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://admin-portal-401.preview.emergentagent.com/api').rstrip('/')
 
 # Test credentials
 TEST_EMAIL = "test@biblelessonplanner.com"

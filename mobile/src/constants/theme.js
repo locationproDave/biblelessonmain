@@ -84,4 +84,4 @@ export const FontSizes = {
   display: 40,
 };
 
-export const API_BASE_URL = 'https://restore-app-3.preview.emergentagent.com/api';
+export const API_BASE_URL = 'https://admin-portal-401.preview.emergentagent.com/api';

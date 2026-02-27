@@ -7,7 +7,7 @@ import requests
 import os
 import uuid
 
-BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://restore-app-3.preview.emergentagent.com').rstrip('/') + "/api"
+BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://admin-portal-401.preview.emergentagent.com').rstrip('/') + "/api"
 TEST_PASSWORD = "testpassword123"
 
 
@@ -162,7 +162,7 @@ class TestCheckout:
         """Test creating checkout session for Starter plan"""
         response = requests.post(f"{BASE_URL}/checkout/create-session", json={
             "planId": "starter",
-            "originUrl": "https://restore-app-3.preview.emergentagent.com"
+            "originUrl": "https://admin-portal-401.preview.emergentagent.com"
         })
         assert response.status_code == 200
         data = response.json()
@@ -176,7 +176,7 @@ class TestCheckout:
         """Test creating checkout session for Unlimited plan"""
         response = requests.post(f"{BASE_URL}/checkout/create-session", json={
             "planId": "unlimited",
-            "originUrl": "https://restore-app-3.preview.emergentagent.com"
+            "originUrl": "https://admin-portal-401.preview.emergentagent.com"
         })
         assert response.status_code == 200
         data = response.json()
@@ -192,7 +192,7 @@ class TestCheckout:
         for plan_id in org_plans:
             response = requests.post(f"{BASE_URL}/checkout/create-session", json={
                 "planId": plan_id,
-                "originUrl": "https://restore-app-3.preview.emergentagent.com"
+                "originUrl": "https://admin-portal-401.preview.emergentagent.com"
             })
             assert response.status_code == 200
             data = response.json()
@@ -204,7 +204,7 @@ class TestCheckout:
         """Test creating checkout session with invalid plan fails"""
         response = requests.post(f"{BASE_URL}/checkout/create-session", json={
             "planId": "invalid_plan",
-            "originUrl": "https://restore-app-3.preview.emergentagent.com"
+            "originUrl": "https://admin-portal-401.preview.emergentagent.com"
         })
         assert response.status_code == 400
         print("✓ Invalid plan rejected correctly")
@@ -214,7 +214,7 @@ class TestCheckout:
         # First create a session
         create_response = requests.post(f"{BASE_URL}/checkout/create-session", json={
             "planId": "starter",
-            "originUrl": "https://restore-app-3.preview.emergentagent.com"
+            "originUrl": "https://admin-portal-401.preview.emergentagent.com"
         })
         session_id = create_response.json()["sessionId"]
         
@@ -242,7 +242,7 @@ class TestCheckout:
         
         response = requests.post(f"{BASE_URL}/checkout/create-session", json={
             "planId": "unlimited",
-            "originUrl": "https://restore-app-3.preview.emergentagent.com"
+            "originUrl": "https://admin-portal-401.preview.emergentagent.com"
         }, headers=headers)
         
         assert response.status_code == 200

@@ -22,7 +22,7 @@ Bible Lesson Planner is a web application that helps Sunday school teachers crea
 
 ### Key Environment Variables (Vercel)
 ```
-VITE_API_URL=https://restore-app-3.preview.emergentagent.com/api
+VITE_API_URL=https://admin-portal-401.preview.emergentagent.com/api
 ```
 
 ## Core Features

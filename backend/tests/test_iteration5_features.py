@@ -16,7 +16,7 @@ import base64
 import json
 from datetime import datetime, timedelta
 
-BASE_URL = os.environ.get('VITE_API_URL', 'https://restore-app-3.preview.emergentagent.com/api')
+BASE_URL = os.environ.get('VITE_API_URL', 'https://admin-portal-401.preview.emergentagent.com/api')
 
 # Test credentials
 TEST_EMAIL = "test@biblelessonplanner.com"
