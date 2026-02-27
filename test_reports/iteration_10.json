@@ -1,0 +1,114 @@
+{
+  "summary": "Frontend UI testing for three-column layout redesign with sticky sidebars. All 14 requested features tested and verified working correctly at xl (1920px) viewport.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "/api/biblical-map/extract",
+        "issue": "Returns 401 unauthorized - expected as user not logged in",
+        "priority": "LOW"
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {
+    "backend": "N/A - Frontend only testing",
+    "frontend": "100% (14/14 features)"
+  },
+  "test_credentials": {},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Three-column layout redesign verified. Left sidebar (Lesson Flow), center scrollable content, right sidebar (Interactive Tools) all working. Sticky sidebars confirmed.",
+  "features_tested": {
+    "1_three_column_layout": {
+      "status": "PASSED",
+      "notes": "Three-column layout displays correctly at 1920px width with left sidebar (w-56), center content, right sidebar (w-72)"
+    },
+    "2_left_sidebar_lesson_flow": {
+      "status": "PASSED",
+      "notes": "Left sidebar shows 'LESSON FLOW' header with 53m total time and all 7 sections: Opening & Welcome (5min), Scripture Reading (10min), Teaching Time (10min), Interactive Activity (10min), Craft Time (8min), Discussion Questions (5min), Closing & Prayer (5min)"
+    },
+    "3_right_sidebar_interactive_tools": {
+      "status": "PASSED",
+      "notes": "Right sidebar shows 'INTERACTIVE TOOLS' header with 4 buttons: Scripture Lookup, Biblical Map, Quiz Generator, AI Supply List. Visible only on xl screens (1280px+) as expected"
+    },
+    "4_quiz_generator_in_right_sidebar": {
+      "status": "PASSED",
+      "data_testid": "show-quiz-btn",
+      "notes": "Clicking Quiz Generator button shows quiz component in right sidebar panel with 'Get Started' button"
+    },
+    "5_biblical_map_in_right_sidebar": {
+      "status": "PASSED",
+      "data_testid": "show-map-btn",
+      "notes": "Clicking Biblical Map button shows map component in right sidebar with 'Extract Locations from Lesson' button. API returns 401 when not logged in (expected)"
+    },
+    "6_ai_supply_list_in_right_sidebar": {
+      "status": "PASSED",
+      "data_testid": "show-ai-supply-btn",
+      "notes": "Clicking AI Supply List button shows supplies component in right sidebar with 'Extract Supply List' button"
+    },
+    "7_scripture_lookup_drawer": {
+      "status": "PASSED",
+      "data_testid": "scripture-lookup-btn",
+      "notes": "Scripture Lookup button opens drawer with search input, translations (KJV, WEB, BBE, OEB-US), common references, and Insert into Lesson/Copy Text/New Search buttons"
+    },
+    "8_print_button": {
+      "status": "PASSED",
+      "data_testid": "print-preview-btn",
+      "notes": "Print button found and enabled in quick actions bar"
+    },
+    "9_export_button": {
+      "status": "PASSED",
+      "notes": "Export button opens modal with PDF and Word format options and 'Export as PDF' button"
+    },
+    "10_add_to_calendar": {
+      "status": "PASSED",
+      "notes": "Add to Calendar button opens modal with Google Calendar, Outlook, Apple Calendar options, Date/Time pickers, and Create Event button"
+    },
+    "11_memory_verse_card": {
+      "status": "PASSED",
+      "notes": "Memory verse card displays with 'MEMORY VERSE' header, quote text '\"Love your neighbor as yourself.\"', and clickable reference '— Mark 12:31 (NIV)'. Tighter spacing applied with p-4 class"
+    },
+    "12_section_expand_collapse": {
+      "status": "PASSED",
+      "notes": "Section cards expand/collapse correctly when clicking header. Shows full content with formatted text, bullet points, and key points"
+    },
+    "13_mark_complete_toggle": {
+      "status": "PASSED",
+      "notes": "Complete button toggles section completion state. Shows checkmark and 'Done' text when completed. Progress bar updates in left sidebar"
+    },
+    "14_sticky_sidebars": {
+      "status": "PASSED",
+      "notes": "Both sidebars remain sticky (h-screen sticky top-0) while center content is independently scrollable. Sidebar positions stay at top:65px (below navbar) after scroll"
+    }
+  },
+  "layout_verification": {
+    "left_sidebar": {
+      "width": "w-56 (224px) when expanded, w-14 when collapsed",
+      "classes": "hidden lg:flex flex-col bg-white border-r h-screen sticky top-0",
+      "content": "Lesson Flow navigation with progress bar and section list"
+    },
+    "center_content": {
+      "classes": "flex-1 min-w-0 overflow-y-auto",
+      "features": "Quick actions bar, memory verse, section cards, all independently scrollable"
+    },
+    "right_sidebar": {
+      "width": "w-72 (288px)",
+      "classes": "hidden xl:flex flex-col bg-white border-l h-screen sticky top-0",
+      "content": "Interactive Tools panel with Map/Quiz/Supplies components"
+    }
+  },
+  "spacing_improvements": {
+    "applied_classes": ["mb-4", "p-4", "space-y-3", "py-2", "gap-2"],
+    "notes": "Tighter spacing throughout with reduced padding and margins compared to previous design"
+  }
+}

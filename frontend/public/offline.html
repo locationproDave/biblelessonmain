@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Bible Lesson Planner</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #F9F7F1 0%, #FEF3C7 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #44403c;
+    }
+    .container {
+      max-width: 480px;
+      text-align: center;
+    }
+    .icon {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+    }
+    .icon svg {
+      width: 40px;
+      height: 40px;
+      stroke: #D97706;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1c1917;
+      margin-bottom: 12px;
+      font-family: 'Crimson Text', Georgia, serif;
+    }
+    p {
+      font-size: 16px;
+      color: #78716c;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: #D97706;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 6px -1px rgba(217,119,6,0.3);
+    }
+    .btn:hover {
+      background: #B45309;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 12px -2px rgba(217,119,6,0.4);
+    }
+    .btn:active {
+      transform: translateY(0);
+    }
+    .tip {
+      margin-top: 48px;
+      padding: 16px 20px;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #E7E5E4;
+    }
+    .tip-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1c1917;
+      margin-bottom: 8px;
+    }
+    .tip-text {
+      font-size: 14px;
+      color: #78716c;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
+      </svg>
+    </div>
+    <h1>You're Offline</h1>
+    <p>It looks like you're not connected to the internet. Some features may be unavailable until you reconnect.</p>
+    <button class="btn" onclick="window.location.reload()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+      Try Again
+    </button>
+    <div class="tip">
+      <p class="tip-title">Your lessons are saved locally</p>
+      <p class="tip-text">Any lessons you've created are stored on your device and will be available when you're back online.</p>
+    </div>
+  </div>
+</body>
+</html>

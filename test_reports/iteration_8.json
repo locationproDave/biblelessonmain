@@ -1,0 +1,95 @@
+{
+  "summary": "Frontend UI testing for redesigned lesson page action buttons completed. All 10 features tested and working correctly. The lesson page now has a cleaner, more modern layout with Primary Actions row (Print, Export & Share dropdown, Calendar, Export, Expand, Notes) and Interactive Tools row (Scripture Lookup, Map, Quiz, Supplies).",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/biblical-map/extract-locations", "issue": "Returns 401 unauthorized - requires authentication. This is expected behavior for protected API endpoints.", "priority": "LOW"}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {
+    "backend": "N/A - Frontend only testing",
+    "frontend": "100% (10/10 features)"
+  },
+  "test_credentials": {},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Lesson page action buttons redesign verified. All buttons have proper data-testid attributes for testing.",
+  "features_tested": {
+    "print_lesson_button": {
+      "status": "PASSED",
+      "data_testid": "print-preview-btn",
+      "notes": "Opens print preview in new window with formatted lesson content"
+    },
+    "export_share_dropdown": {
+      "status": "PASSED",
+      "data_testid": "export-dropdown-btn",
+      "dropdown_items": ["Download as HTML", "Export as Text", "Parent Take-Home Sheet", "Copy Share Link"],
+      "notes": "Dropdown opens correctly and shows all 4 export options"
+    },
+    "add_to_calendar": {
+      "status": "PASSED",
+      "notes": "Opens calendar modal with Google Calendar, Outlook, Apple Calendar options, date/time pickers, and Create Event button"
+    },
+    "export_button": {
+      "status": "PASSED",
+      "notes": "Opens Export Lesson modal with PDF and Word format options, plus 'Export as PDF' button"
+    },
+    "expand_collapse_toggle": {
+      "status": "PASSED",
+      "data_testid": "expand-all-btn",
+      "notes": "Button toggles between 'Expand All' and 'Collapse' states, expands/collapses all lesson sections"
+    },
+    "teacher_notes_toggle": {
+      "status": "PASSED",
+      "data_testid": "teacher-notes-btn",
+      "notes": "Shows/hides Teacher Notes & Tips section with numbered tips"
+    },
+    "scripture_lookup_button": {
+      "status": "PASSED",
+      "data_testid": "scripture-lookup-btn",
+      "notes": "Opens Scripture Lookup drawer with search input, translation options (KJV, WEB, BBE, OEB-US), common references, and full Bible text display with verse numbers"
+    },
+    "map_toggle": {
+      "status": "PASSED",
+      "data_testid": "show-map-btn",
+      "notes": "Shows/hides Biblical Geography Map section with 'Extract Locations from Lesson' button"
+    },
+    "quiz_toggle": {
+      "status": "PASSED",
+      "data_testid": "show-quiz-btn",
+      "notes": "Shows/hides Quiz Generator section with 'Get Started' button for AI-generated quizzes"
+    },
+    "supplies_toggle": {
+      "status": "PASSED",
+      "data_testid": "show-ai-supply-btn",
+      "notes": "Shows/hides AI Supply List section with 'Extract Supply List' button"
+    }
+  },
+  "ui_layout_verification": {
+    "primary_actions_row": {
+      "buttons": ["Print Lesson (amber gradient CTA)", "Export & Share (dropdown)", "Add to Calendar", "Export", "Expand All/Collapse", "Notes"],
+      "layout": "Horizontal flex with gap-3, buttons have consistent styling"
+    },
+    "interactive_tools_row": {
+      "label": "INTERACTIVE TOOLS",
+      "buttons": ["Scripture Lookup (blue gradient)", "Map (emerald toggle)", "Quiz (indigo toggle)", "Supplies (orange toggle)"],
+      "layout": "Separate row with uppercase label, toggle buttons change color when active"
+    }
+  },
+  "verification_summary": {
+    "total_features": 10,
+    "passed": 10,
+    "failed": 0,
+    "visual_verification": "Screenshots confirm redesigned button layout is cleaner and more modern"
+  }
+}

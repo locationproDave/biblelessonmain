@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage images -->
+  <url>
+    <loc>https://biblelessonplanner.com/</loc>
+    <image:image>
+      <image:loc>https://biblelessonplanner.com/images/og-image.png</image:loc>
+      <image:title>Bible Lesson Planner - AI Sunday School Curriculum Generator</image:title>
+      <image:caption>Create professional Sunday school lesson plans in minutes with AI</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://biblelessonplanner.com/images/logo-light.png</image:loc>
+      <image:title>Bible Lesson Planner Logo</image:title>
+      <image:caption>Bible Lesson Planner - Your AI-powered lesson planning assistant</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://biblelessonplanner.com/images/app-screenshot.png</image:loc>
+      <image:title>Bible Lesson Planner App Screenshot</image:title>
+      <image:caption>The Bible Lesson Planner dashboard showing lesson creation interface</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Templates page images -->
+  <url>
+    <loc>https://biblelessonplanner.com/templates</loc>
+    <image:image>
+      <image:loc>https://biblelessonplanner.com/images/templates-preview.png</image:loc>
+      <image:title>Free Sunday School Lesson Templates</image:title>
+      <image:caption>Browse 50+ free Bible lesson templates for all ages</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Pricing page images -->
+  <url>
+    <loc>https://biblelessonplanner.com/pricing</loc>
+    <image:image>
+      <image:loc>https://biblelessonplanner.com/images/pricing-plans.png</image:loc>
+      <image:title>Bible Lesson Planner Pricing Plans</image:title>
+      <image:caption>Affordable Sunday school curriculum plans starting at $8.33/month</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

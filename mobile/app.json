@@ -1,0 +1,64 @@
+{
+  "expo": {
+    "name": "Bible Lesson Planner",
+    "slug": "bible-lesson-planner-v2",
+    "owner": "biblelessonplanner",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "biblelessonplanner",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F9F7F1"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.biblelessonplanner.app",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Use Face ID to quickly sign in to your account"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F9F7F1"
+      },
+      "package": "com.biblelessonplanner.app",
+      "permissions": [
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT"
+      ]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow Bible Lesson Planner to use Face ID for quick sign-in"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "00bfd36e-14f9-4538-9854-b897977165b2"
+      },
+      "apiUrl": "https://restore-app-3.preview.emergentagent.com/api",
+      "timestamp": "1771260902"
+    }
+  }
+}

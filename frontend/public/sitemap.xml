@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  
+  <!-- Homepage - Highest Priority -->
+  <url>
+    <loc>https://biblelessonplanner.com/</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://biblelessonplanner.com/images/og-image.png</image:loc>
+      <image:title>Bible Lesson Planner - AI Sunday School Curriculum</image:title>
+      <image:caption>Create professional Sunday school lesson plans in minutes with AI</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Create Lesson - Core Feature Page -->
+  <url>
+    <loc>https://biblelessonplanner.com/generate</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Pricing - High Conversion Page -->
+  <url>
+    <loc>https://biblelessonplanner.com/pricing</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Lesson Templates - SEO Content Hub -->
+  <url>
+    <loc>https://biblelessonplanner.com/templates</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Lessons Library -->
+  <url>
+    <loc>https://biblelessonplanner.com/lessons</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Curriculum Planner -->
+  <url>
+    <loc>https://biblelessonplanner.com/curriculum</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Lesson Planner -->
+  <url>
+    <loc>https://biblelessonplanner.com/planner</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Series Management -->
+  <url>
+    <loc>https://biblelessonplanner.com/series</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Progress Tracking -->
+  <url>
+    <loc>https://biblelessonplanner.com/progress</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Resources Page -->
+  <url>
+    <loc>https://biblelessonplanner.com/resources</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Help/Tutorials Page -->
+  <url>
+    <loc>https://biblelessonplanner.com/help</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://biblelessonplanner.com/contact</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Team Collaboration -->
+  <url>
+    <loc>https://biblelessonplanner.com/team</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+
+  <!-- Spanish Language Version -->
+  <url>
+    <loc>https://biblelessonplanner.com/?lang=es</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

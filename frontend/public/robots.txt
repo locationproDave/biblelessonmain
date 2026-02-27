@@ -1,0 +1,62 @@
+# Bible Lesson Planner - Robots.txt
+# https://biblelessonplanner.com
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Crawl-delay for responsible crawling
+Crawl-delay: 1
+
+# Allow important pages
+Allow: /generate
+Allow: /templates
+Allow: /pricing
+Allow: /lessons
+Allow: /resources
+Allow: /help
+Allow: /contact
+Allow: /planner
+Allow: /curriculum
+Allow: /series
+
+# Block authentication and user-specific pages
+Disallow: /signin
+Disallow: /signup
+Disallow: /profile
+Disallow: /settings
+Disallow: /checkout
+Disallow: /admin
+Disallow: /api/
+Disallow: /_*
+Disallow: /offline.html
+
+# Block query parameters that create duplicate content
+Disallow: /*?session_id=*
+Disallow: /*?success=*
+Disallow: /*?canceled=*
+Disallow: /*?token=*
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.webp$
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://biblelessonplanner.com/sitemap.xml
+Sitemap: https://biblelessonplanner.com/sitemap-images.xml
+
+# Host
+Host: https://biblelessonplanner.com

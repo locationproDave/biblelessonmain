@@ -1,0 +1,124 @@
+{
+  "identity": {
+    "persona": "E1",
+    "aesthetic": "Sunday Morning Organic",
+    "core_principles": [
+      "Warmth over sterility",
+      "Typography as texture",
+      "Physicality (paper, cardstock feel)",
+      "Generous breathing room"
+    ]
+  },
+  "typography": {
+    "font_family": {
+      "serif": ["Crimson Text", "serif"],
+      "sans": ["Manrope", "sans-serif"]
+    },
+    "usage": {
+      "headings": "font-serif font-semibold tracking-tight",
+      "body": "font-sans font-normal leading-relaxed",
+      "labels": "font-sans font-medium uppercase tracking-wide text-xs"
+    },
+    "scale": {
+      "h1": "text-4xl md:text-5xl",
+      "h2": "text-3xl md:text-4xl",
+      "h3": "text-2xl",
+      "card_title": "text-xl font-serif font-semibold text-warm-grey-900"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#F9F7F1",
+      "surface": "#FFFFFF",
+      "surface_highlight": "#FCFBFA",
+      "text": {
+        "primary": "#292524",
+        "secondary": "#57534E",
+        "muted": "#78716C",
+        "inverted": "#FFFFFF"
+      },
+      "accent": {
+        "primary": "#D97706",
+        "secondary": "#B45309",
+        "light": "#FEF3C7"
+      },
+      "border": {
+        "default": "#E7E5E4",
+        "subtle": "#F5F5F4",
+        "active": "#D97706"
+      },
+      "status": {
+        "success": "#059669",
+        "warning": "#D97706",
+        "error": "#DC2626"
+      }
+    },
+    "dark_mode": {
+      "background": "#1C1917",
+      "surface": "#292524",
+      "text_primary": "#F5F5F4",
+      "border": "#44403C"
+    }
+  },
+  "layout_strategy": {
+    "global": "Container max-w-7xl mx-auto px-6 py-12",
+    "grid": {
+      "desktop": "grid-cols-3 gap-8",
+      "tablet": "grid-cols-2 gap-6",
+      "mobile": "grid-cols-1 gap-6"
+    },
+    "spacing": {
+      "card_padding": "p-6",
+      "section_gap": "gap-8"
+    }
+  },
+  "components": {
+    "LessonCard": {
+      "structure": "Card root -> Header (Title + Favorite) -> Body (Meta + Description) -> Footer (Tags + Actions)",
+      "visuals": {
+        "bg": "bg-white dark:bg-stone-800",
+        "border": "border border-stone-200 dark:border-stone-700",
+        "radius": "rounded-xl",
+        "shadow": "shadow-sm hover:shadow-md transition-all duration-300",
+        "hover_effect": "hover:-translate-y-1 hover:border-amber-400/50"
+      },
+      "elements": {
+        "title": "text-xl font-serif font-bold text-stone-900 dark:text-stone-100 mb-2 leading-tight",
+        "passage": "text-sm font-sans font-medium text-amber-700 dark:text-amber-500 mb-3 flex items-center gap-1",
+        "description": "text-sm text-stone-500 dark:text-stone-400 line-clamp-2 leading-relaxed mb-4",
+        "tags": {
+          "container": "flex flex-wrap gap-2 mb-4",
+          "style": "px-2.5 py-1 rounded-full text-xs font-medium bg-stone-100 text-stone-600 dark:bg-stone-700 dark:text-stone-300"
+        },
+        "footer": {
+          "container": "flex items-center justify-between pt-4 border-t border-stone-100 dark:border-stone-700",
+          "meta": "text-xs text-stone-400 dark:text-stone-500 font-medium"
+        }
+      },
+      "anti_patterns": [
+        "No colored bars on top",
+        "No heavy gradients",
+        "No standard 'blue' links - use amber/stone"
+      ]
+    },
+    "PageHeader": {
+      "title": "font-serif text-4xl font-bold text-stone-900 dark:text-stone-50 mb-2",
+      "subtitle": "font-sans text-stone-500 dark:text-stone-400 text-lg"
+    }
+  },
+  "instructions_to_main_agent": [
+    "UPDATE /app/frontend/src/index.css to import 'Crimson Text' and 'Manrope' correctly if not already consistent.",
+    "SET global body background to #F9F7F1 in index.css (or tailwind config).",
+    "REFACTOR /app/frontend/src/routes/lessons.tsx to use the new card design.",
+    "REMOVE the 'bg-gradient-to-r' div from the card.",
+    "USE 'lucide-react' icons with stroke-width={1.5} for a more elegant look.",
+    "ENSURE the card uses 'Crimson Text' for the title and 'Manrope' for the rest.",
+    "IMPLEMENT the 'Sunday Morning' aesthetic: warm, clean, organic.",
+    "For the 'List View', apply similar principles: no vertical gradient bars, use clean typography and spacing."
+  ],
+  "universal_guidelines": {
+    "interactivity": "All clickable elements must have hover states (color shift or lift).",
+    "accessibility": "Ensure text contrast meets WCAG AA (use darker stones/greys for text on off-white).",
+    "testing": "Add data-testid to the LessonCard container and interactive buttons."
+  }
+}
