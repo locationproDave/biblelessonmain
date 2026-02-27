@@ -19,7 +19,14 @@ import {
   ArrowUpRight,
   ArrowDownRight,
   Loader2,
-  CreditCard
+  CreditCard,
+  Globe,
+  Eye,
+  MousePointerClick,
+  Timer,
+  Smartphone,
+  Monitor,
+  ExternalLink
 } from 'lucide-react'
 
 export const Route = createFileRoute('/admin/dashboard')({
