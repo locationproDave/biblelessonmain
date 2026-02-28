@@ -251,60 +251,6 @@ function PricingPage() {
           </p>
         </div>
 
-        {/* Launch Special - Subtle Promo Banner */}
-        <div className="mb-10 relative" data-testid="promo-banner">
-          {/* Main Banner Container - No animations */}
-          <div className="relative rounded-2xl border border-amber-200 dark:border-amber-800/50 bg-white dark:bg-stone-800/50 shadow-sm overflow-hidden">
-            {/* Inner Content */}
-            <div className="relative p-6 sm:p-8">              
-              {/* Content */}
-              <div className="relative flex flex-col lg:flex-row items-center justify-between gap-6">
-                {/* Left Side - Icon & Badge */}
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <PartyPopper className="w-7 h-7 sm:w-8 sm:h-8 text-amber-600 dark:text-amber-500" strokeWidth={1.5} />
-                  </div>
-                  
-                  <div className="text-center lg:text-left">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-semibold uppercase tracking-wider mb-1.5">
-                      <Sparkles className="w-3.5 h-3.5" />
-                      {t('pricing.launchSpecial')}
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100" style={{ fontFamily: 'Crimson Text, serif' }}>
-                      {t('pricing.limitedTimeOffer')}
-                    </h3>
-                  </div>
-                </div>
-                
-                {/* Center - Main Message */}
-                <div className="flex-1 text-center">
-                  <p className="text-base sm:text-lg text-stone-600 dark:text-stone-300 mb-1">
-                    {t('pricing.nextSubscribers')}
-                  </p>
-                  <div className="flex items-center justify-center">
-                    <span className="text-3xl sm:text-4xl font-bold text-amber-600 dark:text-amber-500" style={{ fontFamily: 'Crimson Text, serif' }}>
-                      20% OFF
-                    </span>
-                  </div>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                    {t('pricing.offAnnual')}
-                  </p>
-                </div>
-                
-                {/* Right Side - Counter Badge - Static */}
-                <div className="flex flex-col items-center gap-2">
-                  <div className="px-5 py-3 rounded-xl bg-amber-600 dark:bg-amber-700">
-                    <div className="text-center">
-                      <span className="block text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: 'Crimson Text, serif' }}>73</span>
-                      <span className="block text-xs font-semibold text-amber-100 uppercase tracking-wider">{t('pricing.spotsLeft')}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Toggles */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
           <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700">
