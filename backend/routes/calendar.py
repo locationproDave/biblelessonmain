@@ -33,8 +33,8 @@ GOOGLE_CALENDAR_ID = os.environ.get('GOOGLE_CALENDAR_ID', 'primary')
 GOOGLE_SHARED_CALENDAR_ID = os.environ.get('GOOGLE_SHARED_CALENDAR_ID')  # Optional shared site calendar
 
 # Get the frontend URL for redirects
-FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://admin-portal-401.preview.emergentagent.com')
-BACKEND_URL = os.environ.get('BACKEND_URL', 'https://admin-portal-401.preview.emergentagent.com')
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://biblelessonplanner.com')
+BACKEND_URL = os.environ.get('BACKEND_URL', 'https://biblelessonplanner.com')
 
 def serialize_doc(doc: dict) -> dict:
     if doc is None:
