@@ -396,3 +396,218 @@ async def remove_user_admin(
         raise HTTPException(status_code=404, detail="User not found")
     
     return {"success": True, "message": f"Admin role removed from user {user_id}"}
+
+
+
+# ===== Custom Subscription Management =====
+
+from pydantic import BaseModel
+from typing import Optional, Dict, Any
+
+class CustomSubscriptionRequest(BaseModel):
+    userId: str
+    planName: str
+    price: float
+    interval: str = "month"  # month or year
+    lessonsLimit: int = 100
+    durationMonths: int = 12  # How long the subscription lasts
+    features: Optional[Dict[str, Any]] = None
+    notes: Optional[str] = None
+
+@router.post("/subscriptions/custom")
+async def create_custom_subscription(
+    data: CustomSubscriptionRequest,
+    admin: dict = Depends(get_current_admin_user)
+):
+    """Create a custom subscription for a user"""
+    import uuid
+    
+    # Verify user exists
+    user = await db.users.find_one({"id": data.userId})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Default features if not provided
+    default_features = {
+        "lessons": data.lessonsLimit if data.lessonsLimit < 500 else "Unlimited",
+        "quizzes": True,
+        "supplyLists": True,
+        "emailDelivery": True,
+        "curriculumPlanner": True,
+        "teamMembers": 5,
+        "priority": True
+    }
+    
+    features = data.features or default_features
+    
+    # Calculate subscription period
+    now = datetime.now(timezone.utc)
+    if data.interval == "year":
+        end_date = now + timedelta(days=365 * (data.durationMonths // 12))
+    else:
+        end_date = now + timedelta(days=30 * data.durationMonths)
+    
+    # Create custom plan ID
+    custom_plan_id = f"custom_{uuid.uuid4().hex[:8]}"
+    
+    subscription_data = {
+        "id": str(uuid.uuid4()),
+        "userId": data.userId,
+        "planId": custom_plan_id,
+        "planName": data.planName,
+        "isCustomPlan": True,
+        "customPrice": data.price,
+        "interval": data.interval,
+        "status": "active",
+        "lessonsUsed": 0,
+        "lessonsLimit": data.lessonsLimit,
+        "features": features,
+        "currentPeriodStart": now.isoformat(),
+        "currentPeriodEnd": end_date.isoformat(),
+        "createdAt": now.isoformat(),
+        "createdBy": admin["id"],
+        "adminNotes": data.notes
+    }
+    
+    # Upsert subscription (replace existing if any)
+    await db.subscriptions.update_one(
+        {"userId": data.userId},
+        {"$set": subscription_data},
+        upsert=True
+    )
+    
+    logger.info(f"Admin {admin['email']} created custom subscription for user {user['email']}: {data.planName}")
+    
+    return {
+        "success": True,
+        "subscription": subscription_data,
+        "message": f"Custom subscription '{data.planName}' created for {user['email']}"
+    }
+
+@router.get("/subscriptions")
+async def get_all_subscriptions(
+    page: int = 1,
+    limit: int = 20,
+    search: str = "",
+    admin: dict = Depends(get_current_admin_user)
+):
+    """Get all subscriptions with user info"""
+    
+    skip = (page - 1) * limit
+    
+    # Get subscriptions
+    pipeline = [
+        {"$lookup": {
+            "from": "users",
+            "localField": "userId",
+            "foreignField": "id",
+            "as": "user"
+        }},
+        {"$unwind": {"path": "$user", "preserveNullAndEmptyArrays": True}},
+        {"$project": {
+            "_id": 0,
+            "id": 1,
+            "userId": 1,
+            "planId": 1,
+            "planName": 1,
+            "isCustomPlan": 1,
+            "customPrice": 1,
+            "status": 1,
+            "lessonsUsed": 1,
+            "lessonsLimit": 1,
+            "currentPeriodEnd": 1,
+            "createdAt": 1,
+            "adminNotes": 1,
+            "userEmail": "$user.email",
+            "userName": "$user.name"
+        }}
+    ]
+    
+    # Add search filter if provided
+    if search:
+        pipeline.insert(0, {
+            "$match": {
+                "$or": [
+                    {"planName": {"$regex": search, "$options": "i"}},
+                    {"planId": {"$regex": search, "$options": "i"}}
+                ]
+            }
+        })
+    
+    # Add pagination
+    pipeline.extend([
+        {"$sort": {"createdAt": -1}},
+        {"$skip": skip},
+        {"$limit": limit}
+    ])
+    
+    subscriptions = await db.subscriptions.aggregate(pipeline).to_list(limit)
+    
+    # Get total count
+    total = await db.subscriptions.count_documents({})
+    
+    return {
+        "subscriptions": subscriptions,
+        "total": total,
+        "page": page,
+        "totalPages": (total + limit - 1) // limit
+    }
+
+@router.delete("/subscriptions/{subscription_id}")
+async def cancel_subscription(
+    subscription_id: str,
+    admin: dict = Depends(get_current_admin_user)
+):
+    """Cancel/delete a subscription"""
+    
+    result = await db.subscriptions.update_one(
+        {"id": subscription_id},
+        {"$set": {
+            "status": "canceled",
+            "canceledAt": datetime.now(timezone.utc).isoformat(),
+            "canceledBy": admin["id"]
+        }}
+    )
+    
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Subscription not found")
+    
+    return {"success": True, "message": "Subscription canceled"}
+
+@router.put("/subscriptions/{subscription_id}")
+async def update_subscription(
+    subscription_id: str,
+    data: CustomSubscriptionRequest,
+    admin: dict = Depends(get_current_admin_user)
+):
+    """Update an existing subscription"""
+    
+    now = datetime.now(timezone.utc)
+    if data.interval == "year":
+        end_date = now + timedelta(days=365 * (data.durationMonths // 12))
+    else:
+        end_date = now + timedelta(days=30 * data.durationMonths)
+    
+    update_data = {
+        "planName": data.planName,
+        "customPrice": data.price,
+        "interval": data.interval,
+        "lessonsLimit": data.lessonsLimit,
+        "currentPeriodEnd": end_date.isoformat(),
+        "updatedAt": now.isoformat(),
+        "updatedBy": admin["id"],
+        "adminNotes": data.notes
+    }
+    
+    if data.features:
+        update_data["features"] = data.features
+    
+    result = await db.subscriptions.update_one(
+        {"id": subscription_id},
+        {"$set": update_data}
+    )
+    
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Subscription not found")
+    
+    return {"success": True, "message": "Subscription updated"}
