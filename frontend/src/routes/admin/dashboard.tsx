@@ -842,6 +842,27 @@ function AdminDashboard() {
                             {formatDate(user.createdAt)}
                           </span>
                         </td>
+                        <td className="py-3 px-4 text-right">
+                          <button
+                            onClick={() => {
+                              setSelectedUser(user)
+                              setCustomSubForm({
+                                planName: '',
+                                price: 0,
+                                interval: 'month',
+                                lessonsLimit: 100,
+                                durationMonths: 12,
+                                notes: ''
+                              })
+                              setShowCustomSubModal(true)
+                            }}
+                            className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-colors"
+                            data-testid={`assign-plan-${user.id}`}
+                          >
+                            <Gift className="w-3 h-3" />
+                            Assign Plan
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
