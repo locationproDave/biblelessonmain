@@ -47,3 +47,7 @@ package-lock.json
 # Temp files
 *.tmp
 *.temp
+-e 
+# Environment files
+*.env
+*.env.*
