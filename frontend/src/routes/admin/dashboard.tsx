@@ -47,10 +47,17 @@ function AdminDashboard() {
   // Custom Subscription Modal State
   const [showCustomSubModal, setShowCustomSubModal] = useState(false)
   const [selectedUser, setSelectedUser] = useState<any>(null)
-  const [customSubForm, setCustomSubForm] = useState({
+  const [customSubForm, setCustomSubForm] = useState<{
+    planName: string;
+    price: number;
+    interval: 'month' | 'year';
+    lessonsLimit: number;
+    durationMonths: number;
+    notes: string;
+  }>({
     planName: '',
     price: 0,
-    interval: 'month' as 'month' | 'year',
+    interval: 'month',
     lessonsLimit: 100,
     durationMonths: 12,
     notes: ''
