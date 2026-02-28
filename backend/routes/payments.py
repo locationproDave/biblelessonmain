@@ -440,6 +440,7 @@ async def get_checkout_status(session_id: str, authorization: str = Header(None)
     if session_id.startswith("demo_"):
         return {
             "status": "complete",
+            "paymentStatus": "paid",
             "demo": True,
             "message": "Demo checkout completed"
         }
@@ -448,15 +449,15 @@ async def get_checkout_status(session_id: str, authorization: str = Header(None)
         return {"status": "unknown", "message": "Stripe not configured"}
     
     try:
-        from emergentintegrations.payments.stripe.checkout import StripeCheckout
+        import stripe
+        stripe.api_key = STRIPE_API_KEY
         
-        stripe_checkout = StripeCheckout(api_key=STRIPE_API_KEY)
-        status_response = stripe_checkout.get_checkout_status(session_id)
+        session = stripe.checkout.Session.retrieve(session_id)
         
         return {
-            "status": status_response.status,
-            "payment_status": status_response.payment_status,
-            "customer_email": status_response.customer_email
+            "status": session.status,
+            "paymentStatus": session.payment_status,
+            "customerEmail": session.customer_details.email if session.customer_details else None
         }
     except Exception as e:
         logger.error(f"Error fetching checkout status: {e}")
