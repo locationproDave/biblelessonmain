@@ -1,192 +1,129 @@
 # Bible Lesson Planner - Product Requirements Document
 
 ## Overview
-Bible Lesson Planner is a web and mobile application that helps Sunday school teachers create engaging, scripture-based lesson plans. The application uses AI to generate comprehensive lesson content tailored to different age groups and formats.
+Bible Lesson Planner is a web and mobile application that helps Sunday school teachers create engaging, scripture-based lesson plans using AI.
 
-## Architecture
+## Production Architecture (February 2026)
 
-### Web Frontend (Vite + React + TanStack Router)
-- **Location:** `/app/frontend/`
-- **Framework:** React with Vite
-- **Routing:** TanStack Router (file-based)
-- **UI Components:** Shadcn/UI + Tailwind CSS
-- **State Management:** Zustand stores
-- **Deployment:** Vercel (static hosting)
+### Hosting
+| Component | Provider | URL |
+|-----------|----------|-----|
+| Frontend | Vercel | https://biblelessonplanner.com |
+| Backend | Railway | https://biblelessonmain-production.up.railway.app |
+| Database | MongoDB Atlas | bible-lesson-cluster |
+| AI | Anthropic Claude | claude-sonnet-4-20250514 |
+| Payments | Stripe | Live mode |
+| Email | Resend | hello@biblelessonplanner.com |
 
-### Mobile App (React Native + Expo)
-- **Location:** `/app/mobile/`
-- **Framework:** React Native with Expo
-- **Navigation:** Expo Router (file-based)
-- **UI:** Custom components matching web design
-- **Features:** Biometric auth, offline caching
+### Environment Variables
 
-### Backend (FastAPI + MongoDB)
-- **Location:** `/app/backend/`
-- **Framework:** FastAPI
-- **Database:** MongoDB
-- **AI Integration:** OpenAI via Emergent LLM Key
-- **Deployment:** Emergent preview environment
+**Railway (Backend):**
+- `ANTHROPIC_API_KEY` - Claude AI
+- `MONGO_URL` - MongoDB Atlas connection
+- `DB_NAME` - bible_lesson_db
+- `STRIPE_API_KEY` - Stripe live key
+- `RESEND_API_KEY` - Resend email
+- `SENDER_EMAIL` - hello@biblelessonplanner.com
+- `CORS_ORIGINS` - https://biblelessonplanner.com
 
-### Key Environment Variables (Vercel)
-```
-VITE_API_URL=https://admin-portal-401.preview.emergentagent.com/api
-```
+**Vercel (Frontend):**
+- `VITE_API_URL` - https://biblelessonmain-production.up.railway.app/api
 
 ## Core Features
 
-### 1. Lesson Generation
-- AI-powered lesson creation from Bible passages or topics
-- Customizable by age group, duration, and format
-- Includes memory verses, activities, teacher notes, parent take-home
+### 1. AI Lesson Generation
+- Claude-powered lesson creation from Bible passages
+- Customizable by age group, duration, format
+- Includes memory verses, activities, teacher notes
 
 ### 2. Template Library
-- Pre-built lesson templates for holidays and common passages
-- Quick-start options for teachers
+- Pre-built lesson templates
+- Holiday and seasonal content
 
-### 3. Lesson Management
-- Save, edit, and organize lessons
-- Favorite lessons for quick access
-- Export to PDF
+### 3. User Management
+- Email/password authentication
+- User profiles and preferences
 
-### 4. User Features
-- Authentication (login/register)
-- User profiles
-- Subscription plans (Stripe integration)
+### 4. Subscription Plans (Stripe)
+- Free Trial: 3 lessons/month
+- Starter: $9.99/month - 6 lessons
+- Unlimited: $19.99/month - 100 lessons
+- Church plans: $29.99 - $199.99/month
 
-### 5. AI Tools
-- Chatbot for help and questions
-- Biblical map quizzes
-- Quiz generator
+### 5. Admin Dashboard
+- User analytics and management
+- Subscription breakdown
+- GA4/Clarity/Bing analytics integration
 
-### 6. Admin Dashboard (NEW - Feb 2026)
-- Secure admin login with role-based access
-- Analytics: users, lessons, revenue, active users
-- Subscription plan breakdown visualization
-- User management with search/pagination
-- **Website Analytics Section (GA4, Clarity, Bing):**
-  - Overview tab: Page Views, Sessions, Avg Duration, Bounce Rate metrics
-  - Traffic tab: Traffic Sources breakdown, Device Breakdown (Desktop/Mobile/Tablet)
-  - Behavior tab: Top Pages, Key Events tracked in Clarity
-  - Quick links to: Google Analytics, Microsoft Clarity, Bing Webmaster
-  - Status indicators showing GA4 Active, Clarity Recording, Bing Indexed
-- Admin credentials: hello@biblelessonplanner.com / Truman310
-
-### 7. Mobile App (NEW - Feb 2026)
-- Full React Native app replicating web functionality
-- Screens: Home, Lessons, Create, Templates, Profile
-- Lesson detail view with expandable sections
-- Biometric authentication support
-- Offline lesson caching
-
-## File Structure
-
-```
-/app
-├── frontend/
-│   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── routes/         # Page components (TanStack Router)
-│   │   │   └── admin/      # Admin dashboard
-│   │   ├── lib/            # Utilities, API, stores
-│   │   └── hooks/          # Custom React hooks
-│   ├── vercel.json         # Vercel deployment config
-│   └── package.json
-├── backend/
-│   ├── routes/             # API route handlers
-│   │   ├── admin.py        # Admin analytics endpoints
-│   │   ├── auth.py         # Authentication
-│   │   ├── ai.py           # AI generation
-│   │   └── lessons.py      # Lesson CRUD
-│   ├── models/             # Pydantic schemas
-│   ├── services/           # Database, utilities
-│   ├── server.py           # Main FastAPI app
-│   └── requirements.txt
-├── mobile/
-│   ├── app/
-│   │   ├── (auth)/         # Auth screens (landing, login, register)
-│   │   ├── (tabs)/         # Main app tabs (home, lessons, create, etc)
-│   │   ├── lesson/         # Lesson detail screen
-│   │   └── _layout.tsx     # Root layout with auth
-│   ├── src/
-│   │   ├── components/     # Reusable mobile components
-│   │   ├── contexts/       # Auth context
-│   │   ├── lib/            # API client, storage, types
-│   │   └── styles/         # Theme configuration
-│   └── package.json
-└── .vercelignore           # Excludes backend from Vercel build
-```
+### 6. Mobile App (React Native)
+- Scaffolded in `/app/mobile`
+- Pending full implementation
 
 ## API Endpoints
 
 ### Authentication
-- `POST /api/auth/register` - Create account
-- `POST /api/auth/signin` - Login
-- `GET /api/auth/session` - Get current session
+- `POST /api/auth/register`
+- `POST /api/auth/signin`
+- `GET /api/auth/session`
 
 ### AI/Lessons
-- `POST /api/ai/generate-lesson` - Generate new lesson
-- `GET /api/lessons` - Get user's lessons
-- `POST /api/lessons` - Save lesson
-- `POST /api/lessons/{id}/favorite` - Toggle favorite
+- `POST /api/ai/generate-lesson`
+- `GET /api/lessons`
+- `POST /api/lessons`
 
-### Admin (Protected - Admin role required)
-- `GET /api/admin/analytics` - Site analytics (users, lessons, revenue)
-- `GET /api/admin/users` - Paginated user list
-- `GET /api/admin/spending` - Revenue metrics
-- `GET /api/admin/lessons-stats` - Lesson statistics
-- `GET /api/admin/plan-breakdown` - Subscription distribution
-- `POST /api/admin/set-admin/{user_id}` - Grant admin role
-- `POST /api/admin/remove-admin/{user_id}` - Revoke admin role
+### Payments
+- `GET /api/pricing/plans`
+- `POST /api/checkout/create-session`
+- `POST /api/webhook/stripe`
 
-### Other
-- `GET /api/health` - Health check
-- `POST /api/chatbot/chat` - Chatbot interaction
-- `POST /api/contact` - Contact form
+### Admin
+- `GET /api/admin/analytics`
+- `GET /api/admin/users`
 
-## Recent Changes (Feb 2026)
+## File Structure
+```
+/app
+├── frontend/           # React + Vite + TanStack Router
+│   ├── src/
+│   │   ├── components/
+│   │   ├── routes/
+│   │   └── lib/
+│   └── .env.example
+├── backend/            # FastAPI + Python
+│   ├── routes/
+│   ├── models/
+│   ├── services/
+│   ├── server.py
+│   └── .env.example
+├── mobile/             # React Native + Expo (WIP)
+└── memory/             # Documentation
+```
 
-### Added Features
-- ✅ Admin Dashboard with analytics, user management, revenue tracking
-- ✅ React Native mobile app with full feature parity
-- ✅ Biometric authentication for mobile
-- ✅ Offline lesson caching
+## Completed (February 2026)
 
-### Removed Features
-- ❌ Spanish language support (i18n removed)
-- ❌ Language selector in settings
+- ✅ Full web application
+- ✅ AI lesson generation (Claude)
+- ✅ Stripe payments (live)
+- ✅ Admin dashboard with analytics
+- ✅ GA4/Clarity integration
+- ✅ Production deployment (Railway + Vercel)
+- ✅ MongoDB Atlas database
+- ✅ Webhook integration
 
-### Bug Fixes
-- Fixed 405 error on production (VITE_API_URL environment variable)
-- Fixed AI tools (Map, Quiz) to work without database dependencies
-- Fixed memory verse defaulting to false
-- Fixed hero button widths
-- Fixed pricing card alignment
+## Pending
 
-## Deployment
+- ⏳ Mobile app implementation
+- ⏳ Resend domain verification
+- ⏳ Email marketing/newsletter
+- ⏳ Social sharing features
 
-### Vercel (Frontend)
-1. Push to GitHub via "Save to Github"
-2. Vercel auto-deploys from main branch
-3. Environment variable `VITE_API_URL` must point to backend
+## Monthly Costs (Estimated)
 
-### Backend
-- Currently runs on Emergent preview environment
-- For production: Would need separate hosting (Render, Railway, etc.)
-
-### Mobile App
-- Development: `cd /app/mobile && npx expo start`
-- Build: Use EAS Build (`eas build`) for iOS/Android
-
-## Known Limitations
-
-1. **Backend Dependency:** Frontend relies on Emergent preview URL for API
-2. **No Offline Mode:** Web requires internet for AI features
-3. **Single Language:** English only (Spanish support removed)
-
-## Future Considerations
-
-- Dedicated backend hosting for production
-- Real-time collaboration features
-- Push notifications for mobile
-- Offline lesson viewing on web
-- Team collaboration features
+| Service | Cost |
+|---------|------|
+| Vercel | Free |
+| Railway | ~$5-10/mo |
+| MongoDB Atlas | Free (M0) |
+| Claude API | ~$0.01/lesson |
+| Stripe | 2.9% + $0.30/txn |
+| Resend | Free tier |
