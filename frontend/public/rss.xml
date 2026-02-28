@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Bible Lesson Planner</title>
+    <link>https://biblelessonplanner.com</link>
+    <description>AI-powered Sunday school lesson plans for teachers and children's ministry leaders. Create engaging, scripture-based lessons in minutes.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2026 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://biblelessonplanner.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://biblelessonplanner.com/images/logo-light.png</url>
+      <title>Bible Lesson Planner</title>
+      <link>https://biblelessonplanner.com</link>
+    </image>
+    
+    <item>
+      <title>The Christmas Story: Jesus is Born - Free Lesson Template</title>
+      <link>https://biblelessonplanner.com/templates?theme=christmas</link>
+      <description>Celebrate the birth of Jesus with this engaging lesson featuring Luke 2:1-20. Includes activities, memory verses, and take-home materials for elementary students.</description>
+      <pubDate>Fri, 28 Feb 2026 10:00:00 GMT</pubDate>
+      <guid>https://biblelessonplanner.com/templates/christmas-story</guid>
+    </item>
+    
+    <item>
+      <title>The Good Samaritan: Teaching Kids About Compassion</title>
+      <link>https://biblelessonplanner.com/templates?theme=parables</link>
+      <description>Help children understand what it means to love their neighbor through this powerful parable from Luke 10:25-37. Perfect for elementary and pre-teen groups.</description>
+      <pubDate>Thu, 27 Feb 2026 10:00:00 GMT</pubDate>
+      <guid>https://biblelessonplanner.com/templates/good-samaritan</guid>
+    </item>
+    
+    <item>
+      <title>David and Goliath: Courage with God</title>
+      <link>https://biblelessonplanner.com/templates?theme=old-testament</link>
+      <description>Teach children about faith and courage through the story of David and Goliath from 1 Samuel 17. Includes fun activities and discussion questions.</description>
+      <pubDate>Wed, 26 Feb 2026 10:00:00 GMT</pubDate>
+      <guid>https://biblelessonplanner.com/templates/david-goliath</guid>
+    </item>
+    
+    <item>
+      <title>The Resurrection: Jesus is Alive! - Easter Lesson</title>
+      <link>https://biblelessonplanner.com/templates?theme=easter</link>
+      <description>Experience the joy of Easter morning with this engaging lesson about Jesus' resurrection from Matthew 28:1-10. Perfect for all age groups.</description>
+      <pubDate>Tue, 25 Feb 2026 10:00:00 GMT</pubDate>
+      <guid>https://biblelessonplanner.com/templates/resurrection</guid>
+    </item>
+    
+    <item>
+      <title>Noah's Ark: Trusting God's Plan</title>
+      <link>https://biblelessonplanner.com/templates?theme=old-testament</link>
+      <description>Teach children about obedience and trust through the story of Noah from Genesis 6-9. Includes crafts, games, and memory verse activities.</description>
+      <pubDate>Mon, 24 Feb 2026 10:00:00 GMT</pubDate>
+      <guid>https://biblelessonplanner.com/templates/noahs-ark</guid>
+    </item>
+    
+    <item>
+      <title>Teaching Bible Stories to Children - Resource Guide</title>
+      <link>https://biblelessonplanner.com/resources</link>
+      <description>Learn age-appropriate strategies for bringing Scripture to life for young hearts and minds. Free teaching guide for Sunday school teachers.</description>
+      <pubDate>Sun, 23 Feb 2026 10:00:00 GMT</pubDate>
+      <guid>https://biblelessonplanner.com/resources/teaching-guide</guid>
+    </item>
+
+  </channel>
+</rss>
