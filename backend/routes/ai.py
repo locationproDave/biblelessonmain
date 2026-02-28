@@ -5,6 +5,7 @@ import uuid
 import json
 import logging
 import os
+import anthropic
 
 from models.schemas import GenerateLessonRequest, QuizGenerateRequest, SupplyListExtractRequest, BiblicalMapExtractRequest
 from services.database import db
@@ -12,8 +13,8 @@ from services.database import db
 router = APIRouter(prefix="/ai", tags=["AI Generation"])
 logger = logging.getLogger(__name__)
 
-# Emergent LLM Key
-EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY')
+# Anthropic Claude API Key
+ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY')
 
 def serialize_doc(doc: dict) -> dict:
     if doc is None:
@@ -25,24 +26,26 @@ def serialize_doc(doc: dict) -> dict:
     return result
 
 async def generate_with_ai(prompt: str, session_id: str = None) -> str:
-    """Helper function to generate content with AI"""
-    if not EMERGENT_LLM_KEY:
-        logger.warning("EMERGENT_LLM_KEY not configured, using fallback")
+    """Helper function to generate content with Claude AI"""
+    if not ANTHROPIC_API_KEY:
+        logger.warning("ANTHROPIC_API_KEY not configured, using fallback")
         return None
     
     try:
-        from emergentintegrations.llm.chat import LlmChat, UserMessage
-        chat = LlmChat(
-            api_key=EMERGENT_LLM_KEY,
-            session_id=session_id or str(uuid.uuid4()),
-            system_message="You are a helpful Bible teacher assistant that creates engaging, scripture-based lessons for various age groups. Always respond with valid JSON."
-        ).with_model("openai", "gpt-5.2")
+        client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
         
-        user_message = UserMessage(text=prompt)
-        response = await chat.send_message(user_message)
-        return response
+        message = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=4096,
+            system="You are a helpful Bible teacher assistant that creates engaging, scripture-based lessons for various age groups. Always respond with valid JSON only, no markdown formatting.",
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+        
+        return message.content[0].text
     except Exception as e:
-        logger.error(f"AI generation error: {str(e)}")
+        logger.error(f"Claude AI generation error: {str(e)}")
         return None
 
 @router.post("/generate-lesson")
