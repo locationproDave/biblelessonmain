@@ -40,6 +40,19 @@ function AdminDashboard() {
   const [userSearch, setUserSearch] = useState('')
   const [userPage, setUserPage] = useState(1)
   const [activeAnalyticsTab, setActiveAnalyticsTab] = useState<'overview' | 'traffic' | 'behavior'>('overview')
+  
+  // Custom Subscription Modal State
+  const [showCustomSubModal, setShowCustomSubModal] = useState(false)
+  const [selectedUser, setSelectedUser] = useState<any>(null)
+  const [customSubForm, setCustomSubForm] = useState({
+    planName: '',
+    price: 0,
+    interval: 'month' as 'month' | 'year',
+    lessonsLimit: 100,
+    durationMonths: 12,
+    notes: ''
+  })
+  const [customSubLoading, setCustomSubLoading] = useState(false)
 
   const isAdmin = session?.user?.role === 'admin'
 
