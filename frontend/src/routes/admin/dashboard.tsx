@@ -26,7 +26,10 @@ import {
   Timer,
   Smartphone,
   Monitor,
-  ExternalLink
+  ExternalLink,
+  Plus,
+  X,
+  Gift
 } from 'lucide-react'
 
 export const Route = createFileRoute('/admin/dashboard')({
