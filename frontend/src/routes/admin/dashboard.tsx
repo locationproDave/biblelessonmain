@@ -901,6 +901,199 @@ function AdminDashboard() {
             </>
           )}
         </div>
+
+        {/* Custom Subscription Modal */}
+        {showCustomSubModal && selectedUser && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onClick={() => setShowCustomSubModal(false)}>
+            <div 
+              className="bg-white dark:bg-stone-800 rounded-2xl shadow-xl max-w-md w-full p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
+                    Assign Custom Plan
+                  </h3>
+                  <p className="text-sm text-stone-500 dark:text-stone-400">
+                    For: {selectedUser.email}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowCustomSubModal(false)}
+                  className="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg"
+                >
+                  <X className="w-5 h-5 text-stone-500" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {/* Plan Name */}
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">
+                    Plan Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={customSubForm.planName}
+                    onChange={(e) => setCustomSubForm(f => ({ ...f, planName: e.target.value }))}
+                    placeholder="e.g., Church Partnership, VIP Access"
+                    className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                  />
+                </div>
+
+                {/* Price and Interval */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">
+                      Price ($)
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={customSubForm.price}
+                      onChange={(e) => setCustomSubForm(f => ({ ...f, price: parseFloat(e.target.value) || 0 }))}
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">
+                      Billing
+                    </label>
+                    <select
+                      value={customSubForm.interval}
+                      onChange={(e) => setCustomSubForm(f => ({ ...f, interval: e.target.value as 'month' | 'year' }))}
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                    >
+                      <option value="month">Monthly</option>
+                      <option value="year">Yearly</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Lessons Limit and Duration */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">
+                      Lessons/Month
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={customSubForm.lessonsLimit}
+                      onChange={(e) => setCustomSubForm(f => ({ ...f, lessonsLimit: parseInt(e.target.value) || 1 }))}
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">
+                      Duration (months)
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={customSubForm.durationMonths}
+                      onChange={(e) => setCustomSubForm(f => ({ ...f, durationMonths: parseInt(e.target.value) || 1 }))}
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                    />
+                  </div>
+                </div>
+
+                {/* Notes */}
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">
+                    Admin Notes
+                  </label>
+                  <textarea
+                    value={customSubForm.notes}
+                    onChange={(e) => setCustomSubForm(f => ({ ...f, notes: e.target.value }))}
+                    placeholder="e.g., Partnership agreement, trial extension..."
+                    rows={2}
+                    className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 resize-none"
+                  />
+                </div>
+
+                {/* Quick Presets */}
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
+                    Quick Presets
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setCustomSubForm(f => ({ ...f, planName: 'Free Trial Extension', price: 0, lessonsLimit: 10, durationMonths: 1 }))}
+                      className="px-2 py-1 text-xs bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-600"
+                    >
+                      Free Trial
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCustomSubForm(f => ({ ...f, planName: 'Church Partner', price: 0, lessonsLimit: 50, durationMonths: 12 }))}
+                      className="px-2 py-1 text-xs bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-600"
+                    >
+                      Church Partner
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCustomSubForm(f => ({ ...f, planName: 'VIP Unlimited', price: 0, lessonsLimit: 500, durationMonths: 12 }))}
+                      className="px-2 py-1 text-xs bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-600"
+                    >
+                      VIP Unlimited
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCustomSubForm(f => ({ ...f, planName: 'Beta Tester', price: 0, lessonsLimit: 20, durationMonths: 6 }))}
+                      className="px-2 py-1 text-xs bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-600"
+                    >
+                      Beta Tester
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-stone-200 dark:border-stone-700">
+                <button
+                  onClick={() => setShowCustomSubModal(false)}
+                  className="px-4 py-2 text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={async () => {
+                    if (!customSubForm.planName) {
+                      alert('Please enter a plan name')
+                      return
+                    }
+                    setCustomSubLoading(true)
+                    try {
+                      await adminAPI.createCustomSubscription({
+                        userId: selectedUser.id,
+                        planName: customSubForm.planName,
+                        price: customSubForm.price,
+                        interval: customSubForm.interval,
+                        lessonsLimit: customSubForm.lessonsLimit,
+                        durationMonths: customSubForm.durationMonths,
+                        notes: customSubForm.notes
+                      })
+                      setShowCustomSubModal(false)
+                      alert(`Plan "${customSubForm.planName}" assigned to ${selectedUser.email}`)
+                    } catch (error: any) {
+                      alert(error?.response?.data?.detail || 'Failed to create subscription')
+                    } finally {
+                      setCustomSubLoading(false)
+                    }
+                  }}
+                  disabled={customSubLoading || !customSubForm.planName}
+                  className="px-4 py-2 text-sm font-medium bg-amber-600 hover:bg-amber-700 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                >
+                  {customSubLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+                  Assign Plan
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
