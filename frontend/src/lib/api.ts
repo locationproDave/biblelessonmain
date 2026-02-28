@@ -906,6 +906,50 @@ export const adminAPI = {
     const response = await api.post(`/admin/remove-admin/${userId}`);
     return response.data;
   },
+
+  // Custom Subscription Management
+  createCustomSubscription: async (data: {
+    userId: string;
+    planName: string;
+    price: number;
+    interval: 'month' | 'year';
+    lessonsLimit: number;
+    durationMonths: number;
+    features?: Record<string, any>;
+    notes?: string;
+  }): Promise<{ success: boolean; subscription: any; message: string }> => {
+    const response = await api.post('/admin/subscriptions/custom', data);
+    return response.data;
+  },
+
+  getAllSubscriptions: async (page: number = 1, limit: number = 20, search: string = ''): Promise<{
+    subscriptions: any[];
+    total: number;
+    page: number;
+    totalPages: number;
+  }> => {
+    const response = await api.get(`/admin/subscriptions?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`);
+    return response.data;
+  },
+
+  cancelSubscription: async (subscriptionId: string): Promise<{ success: boolean; message: string }> => {
+    const response = await api.delete(`/admin/subscriptions/${subscriptionId}`);
+    return response.data;
+  },
+
+  updateSubscription: async (subscriptionId: string, data: {
+    userId: string;
+    planName: string;
+    price: number;
+    interval: 'month' | 'year';
+    lessonsLimit: number;
+    durationMonths: number;
+    features?: Record<string, any>;
+    notes?: string;
+  }): Promise<{ success: boolean; message: string }> => {
+    const response = await api.put(`/admin/subscriptions/${subscriptionId}`, data);
+    return response.data;
+  },
 };
 
 // ==================== SERIES API ====================
