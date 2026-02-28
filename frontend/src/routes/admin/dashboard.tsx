@@ -50,7 +50,7 @@ function AdminDashboard() {
   const [customSubForm, setCustomSubForm] = useState({
     planName: '',
     price: 0,
-    interval: 'month' as const,
+    interval: 'month',
     lessonsLimit: 100,
     durationMonths: 12,
     notes: ''
