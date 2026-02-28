@@ -75,28 +75,42 @@ async def get_suggestions():
 @router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """Send a message to the help chatbot"""
-    api_key = os.environ.get("EMERGENT_LLM_KEY")
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
     
     if not api_key:
         raise HTTPException(status_code=500, detail="Chatbot API key not configured")
     
     try:
-        # Get or create chat session
+        # Get or create chat session history
         if request.session_id not in chat_sessions:
-            chat_sessions[request.session_id] = LlmChat(
-                api_key=api_key,
-                session_id=request.session_id,
-                system_message=SYSTEM_MESSAGE
-            ).with_model("openai", "gpt-4o-mini")  # Using mini for cost efficiency
+            chat_sessions[request.session_id] = []
         
-        chat = chat_sessions[request.session_id]
+        # Add user message to history
+        chat_sessions[request.session_id].append({
+            "role": "user",
+            "content": request.message
+        })
         
-        # Send message
-        user_message = UserMessage(text=request.message)
-        response = await chat.send_message(user_message)
+        # Create Claude client and send message
+        client = anthropic.Anthropic(api_key=api_key)
+        
+        message = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=1024,
+            system=SYSTEM_MESSAGE,
+            messages=chat_sessions[request.session_id]
+        )
+        
+        response_text = message.content[0].text
+        
+        # Add assistant response to history
+        chat_sessions[request.session_id].append({
+            "role": "assistant",
+            "content": response_text
+        })
         
         return ChatResponse(
-            response=response,
+            response=response_text,
             session_id=request.session_id
         )
         
