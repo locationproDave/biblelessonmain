@@ -2,7 +2,7 @@ import { createFileRoute, Link, useSearch } from '@tanstack/react-router'
 import { useState, useEffect } from 'react'
 import { useSession } from '@/lib/auth-client'
 import { useSEO, trackPageView } from '@/lib/seo'
-import { Check, X, Church, Users, Building2, Sparkles, Crown, Loader2, PartyPopper } from 'lucide-react'
+import { Check, X, Church, Users, Building2, Sparkles, Crown, Loader2 } from 'lucide-react'
 import { useI18n } from '@/i18n'
 
 const API_URL = import.meta.env.VITE_API_URL
