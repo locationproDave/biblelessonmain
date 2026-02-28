@@ -399,11 +399,10 @@ async def create_checkout_session(data: CheckoutRequest, authorization: str = He
         }
     
     try:
-        from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest
+        import stripe
+        stripe.api_key = STRIPE_API_KEY
         
-        stripe_checkout = StripeCheckout(api_key=STRIPE_API_KEY)
-        
-        checkout_request = CheckoutSessionRequest(
+        checkout_session = stripe.checkout.Session.create(
             line_items=[{
                 "price_data": {
                     "currency": "usd",
@@ -427,11 +426,9 @@ async def create_checkout_session(data: CheckoutRequest, authorization: str = He
             }
         )
         
-        response = stripe_checkout.create_checkout_session(checkout_request)
-        
         return {
-            "sessionId": response.session_id,
-            "url": response.url
+            "sessionId": checkout_session.id,
+            "url": checkout_session.url
         }
     except Exception as e:
         logger.error(f"Stripe checkout error: {e}")
