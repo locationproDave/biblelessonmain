@@ -356,10 +356,10 @@ function AdminDashboard() {
             <div className="flex items-center gap-2">
               {/* Analytics Tab Switcher */}
               <div className="flex bg-stone-100 dark:bg-stone-700 rounded-lg p-1">
-                {(['overview', 'traffic', 'behavior'] as const).map((tab) => (
+                {['overview', 'traffic', 'behavior'].map((tab) => (
                   <button
                     key={tab}
-                    onClick={() => setActiveAnalyticsTab(tab)}
+                    onClick={() => setActiveAnalyticsTab(tab as 'overview' | 'traffic' | 'behavior')}
                     className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
                       activeAnalyticsTab === tab
                         ? 'bg-white dark:bg-stone-600 text-stone-900 dark:text-stone-100 shadow-sm'
