@@ -1071,7 +1071,7 @@ function AdminDashboard() {
                         userId: selectedUser.id,
                         planName: customSubForm.planName,
                         price: customSubForm.price,
-                        interval: customSubForm.interval,
+                        interval: customSubForm.interval as 'month' | 'year',
                         lessonsLimit: customSubForm.lessonsLimit,
                         durationMonths: customSubForm.durationMonths,
                         notes: customSubForm.notes
