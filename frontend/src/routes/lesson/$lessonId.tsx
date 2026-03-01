@@ -10,6 +10,7 @@ import { AISupplyList } from '@/components/AISupplyList'
 import { CalendarSync } from '@/components/CalendarSync'
 import { ExportLesson } from '@/components/ExportLesson'
 import { PresenceIndicator } from '@/components/PresenceIndicator'
+import { FeatureGate } from '@/components/FeatureGate'
 import { biblicalMapAPI } from '@/lib/api'
 import { useSession } from '@/lib/auth-client'
 import { useI18n } from '@/i18n'
@@ -20,7 +21,7 @@ import {
   Calendar, Copy, X, Download, Eye, EyeOff, ChevronRight, ChevronLeft,
   Play, Pause, RotateCcw, Layers, Quote, Lightbulb, Home, Settings, Menu,
   Hand, GraduationCap, Gamepad2, Palette, MessagesSquare, History, UserPlus,
-  Lock, type LucideIcon
+  Lock, Crown, type LucideIcon
 } from 'lucide-react'
 import {
   DropdownMenu,
