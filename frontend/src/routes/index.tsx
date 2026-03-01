@@ -131,13 +131,22 @@ function HeroSection() {
                 <Sparkles className="w-5 h-5 group-hover:animate-pulse" strokeWidth={1.5} />
                 <span>{t('hero.cta')}</span>
               </Link>
-              <Link
-                to="/lessons"
-                data-testid="hero-browse-lessons-btn"
-                className="group w-full md:w-80 inline-flex items-center justify-center gap-2 px-8 py-4 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-xl text-xl md:text-lg font-semibold border border-stone-200 dark:border-stone-700 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all duration-200"
-              >
-                <BookMarked className="w-5 h-5" strokeWidth={1.5} /> {t('hero.browse')}
-              </Link>
+              <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
+                <Link
+                  to="/lessons"
+                  data-testid="hero-browse-lessons-btn"
+                  className="group flex-1 md:w-40 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-xl text-base md:text-sm font-semibold border border-stone-200 dark:border-stone-700 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all duration-200"
+                >
+                  <BookMarked className="w-4 h-4" strokeWidth={1.5} /> {t('hero.browse')}
+                </Link>
+                <Link
+                  to="/features"
+                  data-testid="hero-see-features-btn"
+                  className="group flex-1 md:w-40 inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-50 to-indigo-50 dark:from-emerald-900/20 dark:to-indigo-900/20 text-emerald-700 dark:text-emerald-400 rounded-xl text-base md:text-sm font-semibold border border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 hover:shadow-md transition-all duration-200"
+                >
+                  <Map className="w-4 h-4" strokeWidth={1.5} /> See Map & Quiz Demo
+                </Link>
+              </div>
             </div>
 
             {/* Feature checkmarks - 2x2 grid on mobile */}
