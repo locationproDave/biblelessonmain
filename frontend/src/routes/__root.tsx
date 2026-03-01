@@ -176,8 +176,8 @@ function Nav({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boolean; s
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 group">
-            <img src="/images/logo-light.png" alt="Bible Lesson Planner" className="w-11 h-11 rounded-lg group-hover:scale-105 transition-all duration-200 shadow-sm dark:hidden" />
-            <img src="/images/logo-icon.png" alt="Bible Lesson Planner" className="w-11 h-11 rounded-lg group-hover:scale-105 transition-all duration-200 shadow-sm hidden dark:block" />
+            <img loading="lazy" src="/images/logo-light.png" alt="Bible Lesson Planner" className="w-11 h-11 rounded-lg group-hover:scale-105 transition-all duration-200 shadow-sm dark:hidden" />
+            <img loading="lazy" src="/images/logo-icon.png" alt="Bible Lesson Planner" className="w-11 h-11 rounded-lg group-hover:scale-105 transition-all duration-200 shadow-sm hidden dark:block" />
             <span className="flex flex-col leading-none mt-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>
               <span className="text-[23px] font-semibold tracking-tight text-stone-800 dark:text-stone-100">Bible Lesson</span>
               <span className="text-[23px] font-semibold tracking-tight text-stone-800 dark:text-stone-100">Planner</span>
@@ -391,8 +391,8 @@ function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <img src="/images/logo-light.png" alt="Bible Lesson Planner" className="w-10 h-10 rounded-lg dark:hidden" />
-              <img src="/images/logo-icon.png" alt="Bible Lesson Planner" className="w-10 h-10 rounded-lg hidden dark:block" />
+              <img loading="lazy" src="/images/logo-light.png" alt="Bible Lesson Planner" className="w-10 h-10 rounded-lg dark:hidden" />
+              <img loading="lazy" src="/images/logo-icon.png" alt="Bible Lesson Planner" className="w-10 h-10 rounded-lg hidden dark:block" />
               <span className="flex flex-col leading-none mt-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                 <span className="text-[23px] font-semibold tracking-tight text-stone-800 dark:text-stone-100">Bible Lesson</span>
                 <span className="text-[23px] font-semibold tracking-tight text-stone-800 dark:text-stone-100">Planner</span>
