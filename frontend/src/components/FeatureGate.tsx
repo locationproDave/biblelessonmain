@@ -234,6 +234,7 @@ export function FeatureGateButton({
     return (
       <Link
         to="/pricing"
+        search={{}}
         className={`flex items-center gap-2 px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-900/20 dark:hover:text-amber-400 transition-colors group ${className}`}
         title={`Upgrade to unlock ${featureLabel}`}
       >
