@@ -29,7 +29,7 @@ ADD_ONS = {
 }
 
 # Plans that include quizGenerator feature
-PLANS_WITH_MAP_QUIZ = ["unlimited", "unlimited_annual", "enterprise", "enterprise_annual"]
+PLANS_WITH_QUIZ = ["unlimited", "unlimited_annual", "enterprise", "enterprise_annual"]
 
 def serialize_doc(doc: dict) -> dict:
     if doc is None:
@@ -41,7 +41,7 @@ def serialize_doc(doc: dict) -> dict:
     return result
 
 async def check_quiz_generator_access(token: str) -> dict:
-    """Check if user has access to Biblical Map and Quiz features"""
+    """Check if user has access to Quiz Generator feature"""
     if not token:
         return {"hasAccess": False, "reason": "not_authenticated"}
     
@@ -57,7 +57,7 @@ async def check_quiz_generator_access(token: str) -> dict:
     plan_id = subscription.get("planId", "free")
     
     # Check if plan includes the feature
-    if plan_id in PLANS_WITH_MAP_QUIZ:
+    if plan_id in PLANS_WITH_QUIZ:
         return {"hasAccess": True, "includedInPlan": True}
     
     # Check if user has the add-on
