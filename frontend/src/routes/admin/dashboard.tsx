@@ -963,6 +963,31 @@ function AdminDashboard() {
 
         {/* Custom Subscription Modal */}
         {showCustomSubModal && selectedUser && (
+          <CustomSubscriptionModal
+            selectedUser={selectedUser}
+            customSubForm={customSubForm}
+            setCustomSubForm={setCustomSubForm}
+            customSubLoading={customSubLoading}
+            setCustomSubLoading={setCustomSubLoading}
+            onClose={() => setShowCustomSubModal(false)}
+          />
+        )}
+          </>
+        )}
+
+        {/* Team Tab Content */}
+        {activeTab === 'team' && (
+          <TeamSection
+            salesReps={salesReps}
+            setSalesReps={setSalesReps}
+            showAddRepModal={showAddRepModal}
+            setShowAddRepModal={setShowAddRepModal}
+            newRepForm={newRepForm}
+            setNewRepForm={setNewRepForm}
+            copiedCode={copiedCode}
+            setCopiedCode={setCopiedCode}
+          />
+        )}
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onClick={() => setShowCustomSubModal(false)}>
             <div 
               className="bg-white dark:bg-stone-800 rounded-2xl shadow-xl max-w-md w-full p-6"
