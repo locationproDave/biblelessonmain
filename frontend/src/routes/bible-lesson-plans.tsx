@@ -194,6 +194,29 @@ function BibleLessonPlansPage() {
           </div>
         </div>
       </div>
+
+      {/* Cross-links to other resources */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-6 text-center" style={{ fontFamily: 'Crimson Text, serif' }}>
+          More Resources for Teachers
+        </h2>
+        <div className="grid md:grid-cols-2 gap-4">
+          <Link
+            to="/sunday-school-lessons"
+            className="p-6 bg-white dark:bg-stone-800/50 rounded-xl border border-stone-200 dark:border-stone-700 hover:border-amber-400 hover:shadow-lg transition-all group"
+          >
+            <h3 className="font-bold text-lg text-stone-900 dark:text-stone-100 mb-2 group-hover:text-amber-600">Sunday School Lessons</h3>
+            <p className="text-sm text-stone-500 dark:text-stone-400">Age-appropriate lessons from Preschool to Adult with activities and crafts.</p>
+          </Link>
+          <Link
+            to="/vacation-bible-school"
+            className="p-6 bg-white dark:bg-stone-800/50 rounded-xl border border-stone-200 dark:border-stone-700 hover:border-amber-400 hover:shadow-lg transition-all group"
+          >
+            <h3 className="font-bold text-lg text-stone-900 dark:text-stone-100 mb-2 group-hover:text-amber-600">VBS Curriculum</h3>
+            <p className="text-sm text-stone-500 dark:text-stone-400">Plan your entire Vacation Bible School week with themes, crafts, games, and daily lessons.</p>
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }
