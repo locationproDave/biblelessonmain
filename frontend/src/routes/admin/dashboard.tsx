@@ -1145,3 +1145,532 @@ function formatDate(dateString: string | undefined): string {
     return 'N/A'
   }
 }
+
+
+// Custom Subscription Modal Component
+function CustomSubscriptionModal({
+  selectedUser,
+  customSubForm,
+  setCustomSubForm,
+  customSubLoading,
+  setCustomSubLoading,
+  onClose
+}: {
+  selectedUser: any
+  customSubForm: any
+  setCustomSubForm: (fn: (f: any) => any) => void
+  customSubLoading: boolean
+  setCustomSubLoading: (v: boolean) => void
+  onClose: () => void
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onClick={onClose}>
+      <div 
+        className="bg-white dark:bg-stone-800 rounded-2xl shadow-xl max-w-md w-full p-6"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
+              Assign Custom Plan
+            </h3>
+            <p className="text-sm text-stone-500 dark:text-stone-400">
+              For: {selectedUser.email}
+            </p>
+          </div>
+          <button onClick={onClose} className="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg">
+            <X className="w-5 h-5 text-stone-500" />
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Plan Name *</label>
+            <input
+              type="text"
+              value={customSubForm.planName}
+              onChange={(e) => setCustomSubForm(f => ({ ...f, planName: e.target.value }))}
+              placeholder="e.g., Church Partnership, VIP Access"
+              className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Price ($)</label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                value={customSubForm.price}
+                onChange={(e) => setCustomSubForm(f => ({ ...f, price: parseFloat(e.target.value) || 0 }))}
+                className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Billing</label>
+              <select
+                value={customSubForm.interval}
+                onChange={(e) => setCustomSubForm(f => ({ ...f, interval: e.target.value }))}
+                className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+              >
+                <option value="month">Monthly</option>
+                <option value="year">Yearly</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Lessons/Month</label>
+              <input
+                type="number"
+                min="1"
+                value={customSubForm.lessonsLimit}
+                onChange={(e) => setCustomSubForm(f => ({ ...f, lessonsLimit: parseInt(e.target.value) || 1 }))}
+                className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Duration (months)</label>
+              <input
+                type="number"
+                min="1"
+                value={customSubForm.durationMonths}
+                onChange={(e) => setCustomSubForm(f => ({ ...f, durationMonths: parseInt(e.target.value) || 1 }))}
+                className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Admin Notes</label>
+            <textarea
+              value={customSubForm.notes}
+              onChange={(e) => setCustomSubForm(f => ({ ...f, notes: e.target.value }))}
+              placeholder="e.g., Partnership agreement, trial extension..."
+              rows={2}
+              className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 resize-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">Quick Presets</label>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { label: 'Free Trial', planName: 'Free Trial Extension', price: 0, lessonsLimit: 10, durationMonths: 1 },
+                { label: 'Church Partner', planName: 'Church Partner', price: 0, lessonsLimit: 50, durationMonths: 12 },
+                { label: 'VIP Unlimited', planName: 'VIP Unlimited', price: 0, lessonsLimit: 500, durationMonths: 12 },
+                { label: 'Beta Tester', planName: 'Beta Tester', price: 0, lessonsLimit: 20, durationMonths: 6 },
+              ].map(preset => (
+                <button
+                  key={preset.label}
+                  type="button"
+                  onClick={() => setCustomSubForm(f => ({ ...f, planName: preset.planName, price: preset.price, lessonsLimit: preset.lessonsLimit, durationMonths: preset.durationMonths }))}
+                  className="px-2 py-1 text-xs bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-600"
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-stone-200 dark:border-stone-700">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={async () => {
+              if (!customSubForm.planName) {
+                alert('Please enter a plan name')
+                return
+              }
+              setCustomSubLoading(true)
+              try {
+                await adminAPI.createCustomSubscription({
+                  userId: selectedUser.id,
+                  planName: customSubForm.planName,
+                  price: customSubForm.price,
+                  interval: customSubForm.interval,
+                  lessonsLimit: customSubForm.lessonsLimit,
+                  durationMonths: customSubForm.durationMonths,
+                  notes: customSubForm.notes
+                })
+                onClose()
+                alert(`Plan "${customSubForm.planName}" assigned to ${selectedUser.email}`)
+              } catch (error: any) {
+                alert(error?.response?.data?.detail || 'Failed to create subscription')
+              } finally {
+                setCustomSubLoading(false)
+              }
+            }}
+            disabled={customSubLoading || !customSubForm.planName}
+            className="px-4 py-2 text-sm font-medium bg-amber-600 hover:bg-amber-700 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            {customSubLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+            Assign Plan
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Team Section Component
+function TeamSection({
+  salesReps,
+  setSalesReps,
+  showAddRepModal,
+  setShowAddRepModal,
+  newRepForm,
+  setNewRepForm,
+  copiedCode,
+  setCopiedCode,
+}: {
+  salesReps: any[]
+  setSalesReps: (reps: any[]) => void
+  showAddRepModal: boolean
+  setShowAddRepModal: (v: boolean) => void
+  newRepForm: any
+  setNewRepForm: (fn: (f: any) => any) => void
+  copiedCode: string | null
+  setCopiedCode: (v: string | null) => void
+}) {
+  const generateCode = (name: string) => {
+    const cleanName = name.replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 6)
+    return `${cleanName}25`
+  }
+
+  const copyToClipboard = (code: string) => {
+    navigator.clipboard.writeText(`biblelessonplanner.com?ref=${code}`)
+    setCopiedCode(code)
+    setTimeout(() => setCopiedCode(null), 2000)
+  }
+
+  const totalSignups = salesReps.reduce((sum, r) => sum + r.signups, 0)
+  const totalCommissions = salesReps.reduce((sum, r) => sum + r.totalCommission, 0)
+  const activeReps = salesReps.filter(r => r.status === 'active').length
+
+  return (
+    <>
+      {/* Team Stats */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="bg-white dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700 p-5">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-sm font-medium text-stone-500 dark:text-stone-400">Sales Reps</span>
+            <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-blue-600 dark:text-blue-500">
+              <Users className="w-5 h-5" />
+            </div>
+          </div>
+          <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">{salesReps.length}</p>
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{activeReps} active</p>
+        </div>
+        
+        <div className="bg-white dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700 p-5">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-sm font-medium text-stone-500 dark:text-stone-400">Total Referrals</span>
+            <div className="p-2 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-emerald-600 dark:text-emerald-500">
+              <Target className="w-5 h-5" />
+            </div>
+          </div>
+          <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">{totalSignups}</p>
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">all time</p>
+        </div>
+        
+        <div className="bg-white dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700 p-5">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-sm font-medium text-stone-500 dark:text-stone-400">Commissions Paid</span>
+            <div className="p-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg text-amber-600 dark:text-amber-500">
+              <DollarSign className="w-5 h-5" />
+            </div>
+          </div>
+          <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">${totalCommissions.toFixed(2)}</p>
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">all time</p>
+        </div>
+        
+        <div className="bg-white dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700 p-5">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-sm font-medium text-stone-500 dark:text-stone-400">Commission Rate</span>
+            <div className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-purple-600 dark:text-purple-500">
+              <Percent className="w-5 h-5" />
+            </div>
+          </div>
+          <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">25%</p>
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">one-time</p>
+        </div>
+      </div>
+
+      {/* Sales Reps Table */}
+      <div className="bg-white dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700 p-6 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <h3 className="font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
+              <Users className="w-5 h-5 text-blue-600" />
+              Sales Representatives
+            </h3>
+            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+              Manage your sales team and track performance
+            </p>
+          </div>
+          <button
+            onClick={() => setShowAddRepModal(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-sm font-medium transition-colors"
+          >
+            <UserPlus className="w-4 h-4" />
+            Add Rep
+          </button>
+        </div>
+
+        {salesReps.length === 0 ? (
+          <div className="text-center py-12">
+            <Users className="w-12 h-12 text-stone-300 dark:text-stone-600 mx-auto mb-4" />
+            <h4 className="font-medium text-stone-700 dark:text-stone-300 mb-2">No sales reps yet</h4>
+            <p className="text-sm text-stone-500 dark:text-stone-400 mb-4">Add your first sales representative to start tracking referrals</p>
+            <button
+              onClick={() => setShowAddRepModal(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-sm font-medium"
+            >
+              <UserPlus className="w-4 h-4" />
+              Add First Rep
+            </button>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-stone-200 dark:border-stone-700">
+                  <th className="text-left py-3 px-4 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Rep</th>
+                  <th className="text-left py-3 px-4 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Territory</th>
+                  <th className="text-left py-3 px-4 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Code</th>
+                  <th className="text-center py-3 px-4 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Signups</th>
+                  <th className="text-right py-3 px-4 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Commission</th>
+                  <th className="text-right py-3 px-4 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {salesReps.map((rep) => (
+                  <tr key={rep.id} className="border-b border-stone-100 dark:border-stone-700/50 hover:bg-stone-50 dark:hover:bg-stone-700/30">
+                    <td className="py-3 px-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-700 dark:text-blue-400 font-medium">
+                          {rep.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}
+                        </div>
+                        <div>
+                          <p className="font-medium text-stone-900 dark:text-stone-100 text-sm">{rep.name}</p>
+                          <p className="text-xs text-stone-500 dark:text-stone-400">{rep.email}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">
+                      <span className="text-sm text-stone-600 dark:text-stone-300">{rep.territory}</span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center gap-2">
+                        <code className="px-2 py-1 bg-stone-100 dark:bg-stone-700 rounded text-xs font-mono text-stone-700 dark:text-stone-300">
+                          {rep.code}
+                        </code>
+                        <button
+                          onClick={() => copyToClipboard(rep.code)}
+                          className="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded transition-colors"
+                          title="Copy referral link"
+                        >
+                          {copiedCode === rep.code ? (
+                            <Check className="w-4 h-4 text-emerald-600" />
+                          ) : (
+                            <Copy className="w-4 h-4 text-stone-400" />
+                          )}
+                        </button>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <span className="inline-flex items-center justify-center min-w-[2rem] px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full text-sm font-medium">
+                        {rep.signups}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 text-right">
+                      <span className="text-sm font-medium text-stone-900 dark:text-stone-100">
+                        ${rep.totalCommission.toFixed(2)}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 text-right">
+                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                        rep.status === 'active'
+                          ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'
+                          : 'bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-400'
+                      }`}>
+                        {rep.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      {/* Commission Structure Info */}
+      <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl border border-amber-200 dark:border-amber-800/50 p-6">
+        <div className="flex items-start gap-4">
+          <div className="p-3 bg-amber-100 dark:bg-amber-900/50 rounded-xl">
+            <Award className="w-6 h-6 text-amber-600 dark:text-amber-500" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-semibold text-stone-900 dark:text-stone-100 mb-2">Commission Structure</h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+              <div>
+                <p className="text-stone-500 dark:text-stone-400">Base Commission</p>
+                <p className="font-medium text-stone-900 dark:text-stone-100">25% one-time</p>
+              </div>
+              <div>
+                <p className="text-stone-500 dark:text-stone-400">10-19 signups/mo</p>
+                <p className="font-medium text-stone-900 dark:text-stone-100">+$50 bonus</p>
+              </div>
+              <div>
+                <p className="text-stone-500 dark:text-stone-400">20-34 signups/mo</p>
+                <p className="font-medium text-stone-900 dark:text-stone-100">+$150 bonus</p>
+              </div>
+              <div>
+                <p className="text-stone-500 dark:text-stone-400">50+ signups/mo</p>
+                <p className="font-medium text-stone-900 dark:text-stone-100">+$500 + 5% extra</p>
+              </div>
+            </div>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-4">
+              Profit participation available after 12 months. See full structure in sales documentation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Add Rep Modal */}
+      {showAddRepModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onClick={() => setShowAddRepModal(false)}>
+          <div 
+            className="bg-white dark:bg-stone-800 rounded-2xl shadow-xl max-w-md w-full p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">Add Sales Rep</h3>
+                <p className="text-sm text-stone-500 dark:text-stone-400">Create a new sales representative</p>
+              </div>
+              <button onClick={() => setShowAddRepModal(false)} className="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg">
+                <X className="w-5 h-5 text-stone-500" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Full Name *</label>
+                <input
+                  type="text"
+                  value={newRepForm.name}
+                  onChange={(e) => setNewRepForm(f => ({ ...f, name: e.target.value }))}
+                  placeholder="John Smith"
+                  className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Email *</label>
+                <input
+                  type="email"
+                  value={newRepForm.email}
+                  onChange={(e) => setNewRepForm(f => ({ ...f, email: e.target.value }))}
+                  placeholder="john@example.com"
+                  className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Phone</label>
+                  <input
+                    type="tel"
+                    value={newRepForm.phone}
+                    onChange={(e) => setNewRepForm(f => ({ ...f, phone: e.target.value }))}
+                    placeholder="555-0100"
+                    className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Territory</label>
+                  <input
+                    type="text"
+                    value={newRepForm.territory}
+                    onChange={(e) => setNewRepForm(f => ({ ...f, territory: e.target.value }))}
+                    placeholder="Southeast"
+                    className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-1">Commission Rate (%)</label>
+                <input
+                  type="number"
+                  min="0"
+                  max="50"
+                  value={newRepForm.commissionRate}
+                  onChange={(e) => setNewRepForm(f => ({ ...f, commissionRate: parseInt(e.target.value) || 25 }))}
+                  className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                />
+              </div>
+
+              {newRepForm.name && (
+                <div className="bg-stone-50 dark:bg-stone-900 rounded-xl p-4">
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mb-1">Referral Code (auto-generated)</p>
+                  <code className="text-lg font-mono font-medium text-amber-600 dark:text-amber-500">
+                    {generateCode(newRepForm.name)}
+                  </code>
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-stone-200 dark:border-stone-700">
+              <button
+                onClick={() => setShowAddRepModal(false)}
+                className="px-4 py-2 text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  if (!newRepForm.name || !newRepForm.email) {
+                    alert('Please fill in name and email')
+                    return
+                  }
+                  const newRep = {
+                    id: Date.now().toString(),
+                    name: newRepForm.name,
+                    email: newRepForm.email,
+                    phone: newRepForm.phone,
+                    territory: newRepForm.territory,
+                    code: generateCode(newRepForm.name),
+                    commissionRate: newRepForm.commissionRate,
+                    signups: 0,
+                    activeCustomers: 0,
+                    totalCommission: 0,
+                    status: 'active',
+                    joinedAt: new Date().toISOString()
+                  }
+                  setSalesReps([...salesReps, newRep])
+                  setNewRepForm({ name: '', email: '', phone: '', territory: '', commissionRate: 25, notes: '' })
+                  setShowAddRepModal(false)
+                }}
+                disabled={!newRepForm.name || !newRepForm.email}
+                className="px-4 py-2 text-sm font-medium bg-amber-600 hover:bg-amber-700 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Add Rep
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
