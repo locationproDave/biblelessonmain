@@ -692,18 +692,15 @@ function LessonViewPage() {
     try { await navigator.clipboard.writeText(window.location.href); setCopied(true); setTimeout(() => setCopied(false), 2000) } catch {}
   }
 
-  const togglePanel = (panel: 'map' | 'quiz' | 'supplies') => {
+  const togglePanel = (panel: 'quiz' | 'supplies') => {
     if (activePanel === panel) {
       setActivePanel('none')
-      if (panel === 'map') setShowMap(false)
       if (panel === 'quiz') setShowQuiz(false)
       if (panel === 'supplies') setShowAISupplyList(false)
     } else {
       setActivePanel(panel)
-      setShowMap(panel === 'map')
       setShowQuiz(panel === 'quiz')
       setShowAISupplyList(panel === 'supplies')
-      if (panel === 'map' && !mapData) handleExtractLocations()
     }
   }
 
