@@ -419,6 +419,17 @@ function Footer() {
             </ul>
           </div>
 
+          {/* SEO Landing Pages */}
+          <div>
+            <h4 className="font-bold text-sm uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-4">Resources</h4>
+            <ul className="space-y-3">
+              <li><Link to="/sunday-school-lessons" className="text-sm text-stone-500 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-500 transition-colors">Sunday School Lessons</Link></li>
+              <li><Link to="/bible-lesson-plans" className="text-sm text-stone-500 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-500 transition-colors">Bible Lesson Plans</Link></li>
+              <li><Link to="/vacation-bible-school" className="text-sm text-stone-500 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-500 transition-colors">VBS Curriculum</Link></li>
+              <li><Link to="/templates" className="text-sm text-stone-500 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-500 transition-colors">Lesson Templates</Link></li>
+            </ul>
+          </div>
+
           {/* Information Links */}
           <div>
             <h4 className="font-bold text-sm uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-4">{t('footer.information')}</h4>
