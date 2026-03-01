@@ -17,14 +17,14 @@ STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY')
 
 # Add-ons Configuration (for organization plans)
 ADD_ONS = {
-    "biblical_map_quiz": {
-        "id": "biblical_map_quiz",
-        "name": "Biblical Map & Quiz Generator",
+    "quiz_generator": {
+        "id": "quiz_generator",
+        "name": "Quiz Generator",
         "price": 1.99,
         "interval": "month",
-        "description": "Unlock AI-powered Biblical Map Generator and Quiz Generator features",
-        "features": ["biblicalMapQuiz"],
-        "featureLabels": ["Biblical Map Generator", "Quiz Generator"]
+        "description": "Unlock AI-powered Quiz Generator to create comprehension quizzes for your lessons",
+        "features": ["quizGenerator"],
+        "featureLabels": ["Quiz Generator"]
     }
 }
 
