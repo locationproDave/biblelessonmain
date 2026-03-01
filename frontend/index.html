@@ -307,6 +307,209 @@
     }
     </script>
 
+    <!-- HowTo Schema - For lesson creation process -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Create a Sunday School Lesson Plan",
+      "description": "Create a professional, age-appropriate Bible lesson plan in under 2 minutes using AI.",
+      "image": "https://biblelessonplanner.com/images/og-image.png",
+      "totalTime": "PT2M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Bible Lesson Planner AI"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Enter Scripture Reference",
+          "text": "Type in your Bible passage (e.g., John 3:16) or select a lesson theme like 'Creation' or 'David and Goliath'.",
+          "url": "https://biblelessonplanner.com/generate"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Select Age Group",
+          "text": "Choose your target audience: Preschool (3-5), Elementary (6-10), Pre-Teen (11-13), Teenager (14-17), or Adult.",
+          "url": "https://biblelessonplanner.com/generate"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Choose Bible Translation",
+          "text": "Select from 20+ translations including KJV, NIV, ESV, NLT, NASB, and more.",
+          "url": "https://biblelessonplanner.com/generate"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Generate Your Lesson",
+          "text": "Click 'Create Lesson' and our AI generates a complete lesson plan with activities, discussion questions, memory verse, and printable handouts.",
+          "url": "https://biblelessonplanner.com/generate"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Print or Email",
+          "text": "Export your lesson as a PDF or send it directly to your email for easy access on Sunday morning.",
+          "url": "https://biblelessonplanner.com/generate"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Product Schema - Pricing Plans -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Bible Lesson Planner Unlimited",
+      "description": "Unlimited AI-generated Sunday school lesson plans with quiz generator, curriculum planning, and priority processing.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Bible Lesson Planner"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "5.99",
+        "highPrice": "29.99",
+        "offerCount": "4",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Starter Monthly",
+            "price": "5.99",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "priceValidUntil": "2027-12-31",
+            "url": "https://biblelessonplanner.com/pricing"
+          },
+          {
+            "@type": "Offer",
+            "name": "Unlimited Monthly",
+            "price": "9.99",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "priceValidUntil": "2027-12-31",
+            "url": "https://biblelessonplanner.com/pricing"
+          },
+          {
+            "@type": "Offer",
+            "name": "Team Monthly",
+            "price": "14.99",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "priceValidUntil": "2027-12-31",
+            "url": "https://biblelessonplanner.com/pricing"
+          },
+          {
+            "@type": "Offer",
+            "name": "Ministry Monthly",
+            "price": "29.99",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "priceValidUntil": "2027-12-31",
+            "url": "https://biblelessonplanner.com/pricing"
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "847",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Sarah M."
+          },
+          "datePublished": "2026-01-15",
+          "reviewBody": "This tool has transformed my Sunday school prep. What used to take hours now takes minutes!",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Pastor David K."
+          },
+          "datePublished": "2026-02-01",
+          "reviewBody": "Perfect for our children's ministry. The age-appropriate activities are exactly what we needed.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Service Schema - For local SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Sunday School Curriculum Planning",
+      "serviceType": "Educational Content Creation",
+      "provider": {
+        "@type": "Organization",
+        "name": "Bible Lesson Planner",
+        "url": "https://biblelessonplanner.com"
+      },
+      "description": "AI-powered Sunday school lesson planning service for churches, ministries, and Christian educators.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Lesson Planning Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Sunday School Lessons"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "VBS Curriculum"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Youth Group Bible Studies"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
