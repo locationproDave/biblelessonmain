@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as SundaySchoolLessonsRouteImport } from './routes/sunday-school-lessons'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as SigninRouteImport } from './routes/signin'
 import { Route as SettingsRouteImport } from './routes/settings'
@@ -57,6 +58,11 @@ const TemplatesRoute = TemplatesRouteImport.update({
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SundaySchoolLessonsRoute = SundaySchoolLessonsRouteImport.update({
+  id: '/sunday-school-lessons',
+  path: '/sunday-school-lessons',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SignupRoute = SignupRouteImport.update({
@@ -235,6 +241,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/sunday-school-lessons': typeof SundaySchoolLessonsRoute
   '/team': typeof TeamRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
@@ -271,6 +278,7 @@ export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/sunday-school-lessons': typeof SundaySchoolLessonsRoute
   '/team': typeof TeamRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
@@ -308,6 +316,7 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/sunday-school-lessons': typeof SundaySchoolLessonsRoute
   '/team': typeof TeamRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
@@ -346,6 +355,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signin'
     | '/signup'
+    | '/sunday-school-lessons'
     | '/team'
     | '/templates'
     | '/terms'
@@ -382,6 +392,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signin'
     | '/signup'
+    | '/sunday-school-lessons'
     | '/team'
     | '/templates'
     | '/terms'
@@ -418,6 +429,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signin'
     | '/signup'
+    | '/sunday-school-lessons'
     | '/team'
     | '/templates'
     | '/terms'
@@ -455,6 +467,7 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   SigninRoute: typeof SigninRoute
   SignupRoute: typeof SignupRoute
+  SundaySchoolLessonsRoute: typeof SundaySchoolLessonsRoute
   TeamRoute: typeof TeamRoute
   TemplatesRoute: typeof TemplatesRoute
   TermsRoute: typeof TermsRoute
@@ -493,6 +506,13 @@ declare module '@tanstack/react-router' {
       path: '/team'
       fullPath: '/team'
       preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sunday-school-lessons': {
+      id: '/sunday-school-lessons'
+      path: '/sunday-school-lessons'
+      fullPath: '/sunday-school-lessons'
+      preLoaderRoute: typeof SundaySchoolLessonsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signup': {
@@ -735,6 +755,7 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   SigninRoute: SigninRoute,
   SignupRoute: SignupRoute,
+  SundaySchoolLessonsRoute: SundaySchoolLessonsRoute,
   TeamRoute: TeamRoute,
   TemplatesRoute: TemplatesRoute,
   TermsRoute: TermsRoute,
