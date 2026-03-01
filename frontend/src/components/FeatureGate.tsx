@@ -115,7 +115,8 @@ export function FeatureGate({ featureName, featureLabel, children, fallback }: F
             Subscribe to a plan to unlock this feature
           </p>
           <Link 
-            to="/pricing" 
+            to="/pricing"
+            search={{}}
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-sm font-semibold transition-colors"
           >
             <Sparkles className="w-4 h-4" /> View Plans
@@ -132,7 +133,8 @@ export function FeatureGate({ featureName, featureLabel, children, fallback }: F
             Includes unlimited lessons, Biblical Map Generator, Quiz Generator, and more
           </p>
           <Link 
-            to="/pricing" 
+            to="/pricing"
+            search={{}}
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white rounded-xl text-sm font-bold shadow-md hover:shadow-lg transition-all"
           >
             <Crown className="w-4 h-4" /> Upgrade to Unlimited
