@@ -181,20 +181,6 @@ function GeneratePage() {
 
   // Helper to change step and scroll to top
   const goToStep = (newStep: Step) => {
-    // Apply smart defaults when entering customize step
-    if (newStep === 'customize') {
-      const fmt = config.audience.format || 'Interactive'
-      const ag = config.audience.ageGroup || 'Elementary (6-10)'
-      const defaults = { activities: true, crafts: true, memoryVerse: true, discussion: true, prayer: true, parentTakeHome: true }
-      let smartDefaults = { ...defaults }
-      if (fmt.includes('Discussion')) smartDefaults = { ...defaults, activities: false, crafts: false }
-      else if (fmt.includes('Activity')) smartDefaults = { ...defaults, parentTakeHome: false }
-      else if (fmt.includes('Traditional')) smartDefaults = { ...defaults, activities: false, crafts: false }
-      if (ag.includes('Adult')) smartDefaults = { ...smartDefaults, activities: false, crafts: false, parentTakeHome: false }
-      else if (ag.includes('Preschool')) smartDefaults = { ...smartDefaults, discussion: false }
-      else if (ag.includes('Preteen') || ag.includes('Teen')) smartDefaults = { ...smartDefaults, crafts: false, parentTakeHome: false }
-      setConfig(prev => ({ ...prev, customize: smartDefaults }))
-    }
     setStep(newStep)
     // Use setTimeout to ensure scroll happens after React re-render
     setTimeout(() => {
