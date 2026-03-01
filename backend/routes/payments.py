@@ -250,10 +250,118 @@ async def get_pricing_plans():
     """Get all available pricing plans"""
     return {
         "plans": PRICING_PLANS,
+        "addOns": ADD_ONS,
         "individual": ["starter", "starter_annual", "unlimited", "unlimited_annual"],
         "organization": ["team", "team_annual", "ministry", "ministry_annual", 
                         "enterprise", "enterprise_annual"]
     }
+
+@router.get("/pricing/add-ons")
+async def get_add_ons():
+    """Get available add-ons"""
+    return ADD_ONS
+
+@router.get("/feature-access/{feature_name}")
+async def check_feature_access(feature_name: str, authorization: str = Header(None)):
+    """Check if user has access to a specific feature"""
+    if not authorization:
+        return {"hasAccess": False, "reason": "not_authenticated"}
+    
+    token = authorization.replace("Bearer ", "") if authorization.startswith("Bearer ") else authorization
+    session = await db.sessions.find_one({"token": token})
+    if not session:
+        return {"hasAccess": False, "reason": "invalid_session"}
+    
+    # Get subscription
+    subscription = await db.subscriptions.find_one({"userId": session["userId"]})
+    if not subscription:
+        return {"hasAccess": False, "reason": "no_subscription", "upgradeRequired": True}
+    
+    plan_id = subscription.get("planId", "free")
+    plan = PRICING_PLANS.get(plan_id, {})
+    features = plan.get("features", {})
+    
+    # Check if feature is included in plan
+    if features.get(feature_name, False):
+        return {"hasAccess": True, "includedInPlan": True}
+    
+    # Check if user has purchased this feature as an add-on
+    user_add_ons = subscription.get("addOns", [])
+    for add_on_id in user_add_ons:
+        add_on = ADD_ONS.get(add_on_id, {})
+        if feature_name in add_on.get("features", []):
+            return {"hasAccess": True, "addOn": add_on_id}
+    
+    # Feature not available - check if it can be purchased as add-on
+    available_add_ons = plan.get("availableAddOns", [])
+    purchasable_add_on = None
+    for add_on_id in available_add_ons:
+        add_on = ADD_ONS.get(add_on_id, {})
+        if feature_name in add_on.get("features", []):
+            purchasable_add_on = add_on
+            break
+    
+    if purchasable_add_on:
+        return {
+            "hasAccess": False,
+            "reason": "add_on_required",
+            "addOn": purchasable_add_on,
+            "canPurchase": True
+        }
+    
+    # Feature requires plan upgrade
+    is_individual_plan = plan_id in ["starter", "starter_annual", "free"]
+    return {
+        "hasAccess": False,
+        "reason": "upgrade_required",
+        "upgradeRequired": True,
+        "suggestedPlan": "unlimited" if is_individual_plan else "enterprise"
+    }
+
+@router.post("/add-on/purchase/{add_on_id}")
+async def purchase_add_on(add_on_id: str, authorization: str = Header(None)):
+    """Purchase an add-on for the current subscription"""
+    if not authorization:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    
+    token = authorization.replace("Bearer ", "") if authorization.startswith("Bearer ") else authorization
+    session = await db.sessions.find_one({"token": token})
+    if not session:
+        raise HTTPException(status_code=401, detail="Invalid session")
+    
+    # Validate add-on exists
+    add_on = ADD_ONS.get(add_on_id)
+    if not add_on:
+        raise HTTPException(status_code=404, detail="Add-on not found")
+    
+    # Get subscription
+    subscription = await db.subscriptions.find_one({"userId": session["userId"]})
+    if not subscription:
+        raise HTTPException(status_code=400, detail="No active subscription found")
+    
+    plan_id = subscription.get("planId", "free")
+    plan = PRICING_PLANS.get(plan_id, {})
+    available_add_ons = plan.get("availableAddOns", [])
+    
+    if add_on_id not in available_add_ons:
+        raise HTTPException(status_code=400, detail="This add-on is not available for your plan")
+    
+    # Check if already purchased
+    user_add_ons = subscription.get("addOns", [])
+    if add_on_id in user_add_ons:
+        return {"success": True, "message": "Add-on already active", "addOn": add_on}
+    
+    # Add the add-on to subscription (in production, integrate with Stripe)
+    await db.subscriptions.update_one(
+        {"userId": session["userId"]},
+        {
+            "$addToSet": {"addOns": add_on_id},
+            "$set": {"updatedAt": datetime.now(timezone.utc).isoformat()}
+        }
+    )
+    
+    logger.info(f"Add-on {add_on_id} purchased for user {session['userId']}")
+    return {"success": True, "message": "Add-on activated", "addOn": add_on}
 
 @router.get("/subscription")
 async def get_subscription(authorization: str = Header(None)):
