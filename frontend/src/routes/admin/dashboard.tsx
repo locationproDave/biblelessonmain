@@ -29,7 +29,15 @@ import {
   ExternalLink,
   Plus,
   X,
-  Gift
+  Gift,
+  UserPlus,
+  Copy,
+  Check,
+  Percent,
+  Target,
+  Award,
+  Trash2,
+  Edit3
 } from 'lucide-react'
 
 export const Route = createFileRoute('/admin/dashboard')({
