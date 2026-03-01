@@ -18,17 +18,17 @@ ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY')
 
 # Add-ons Configuration (mirror from payments.py for feature checking)
 ADD_ONS = {
-    "biblical_map_quiz": {
-        "id": "biblical_map_quiz",
+    "quiz_generator": {
+        "id": "quiz_generator",
         "name": "Biblical Map & Quiz Generator",
         "price": 1.99,
         "interval": "month",
         "description": "Unlock AI-powered Biblical Map Generator and Quiz Generator features",
-        "features": ["biblicalMapQuiz"]
+        "features": ["quizGenerator"]
     }
 }
 
-# Plans that include biblicalMapQuiz feature
+# Plans that include quizGenerator feature
 PLANS_WITH_MAP_QUIZ = ["unlimited", "unlimited_annual", "enterprise", "enterprise_annual"]
 
 def serialize_doc(doc: dict) -> dict:
@@ -40,7 +40,7 @@ def serialize_doc(doc: dict) -> dict:
             result[key] = value.isoformat()
     return result
 
-async def check_biblical_map_quiz_access(token: str) -> dict:
+async def check_quiz_generator_access(token: str) -> dict:
     """Check if user has access to Biblical Map and Quiz features"""
     if not token:
         return {"hasAccess": False, "reason": "not_authenticated"}
@@ -62,8 +62,8 @@ async def check_biblical_map_quiz_access(token: str) -> dict:
     
     # Check if user has the add-on
     user_add_ons = subscription.get("addOns", [])
-    if "biblical_map_quiz" in user_add_ons:
-        return {"hasAccess": True, "addOn": "biblical_map_quiz"}
+    if "quiz_generator" in user_add_ons:
+        return {"hasAccess": True, "addOn": "quiz_generator"}
     
     # Check if add-on can be purchased (org plans)
     is_org_plan = plan_id in ["team", "team_annual", "ministry", "ministry_annual"]
@@ -71,7 +71,7 @@ async def check_biblical_map_quiz_access(token: str) -> dict:
         return {
             "hasAccess": False,
             "reason": "add_on_required",
-            "addOn": ADD_ONS["biblical_map_quiz"],
+            "addOn": ADD_ONS["quiz_generator"],
             "canPurchase": True
         }
     
@@ -241,7 +241,7 @@ async def generate_quiz(request: QuizGenerateRequest, authorization: str = Heade
     
     # Check feature access for Quiz Generator
     token = authorization.replace("Bearer ", "") if authorization.startswith("Bearer ") else authorization
-    access = await check_biblical_map_quiz_access(token)
+    access = await check_quiz_generator_access(token)
     if not access.get("hasAccess"):
         raise HTTPException(
             status_code=403, 
@@ -449,7 +449,7 @@ async def extract_biblical_locations(request: BiblicalMapExtractRequest, authori
         raise HTTPException(status_code=401, detail="Unauthorized")
     
     # Check feature access for Biblical Map Generator
-    access = await check_biblical_map_quiz_access(token)
+    access = await check_quiz_generator_access(token)
     if not access.get("hasAccess"):
         raise HTTPException(
             status_code=403, 
