@@ -443,7 +443,7 @@ function PricingPage() {
                   {plan.features.biblicalMapQuiz && (
                     <li className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
-                      <span className="text-sm text-stone-600 dark:text-stone-400">Biblical Map & Quiz Generator</span>
+                      <span className="text-sm text-stone-600 dark:text-stone-400">Quiz Generator</span>
                     </li>
                   )}
                   {!plan.features.biblicalMapQuiz && activeTab === 'organization' && !plan.id.includes('enterprise') && (
@@ -452,7 +452,7 @@ function PricingPage() {
                         <span className="text-amber-600 dark:text-amber-400 text-[10px] font-bold">+</span>
                       </span>
                       <span className="text-sm text-stone-500 dark:text-stone-400">
-                        Biblical Map & Quiz <span className="text-amber-600 font-medium">+$1.99/mo add-on</span>
+                        Quiz Generator <span className="text-amber-600 font-medium">+$1.99/mo add-on</span>
                       </span>
                     </li>
                   )}
