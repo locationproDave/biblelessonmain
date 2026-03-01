@@ -45,7 +45,7 @@ PRICING_PLANS = {
             "curriculumPlanner": False,
             "teamMembers": 1,
             "priority": False,
-            "biblicalMapQuiz": False
+            "quizGenerator": False
         },
         "description": "Perfect for individual teachers getting started"
     },
@@ -65,7 +65,7 @@ PRICING_PLANS = {
             "curriculumPlanner": False,
             "teamMembers": 1,
             "priority": False,
-            "biblicalMapQuiz": False
+            "quizGenerator": False
         },
         "description": "Perfect for individual teachers getting started"
     },
@@ -83,7 +83,7 @@ PRICING_PLANS = {
             "curriculumPlanner": True,
             "teamMembers": 1,
             "priority": True,
-            "biblicalMapQuiz": True
+            "quizGenerator": True
         },
         "description": "For dedicated teachers who need unlimited access"
     },
@@ -103,7 +103,7 @@ PRICING_PLANS = {
             "curriculumPlanner": True,
             "teamMembers": 1,
             "priority": True,
-            "biblicalMapQuiz": True
+            "quizGenerator": True
         },
         "description": "For dedicated teachers who need unlimited access"
     },
@@ -122,9 +122,9 @@ PRICING_PLANS = {
             "curriculumPlanner": True,
             "teamMembers": 3,
             "priority": True,
-            "biblicalMapQuiz": False
+            "quizGenerator": False
         },
-        "availableAddOns": ["biblical_map_quiz"],
+        "availableAddOns": ["quiz_generator"],
         "description": "Small groups and teaching teams"
     },
     "team_annual": {
@@ -143,9 +143,9 @@ PRICING_PLANS = {
             "curriculumPlanner": True,
             "teamMembers": 3,
             "priority": True,
-            "biblicalMapQuiz": False
+            "quizGenerator": False
         },
-        "availableAddOns": ["biblical_map_quiz"],
+        "availableAddOns": ["quiz_generator"],
         "description": "Small groups and teaching teams"
     },
     "ministry": {
@@ -162,9 +162,9 @@ PRICING_PLANS = {
             "curriculumPlanner": True,
             "teamMembers": 6,
             "priority": True,
-            "biblicalMapQuiz": False
+            "quizGenerator": False
         },
-        "availableAddOns": ["biblical_map_quiz"],
+        "availableAddOns": ["quiz_generator"],
         "description": "Growing ministries and churches"
     },
     "ministry_annual": {
@@ -183,9 +183,9 @@ PRICING_PLANS = {
             "curriculumPlanner": True,
             "teamMembers": 6,
             "priority": True,
-            "biblicalMapQuiz": False
+            "quizGenerator": False
         },
-        "availableAddOns": ["biblical_map_quiz"],
+        "availableAddOns": ["quiz_generator"],
         "description": "Growing ministries and churches"
     },
     "enterprise": {
@@ -203,7 +203,7 @@ PRICING_PLANS = {
             "teamMembers": "Unlimited",
             "priority": True,
             "dedicatedSupport": True,
-            "biblicalMapQuiz": True
+            "quizGenerator": True
         },
         "description": "Schools, school districts, and large church organizations"
     },
@@ -222,7 +222,7 @@ PRICING_PLANS = {
             "teamMembers": "Unlimited",
             "priority": True,
             "dedicatedSupport": True,
-            "biblicalMapQuiz": True
+            "quizGenerator": True
         },
         "description": "Schools, school districts, and large church organizations"
     }
