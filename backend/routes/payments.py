@@ -67,7 +67,8 @@ PRICING_PLANS = {
             "emailDelivery": True,
             "curriculumPlanner": True,
             "teamMembers": 1,
-            "priority": True
+            "priority": True,
+            "biblicalMapQuiz": True
         },
         "description": "For dedicated teachers who need unlimited access"
     },
@@ -86,7 +87,8 @@ PRICING_PLANS = {
             "emailDelivery": True,
             "curriculumPlanner": True,
             "teamMembers": 1,
-            "priority": True
+            "priority": True,
+            "biblicalMapQuiz": True
         },
         "description": "For dedicated teachers who need unlimited access"
     },
