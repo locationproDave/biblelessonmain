@@ -118,8 +118,10 @@ PRICING_PLANS = {
             "emailDelivery": True,
             "curriculumPlanner": True,
             "teamMembers": 3,
-            "priority": True
+            "priority": True,
+            "biblicalMapQuiz": False
         },
+        "availableAddOns": ["biblical_map_quiz"],
         "description": "Small groups and teaching teams"
     },
     "team_annual": {
@@ -137,8 +139,10 @@ PRICING_PLANS = {
             "emailDelivery": True,
             "curriculumPlanner": True,
             "teamMembers": 3,
-            "priority": True
+            "priority": True,
+            "biblicalMapQuiz": False
         },
+        "availableAddOns": ["biblical_map_quiz"],
         "description": "Small groups and teaching teams"
     },
     "ministry": {
@@ -154,8 +158,10 @@ PRICING_PLANS = {
             "emailDelivery": True,
             "curriculumPlanner": True,
             "teamMembers": 6,
-            "priority": True
+            "priority": True,
+            "biblicalMapQuiz": False
         },
+        "availableAddOns": ["biblical_map_quiz"],
         "description": "Growing ministries and churches"
     },
     "ministry_annual": {
@@ -173,8 +179,10 @@ PRICING_PLANS = {
             "emailDelivery": True,
             "curriculumPlanner": True,
             "teamMembers": 6,
-            "priority": True
+            "priority": True,
+            "biblicalMapQuiz": False
         },
+        "availableAddOns": ["biblical_map_quiz"],
         "description": "Growing ministries and churches"
     },
     "enterprise": {
@@ -191,7 +199,8 @@ PRICING_PLANS = {
             "curriculumPlanner": True,
             "teamMembers": "Unlimited",
             "priority": True,
-            "dedicatedSupport": True
+            "dedicatedSupport": True,
+            "biblicalMapQuiz": True
         },
         "description": "Schools, school districts, and large church organizations"
     },
@@ -209,7 +218,8 @@ PRICING_PLANS = {
             "curriculumPlanner": True,
             "teamMembers": "Unlimited",
             "priority": True,
-            "dedicatedSupport": True
+            "dedicatedSupport": True,
+            "biblicalMapQuiz": True
         },
         "description": "Schools, school districts, and large church organizations"
     }
