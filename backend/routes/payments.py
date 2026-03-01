@@ -226,8 +226,7 @@ async def get_pricing_plans():
         "plans": PRICING_PLANS,
         "individual": ["starter", "starter_annual", "unlimited", "unlimited_annual"],
         "organization": ["team", "team_annual", "ministry", "ministry_annual", 
-                        "church", "church_annual", "school", "school_annual",
-                        "org_unlimited", "org_unlimited_annual"]
+                        "enterprise", "enterprise_annual"]
     }
 
 @router.get("/subscription")
