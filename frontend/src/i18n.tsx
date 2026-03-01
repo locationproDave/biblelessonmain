@@ -343,7 +343,7 @@ const translations: { en: TranslationDict } = {
     'signup.payment': 'Payment',
     'signup.monthly': 'Monthly',
     'signup.annual': 'Annual',
-    'signup.save17': 'Save 17%',
+    'signup.save17': 'Save 10%',
     'signup.perMonth': '/month',
     'signup.billedAnnually': 'billed annually',
     'signup.billedMonthly': 'Billed monthly',
