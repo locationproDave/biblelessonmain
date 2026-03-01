@@ -15,9 +15,16 @@ function AboutPage() {
         
         {/* Header */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-amber-600 dark:text-amber-500 mb-3">
-            <Heart className="w-5 h-5" strokeWidth={1.5} />
-            <span className="text-sm font-semibold uppercase tracking-wider">About Us</span>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="flex items-center gap-2 text-amber-600 dark:text-amber-500">
+              <Heart className="w-5 h-5" strokeWidth={1.5} />
+              <span className="text-sm font-semibold uppercase tracking-wider">About Us</span>
+            </div>
+            <span className="text-stone-300 dark:text-stone-600">|</span>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-900 text-white rounded-md text-xs font-bold">
+              <Shield className="w-3.5 h-3.5" />
+              Veteran Owned
+            </div>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-stone-900 dark:text-stone-50 mb-3" style={{ fontFamily: 'Crimson Text, serif' }}>
             Our Mission & Story
