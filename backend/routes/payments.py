@@ -20,7 +20,7 @@ ADD_ONS = {
     "quiz_generator": {
         "id": "quiz_generator",
         "name": "Quiz Generator",
-        "price": 1.99,
+        "price": 3.99,
         "interval": "month",
         "description": "Unlock AI-powered Quiz Generator to create comprehension quizzes for your lessons",
         "features": ["quizGenerator"],
