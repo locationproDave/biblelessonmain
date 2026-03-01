@@ -390,7 +390,7 @@ export function PricingSection() {
                           </Link>
                         ) : session ? (
                           <a
-                            href={getCheckoutUrl(priceId)}
+                            href={getCheckoutUrl(priceId || '')}
                             className="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-bold bg-[#D4A017] hover:bg-[#B8890F] text-white transition-colors"
                           >
                             Subscribe
