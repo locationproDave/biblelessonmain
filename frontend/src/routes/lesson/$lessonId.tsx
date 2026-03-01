@@ -1508,21 +1508,25 @@ function LessonViewPage() {
             
             {showMap && (
               <div className="p-4" data-testid="biblical-map-section">
-                <BiblicalMap data={mapData} isLoading={mapLoading} lessonTitle={lesson.title} onExtract={handleExtractLocations} />
+                <FeatureGate featureName="biblicalMapQuiz" featureLabel="Biblical Map Generator">
+                  <BiblicalMap data={mapData} isLoading={mapLoading} lessonTitle={lesson.title} onExtract={handleExtractLocations} />
+                </FeatureGate>
               </div>
             )}
             
             {showQuiz && (
               <div className="p-4" data-testid="quiz-section">
-                <QuizGenerator 
-                  lessonId={lessonId} 
-                  lessonTitle={lesson.title}
-                  lessonPassage={lesson.passage}
-                  lessonTheme={lesson.theme}
-                  lessonAgeGroup={lesson.ageGroup}
-                  memoryVerse={lesson.memoryVerse ? `${lesson.memoryVerse.text} - ${lesson.memoryVerse.reference}` : undefined}
-                  lessonContent={lesson.sections?.map(s => `${s.title}: ${s.content}`).join('\n\n')}
-                />
+                <FeatureGate featureName="biblicalMapQuiz" featureLabel="Quiz Generator">
+                  <QuizGenerator 
+                    lessonId={lessonId} 
+                    lessonTitle={lesson.title}
+                    lessonPassage={lesson.passage}
+                    lessonTheme={lesson.theme}
+                    lessonAgeGroup={lesson.ageGroup}
+                    memoryVerse={lesson.memoryVerse ? `${lesson.memoryVerse.text} - ${lesson.memoryVerse.reference}` : undefined}
+                    lessonContent={lesson.sections?.map(s => `${s.title}: ${s.content}`).join('\n\n')}
+                  />
+                </FeatureGate>
               </div>
             )}
             
