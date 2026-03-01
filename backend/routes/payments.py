@@ -94,7 +94,7 @@ PRICING_PLANS = {
     "team": {
         "id": "team",
         "name": "Team",
-        "price": 12.99,
+        "price": 14.99,
         "interval": "month",
         "lessonsLimit": 12,
         "features": {
@@ -111,8 +111,8 @@ PRICING_PLANS = {
     "team_annual": {
         "id": "team_annual",
         "name": "Team",
-        "price": 140,
-        "monthlyEquivalent": 11.67,
+        "price": 162,
+        "monthlyEquivalent": 13.50,
         "interval": "year",
         "lessonsLimit": 12,
         "savings": "Save 10%",
@@ -130,7 +130,7 @@ PRICING_PLANS = {
     "ministry": {
         "id": "ministry",
         "name": "Ministry",
-        "price": 19.99,
+        "price": 29.99,
         "interval": "month",
         "lessonsLimit": 24,
         "features": {
@@ -142,13 +142,13 @@ PRICING_PLANS = {
             "teamMembers": 6,
             "priority": True
         },
-        "description": "Growing ministries and small churches"
+        "description": "Growing ministries and churches"
     },
     "ministry_annual": {
         "id": "ministry_annual",
         "name": "Ministry",
-        "price": 216,
-        "monthlyEquivalent": 18.00,
+        "price": 324,
+        "monthlyEquivalent": 27.00,
         "interval": "year",
         "lessonsLimit": 24,
         "savings": "Save 10%",
@@ -161,83 +161,11 @@ PRICING_PLANS = {
             "teamMembers": 6,
             "priority": True
         },
-        "description": "Growing ministries and small churches"
+        "description": "Growing ministries and churches"
     },
-    "church": {
-        "id": "church",
-        "name": "Church",
-        "price": 29.99,
-        "interval": "month",
-        "lessonsLimit": 40,
-        "features": {
-            "lessons": 40,
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 10,
-            "priority": True
-        },
-        "description": "Mid-size churches and programs"
-    },
-    "church_annual": {
-        "id": "church_annual",
-        "name": "Church",
-        "price": 324,
-        "monthlyEquivalent": 27.00,
-        "interval": "year",
-        "lessonsLimit": 40,
-        "savings": "Save 10%",
-        "features": {
-            "lessons": 40,
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 10,
-            "priority": True
-        },
-        "description": "Mid-size churches and programs"
-    },
-    "school": {
-        "id": "school",
-        "name": "School",
-        "price": 49.99,
-        "interval": "month",
-        "lessonsLimit": 80,
-        "features": {
-            "lessons": 80,
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 20,
-            "priority": True
-        },
-        "description": "Christian schools and large programs"
-    },
-    "school_annual": {
-        "id": "school_annual",
-        "name": "School",
-        "price": 540,
-        "monthlyEquivalent": 45.00,
-        "interval": "year",
-        "lessonsLimit": 80,
-        "savings": "Save 10%",
-        "features": {
-            "lessons": 80,
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 20,
-            "priority": True
-        },
-        "description": "Christian schools and large programs"
-    },
-    "org_unlimited": {
-        "id": "org_unlimited",
-        "name": "Unlimited",
+    "enterprise": {
+        "id": "enterprise",
+        "name": "Enterprise",
         "price": 89.99,
         "interval": "month",
         "lessonsLimit": 9999,
@@ -251,11 +179,11 @@ PRICING_PLANS = {
             "priority": True,
             "dedicatedSupport": True
         },
-        "description": "Large churches, schools, and districts"
+        "description": "Schools, school districts, and large church organizations"
     },
-    "org_unlimited_annual": {
-        "id": "org_unlimited_annual",
-        "name": "Unlimited",
+    "enterprise_annual": {
+        "id": "enterprise_annual",
+        "name": "Enterprise",
         "price": 972,
         "monthlyEquivalent": 81.00,
         "interval": "year",
@@ -271,7 +199,7 @@ PRICING_PLANS = {
             "priority": True,
             "dedicatedSupport": True
         },
-        "description": "Large churches, schools, and districts"
+        "description": "Schools, school districts, and large church organizations"
     }
 }
 
