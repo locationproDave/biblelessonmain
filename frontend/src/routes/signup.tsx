@@ -528,7 +528,7 @@ function SignUpPage() {
               </div>
             ) : (
               <div className={`grid gap-5 ${
-                planType === 'individual' ? 'grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+                planType === 'individual' ? 'grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto' : 'grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto'
               }`}>
                 {currentPlans?.map((plan) => (
                   <button
@@ -562,7 +562,11 @@ function SignUpPage() {
                       <p className="text-sm text-stone-500 dark:text-stone-400 mb-4 min-h-[40px]">{plan.description}</p>
 
                       <div className="mb-4">
-                        {plan.monthlyEquivalent ? (
+                        {String(plan.price) === 'contact' ? (
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-2xl font-bold text-stone-900 dark:text-stone-100">Contact Us</span>
+                          </div>
+                        ) : plan.monthlyEquivalent ? (
                           <>
                             <div className="flex items-baseline gap-1">
                               <span className="text-3xl font-bold text-stone-900 dark:text-stone-100">${plan.monthlyEquivalent.toFixed(2)}</span>
@@ -590,7 +594,7 @@ function SignUpPage() {
                           ? 'bg-amber-600 hover:bg-amber-700 text-white shadow-md'
                           : 'bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-stone-200 text-white dark:text-stone-900'
                       }`}>
-                        Select Plan
+                        {String(plan.price) === 'contact' ? 'Contact Sales' : 'Select Plan'}
                       </div>
                     </div>
 
@@ -606,6 +610,43 @@ function SignUpPage() {
                           </span>
                         </li>
                         <li className="flex items-start gap-2">
+                          {plan.features.supplyLists ? (
+                            <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
+                          ) : (
+                            <span className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5">✗</span>
+                          )}
+                          <span className="text-sm text-stone-600 dark:text-stone-400">Supply List Extractor</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          {plan.features.emailDelivery ? (
+                            <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
+                          ) : (
+                            <span className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5">✗</span>
+                          )}
+                          <span className="text-sm text-stone-600 dark:text-stone-400">Email Delivery</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          {(plan.features as any).quizGenerator ? (
+                            <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
+                          ) : (
+                            <span className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5">✗</span>
+                          )}
+                          <span className={`text-sm ${(plan.features as any).quizGenerator ? 'text-stone-600 dark:text-stone-400' : 'text-stone-400 dark:text-stone-500'}`}>Quiz Generator</span>
+                        </li>
+                        {!(plan.features as any).quizGenerator && planType === 'organization' && !plan.id.includes('enterprise') && (
+                          <li className="flex items-start gap-2 -mt-1 ml-6">
+                            <span className="text-xs text-amber-600 font-medium">+${plan.id.includes('team') ? '2.99' : '4.99'}/mo add-on</span>
+                          </li>
+                        )}
+                        <li className="flex items-start gap-2">
+                          {plan.features.curriculumPlanner ? (
+                            <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
+                          ) : (
+                            <span className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5">✗</span>
+                          )}
+                          <span className={`text-sm ${plan.features.curriculumPlanner ? 'text-stone-600 dark:text-stone-400' : 'text-stone-400 dark:text-stone-500'}`}>Curriculum Planner</span>
+                        </li>
+                        <li className="flex items-start gap-2">
                           <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           <span className="text-sm text-stone-600 dark:text-stone-400">
                             {plan.features.teamMembers} team member{plan.features.teamMembers > 1 ? 's' : ''}
@@ -614,7 +655,7 @@ function SignUpPage() {
                         {plan.features.priority && (
                           <li className="flex items-start gap-2">
                             <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
-                            <span className="text-sm text-stone-600 dark:text-stone-400">Priority processing</span>
+                            <span className="text-sm text-stone-600 dark:text-stone-400">Priority Processing</span>
                           </li>
                         )}
                       </ul>
