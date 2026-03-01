@@ -1,129 +1,126 @@
 # Bible Lesson Planner - Product Requirements Document
 
 ## Overview
-Bible Lesson Planner is a web and mobile application that helps Sunday school teachers create engaging, scripture-based lesson plans using AI.
+AI-powered Sunday school lesson planning tool that generates complete, Scripture-based lessons in minutes.
 
-## Production Architecture (February 2026)
+**Live URL**: biblelessonplanner.com
+**Tech Stack**: Vite + React (Vercel) | FastAPI (Railway) | MongoDB Atlas
 
-### Hosting
-| Component | Provider | URL |
-|-----------|----------|-----|
-| Frontend | Vercel | https://biblelessonplanner.com |
-| Backend | Railway | https://biblelessonmain-production.up.railway.app |
-| Database | MongoDB Atlas | bible-lesson-cluster |
-| AI | Anthropic Claude | claude-sonnet-4-20250514 |
-| Payments | Stripe | Live mode |
-| Email | Resend | hello@biblelessonplanner.com |
+## Ownership
+- David Conway: 75%
+- Truman Conway: 25%
 
-### Environment Variables
+---
 
-**Railway (Backend):**
-- `ANTHROPIC_API_KEY` - Claude AI
-- `MONGO_URL` - MongoDB Atlas connection
-- `DB_NAME` - bible_lesson_db
-- `STRIPE_API_KEY` - Stripe live key
-- `RESEND_API_KEY` - Resend email
-- `SENDER_EMAIL` - hello@biblelessonplanner.com
-- `CORS_ORIGINS` - https://biblelessonplanner.com
+## Core Features (Implemented)
 
-**Vercel (Frontend):**
-- `VITE_API_URL` - https://biblelessonmain-production.up.railway.app/api
+### Lesson Generation
+- Multi-step wizard (Scripture → Audience → Customize → Generate)
+- AI-powered lesson content via Claude API
+- 20+ Bible translation support
+- Age group targeting (Preschool → Adult)
+- Customizable extras (memory verse, discussion, prayer, activities, crafts, take-home)
+- Print-ready output
 
-## Core Features
+### User Management
+- JWT authentication
+- Stripe subscription integration
+- Custom subscription plans (admin-assignable)
+- Lesson history and saved lessons
 
-### 1. AI Lesson Generation
-- Claude-powered lesson creation from Bible passages
-- Customizable by age group, duration, format
-- Includes memory verses, activities, teacher notes
-
-### 2. Template Library
-- Pre-built lesson templates
-- Holiday and seasonal content
-
-### 3. User Management
-- Email/password authentication
-- User profiles and preferences
-
-### 4. Subscription Plans (Stripe)
-- Free Trial: 3 lessons/month
-- Starter: $9.99/month - 6 lessons
-- Unlimited: $19.99/month - 100 lessons
-- Church plans: $29.99 - $199.99/month
-
-### 5. Admin Dashboard
+### Admin Dashboard
 - User analytics and management
-- Subscription breakdown
-- GA4/Clarity/Bing analytics integration
+- GA4/Clarity integration display
+- Custom subscription assignment
+- **NEW**: Team/Sales Rep management (frontend UI complete)
 
-### 6. Mobile App (React Native)
-- Scaffolded in `/app/mobile`
-- Pending full implementation
+### Legal/Compliance
+- Privacy Policy (`/privacy`)
+- Terms of Service (`/terms`)
+- EU ODR link in footer
 
-## API Endpoints
+---
 
-### Authentication
-- `POST /api/auth/register`
-- `POST /api/auth/signin`
-- `GET /api/auth/session`
+## Sales & Commission Structure
 
-### AI/Lessons
-- `POST /api/ai/generate-lesson`
-- `GET /api/lessons`
-- `POST /api/lessons`
+### Base Commission
+- 25% one-time on all subscriptions
 
-### Payments
-- `GET /api/pricing/plans`
-- `POST /api/checkout/create-session`
-- `POST /api/webhook/stripe`
+### Volume Bonuses (Monthly)
+- 10-19 signups: +$50
+- 20-34 signups: +$150
+- 35-49 signups: +$300
+- 50+ signups: +$500 + 5% extra
 
-### Admin
-- `GET /api/admin/analytics`
-- `GET /api/admin/users`
+### Profit Participation (12+ months)
+- Tier 1: 1% revenue share
+- Tier 2: 2% + 0.5% override on recruited reps
+- Tier 3: 0.25-1% equity (exceptional performers)
 
-## File Structure
-```
-/app
-├── frontend/           # React + Vite + TanStack Router
-│   ├── src/
-│   │   ├── components/
-│   │   ├── routes/
-│   │   └── lib/
-│   └── .env.example
-├── backend/            # FastAPI + Python
-│   ├── routes/
-│   ├── models/
-│   ├── services/
-│   ├── server.py
-│   └── .env.example
-├── mobile/             # React Native + Expo (WIP)
-└── memory/             # Documentation
-```
+---
 
-## Completed (February 2026)
+## Changelog
 
-- ✅ Full web application
-- ✅ AI lesson generation (Claude)
-- ✅ Stripe payments (live)
-- ✅ Admin dashboard with analytics
-- ✅ GA4/Clarity integration
-- ✅ Production deployment (Railway + Vercel)
-- ✅ MongoDB Atlas database
-- ✅ Webhook integration
+### March 2026
+- Added Privacy Policy and Terms of Service pages
+- Added EU ODR link to footer
+- Built Team management section in admin dashboard
+- Fixed customize extras to default unselected
+- Created sales commission structure document
+- Created Buffer-compatible social media CSV (30 days)
 
-## Pending
+### February 2026
+- Migrated backend to Railway
+- Migrated database to MongoDB Atlas
+- Removed emergentintegrations dependency
+- Implemented direct Claude, Stripe, Resend SDK integration
+- Added GA4 analytics section to admin
+- Added custom subscription assignment feature
+- Created RSS feed for social media automation
 
-- ⏳ Mobile app implementation
-- ⏳ Resend domain verification
-- ⏳ Email marketing/newsletter
-- ⏳ Social sharing features
+---
 
-## Monthly Costs (Estimated)
+## Roadmap
 
-| Service | Cost |
-|---------|------|
-| Vercel | Free |
-| Railway | ~$5-10/mo |
-| MongoDB Atlas | Free (M0) |
-| Claude API | ~$0.01/lesson |
-| Stripe | 2.9% + $0.30/txn |
-| Resend | Free tier |
+### P0 - Immediate
+- [ ] Backend API for sales rep management
+- [ ] Referral code tracking in signup flow
+- [ ] Google Ads re-submission after legal pages deploy
+
+### P1 - Short Term
+- [ ] Organization pricing page
+- [ ] Multi-seat license management
+- [ ] Christian school mode (weekday scheduling, grade levels)
+
+### P2 - Medium Term
+- [ ] Mobile app completion
+- [ ] Blog/articles section for SEO
+- [ ] Quiz/test generation for schools
+- [ ] Parent portal access
+
+### P3 - Long Term
+- [ ] Multi-school/district management
+- [ ] Curriculum standardization tools
+- [ ] Gradebook integration hooks
+- [ ] API for third-party integrations
+
+---
+
+## Key Files Reference
+
+### Frontend
+- `/app/frontend/src/routes/generate.tsx` - Lesson generation wizard
+- `/app/frontend/src/routes/admin/dashboard.tsx` - Admin dashboard with Team tab
+- `/app/frontend/src/routes/privacy.tsx` - Privacy policy
+- `/app/frontend/src/routes/terms.tsx` - Terms of service
+
+### Backend
+- `/app/backend/main.py` - FastAPI entry point
+- `/app/backend/routes/admin.py` - Admin API endpoints
+- `/app/backend/ai.py` - Claude integration
+- `/app/backend/payments.py` - Stripe integration
+
+### Business Documents
+- `/app/artifacts/sales_commission_structure.md` - Full commission plan
+- `/app/artifacts/seo_marketing_guide.md` - Marketing playbook
+- `/app/artifacts/buffer_final.csv` - Social media content (needs images)
