@@ -274,104 +274,6 @@ PRICING_PLANS = {
         "description": "Large churches, schools, and districts"
     }
 }
-        "price": 599.99,
-        "monthlyEquivalent": 50.00,
-        "interval": "year",
-        "lessonsLimit": 50,
-        "savings": "Save $120/year",
-        "features": {
-            "lessons": 50,
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 10,
-            "priority": True,
-            "classes": "4-8"
-        },
-        "description": "For churches with 4-8 classes"
-    },
-    "large_church": {
-        "id": "large_church",
-        "name": "Large Church",
-        "price": 99.99,
-        "interval": "month",
-        "lessonsLimit": 150,
-        "features": {
-            "lessons": 150,
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 25,
-            "priority": True,
-            "classes": "9+"
-        },
-        "description": "For churches with 9+ classes"
-    },
-    "large_church_annual": {
-        "id": "large_church_annual",
-        "name": "Large Church",
-        "price": 999.99,
-        "monthlyEquivalent": 83.33,
-        "interval": "year",
-        "lessonsLimit": 150,
-        "savings": "Save $200/year",
-        "features": {
-            "lessons": 150,
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 25,
-            "priority": True,
-            "classes": "9+"
-        },
-        "description": "For churches with 9+ classes"
-    },
-    "enterprise": {
-        "id": "enterprise",
-        "name": "Enterprise",
-        "price": 199.99,
-        "interval": "month",
-        "lessonsLimit": 500,
-        "features": {
-            "lessons": "Unlimited",
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 100,
-            "priority": True,
-            "classes": "Unlimited",
-            "multiSite": True,
-            "dedicatedSupport": True
-        },
-        "description": "For multi-site churches & organizations"
-    },
-    "enterprise_annual": {
-        "id": "enterprise_annual",
-        "name": "Enterprise",
-        "price": 1999.99,
-        "monthlyEquivalent": 166.67,
-        "interval": "year",
-        "lessonsLimit": 500,
-        "savings": "Save $400/year",
-        "features": {
-            "lessons": "Unlimited",
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 100,
-            "priority": True,
-            "classes": "Unlimited",
-            "multiSite": True,
-            "dedicatedSupport": True
-        },
-        "description": "For multi-site churches & organizations"
-    }
-}
 
 def serialize_doc(doc: dict) -> dict:
     if doc is None:
@@ -397,8 +299,9 @@ async def get_pricing_plans():
     return {
         "plans": PRICING_PLANS,
         "individual": ["starter", "starter_annual", "unlimited", "unlimited_annual"],
-        "organization": ["small_church", "small_church_annual", "medium_church", "medium_church_annual", 
-                        "large_church", "large_church_annual", "enterprise", "enterprise_annual"]
+        "organization": ["team", "team_annual", "ministry", "ministry_annual", 
+                        "church", "church_annual", "school", "school_annual",
+                        "org_unlimited", "org_unlimited_annual"]
     }
 
 @router.get("/subscription")
