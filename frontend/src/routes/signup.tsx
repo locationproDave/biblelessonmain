@@ -613,7 +613,7 @@ function SignUpPage() {
                           {plan.features.supplyLists ? (
                             <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           ) : (
-                            <span className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5">✗</span>
+                            <X className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           )}
                           <span className="text-sm text-stone-600 dark:text-stone-400">Supply List Extractor</span>
                         </li>
@@ -621,7 +621,7 @@ function SignUpPage() {
                           {plan.features.emailDelivery ? (
                             <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           ) : (
-                            <span className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5">✗</span>
+                            <X className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           )}
                           <span className="text-sm text-stone-600 dark:text-stone-400">Email Delivery</span>
                         </li>
@@ -629,7 +629,7 @@ function SignUpPage() {
                           {(plan.features as any).quizGenerator ? (
                             <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           ) : (
-                            <span className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5">✗</span>
+                            <X className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           )}
                           <span className={`text-sm ${(plan.features as any).quizGenerator ? 'text-stone-600 dark:text-stone-400' : 'text-stone-400 dark:text-stone-500'}`}>Quiz Generator</span>
                         </li>
@@ -642,7 +642,7 @@ function SignUpPage() {
                           {plan.features.curriculumPlanner ? (
                             <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           ) : (
-                            <span className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5">✗</span>
+                            <X className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           )}
                           <span className={`text-sm ${plan.features.curriculumPlanner ? 'text-stone-600 dark:text-stone-400' : 'text-stone-400 dark:text-stone-500'}`}>Curriculum Planner</span>
                         </li>
