@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useI18n } from '@/i18n'
 import { PricingSection } from '@/components/Pricing'
 import { useSEO, trackPageView } from '@/lib/seo'
-import { BookOpen, Church, ScrollText, Zap, Target, Palette, RefreshCw, Printer, Search, Monitor, Pencil, GraduationCap, Mail, Settings, BarChart3, Shield, Sparkles, Check, BookMarked, Cross, ChevronRight } from 'lucide-react'
+import { BookOpen, Church, ScrollText, Zap, Target, Palette, RefreshCw, Printer, Search, Monitor, Pencil, GraduationCap, Mail, Settings, BarChart3, Shield, Sparkles, Check, BookMarked, Cross, ChevronRight, Map } from 'lucide-react'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
