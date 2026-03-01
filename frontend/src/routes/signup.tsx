@@ -8,7 +8,7 @@ import { preferencesAPI } from '@/lib/api'
 import { 
   BookOpen, Sparkles, User, CreditCard, PartyPopper, Lock, Loader2, 
   Check, Gift, LogIn, UserPlus, Users, Church, Building2, Crown,
-  CheckCircle, Tag, ChevronRight
+  CheckCircle, Tag, ChevronRight, X
 } from 'lucide-react'
 
 const API_URL = import.meta.env.VITE_API_URL
