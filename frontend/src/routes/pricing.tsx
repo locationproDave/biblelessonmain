@@ -308,7 +308,9 @@ function PricingPage() {
         </div>
 
         {/* Pricing Cards */}
-        <div className={`grid gap-5 mb-16 items-stretch grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto`}>
+        <div className={`grid gap-5 mb-16 items-stretch ${
+          activeTab === 'individual' ? 'grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto' : 'grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto'
+        }`}>
           {currentPlans?.map((plan) => (
             <div
               key={plan.id}
