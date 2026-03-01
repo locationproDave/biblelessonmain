@@ -239,6 +239,23 @@ async def generate_quiz(request: QuizGenerateRequest, authorization: str = Heade
     if not authorization:
         raise HTTPException(status_code=401, detail="Unauthorized")
     
+    # Check feature access for Quiz Generator
+    token = authorization.replace("Bearer ", "") if authorization.startswith("Bearer ") else authorization
+    access = await check_biblical_map_quiz_access(token)
+    if not access.get("hasAccess"):
+        raise HTTPException(
+            status_code=403, 
+            detail={
+                "error": "feature_locked",
+                "feature": "Quiz Generator",
+                "reason": access.get("reason"),
+                "upgradeRequired": access.get("upgradeRequired", False),
+                "suggestedPlan": access.get("suggestedPlan"),
+                "addOn": access.get("addOn"),
+                "canPurchase": access.get("canPurchase", False)
+            }
+        )
+    
     # Use content from request if provided, otherwise look up in database
     title = request.lessonTitle
     passage = request.lessonPassage
