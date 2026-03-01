@@ -33,21 +33,20 @@ export function FeatureGate({ featureName, featureLabel, children, fallback }: F
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    const checkAccess = async () => {
+      try {
+        setLoading(true)
+        const result = await subscriptionAPI.checkFeatureAccess(featureName)
+        setAccess(result)
+      } catch {
+        // If not authenticated, show locked state
+        setAccess({ hasAccess: false, reason: 'not_authenticated' })
+      } finally {
+        setLoading(false)
+      }
+    }
     checkAccess()
   }, [featureName])
-
-  const checkAccess = async () => {
-    try {
-      setLoading(true)
-      const result = await subscriptionAPI.checkFeatureAccess(featureName)
-      setAccess(result)
-    } catch (err: any) {
-      // If not authenticated, show locked state
-      setAccess({ hasAccess: false, reason: 'not_authenticated' })
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const handlePurchaseAddOn = async () => {
     if (!access?.addOn?.id) return
@@ -58,10 +57,12 @@ export function FeatureGate({ featureName, featureLabel, children, fallback }: F
       const result = await subscriptionAPI.purchaseAddOn(access.addOn.id)
       if (result.success) {
         // Refresh access check
-        await checkAccess()
+        const refreshedAccess = await subscriptionAPI.checkFeatureAccess(featureName)
+        setAccess(refreshedAccess)
       }
-    } catch (err: any) {
-      setError(err?.response?.data?.detail || 'Failed to purchase add-on')
+    } catch (err: unknown) {
+      const errorMsg = (err as { response?: { data?: { detail?: string } } })?.response?.data?.detail || 'Failed to purchase add-on'
+      setError(errorMsg)
     } finally {
       setPurchasing(false)
     }
