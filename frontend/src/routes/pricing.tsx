@@ -427,29 +427,26 @@ function PricingPage() {
                     <span className="text-sm text-stone-600 dark:text-stone-400">{t('pricing.emailDelivery')}</span>
                   </li>
                   <li className="flex items-start gap-2">
+                    {plan.features.quizGenerator ? (
+                      <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
+                    ) : (
+                      <X className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5" strokeWidth={2} />
+                    )}
+                    <span className={`text-sm ${plan.features.quizGenerator ? 'text-stone-600 dark:text-stone-400' : 'text-stone-400 dark:text-stone-500'}`}>Quiz Generator</span>
+                  </li>
+                  {!plan.features.quizGenerator && activeTab === 'organization' && !plan.id.includes('enterprise') && (
+                    <li className="flex items-start gap-2 -mt-1 ml-6">
+                      <span className="text-xs text-amber-600 font-medium">+${plan.id.includes('team') ? '2.99' : '4.99'}/mo add-on</span>
+                    </li>
+                  )}
+                  <li className="flex items-start gap-2">
                     {plan.features.curriculumPlanner ? (
                       <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
                     ) : (
                       <X className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5" strokeWidth={2} />
                     )}
-                    <span className="text-sm text-stone-600 dark:text-stone-400">{t('pricing.curriculumPlanner')}</span>
+                    <span className={`text-sm ${plan.features.curriculumPlanner ? 'text-stone-600 dark:text-stone-400' : 'text-stone-400 dark:text-stone-500'}`}>{t('pricing.curriculumPlanner')}</span>
                   </li>
-                  {plan.features.quizGenerator && (
-                    <li className="flex items-start gap-2">
-                      <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
-                      <span className="text-sm text-stone-600 dark:text-stone-400">Quiz Generator</span>
-                    </li>
-                  )}
-                  {!plan.features.quizGenerator && activeTab === 'organization' && !plan.id.includes('enterprise') && (
-                    <li className="flex items-start gap-2">
-                      <span className="w-4 h-4 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-amber-600 dark:text-amber-400 text-[10px] font-bold">+</span>
-                      </span>
-                      <span className="text-sm text-stone-500 dark:text-stone-400">
-                        Quiz Generator <span className="text-amber-600 font-medium">+${plan.id.includes('team') ? '2.99' : '4.99'}/mo add-on</span>
-                      </span>
-                    </li>
-                  )}
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
                     <span className="text-sm text-stone-600 dark:text-stone-400">
