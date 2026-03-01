@@ -1508,7 +1508,7 @@ function LessonViewPage() {
             
             {showMap && (
               <div className="p-4" data-testid="biblical-map-section">
-                <FeatureGate featureName="biblicalMapQuiz" featureLabel="Biblical Map Generator">
+                <FeatureGate featureName="quizGenerator" featureLabel="Biblical Map Generator">
                   <BiblicalMap data={mapData} isLoading={mapLoading} lessonTitle={lesson.title} onExtract={handleExtractLocations} />
                 </FeatureGate>
               </div>
@@ -1516,7 +1516,7 @@ function LessonViewPage() {
             
             {showQuiz && (
               <div className="p-4" data-testid="quiz-section">
-                <FeatureGate featureName="biblicalMapQuiz" featureLabel="Quiz Generator">
+                <FeatureGate featureName="quizGenerator" featureLabel="Quiz Generator">
                   <QuizGenerator 
                     lessonId={lessonId} 
                     lessonTitle={lesson.title}
