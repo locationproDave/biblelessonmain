@@ -358,22 +358,37 @@ export function PricingSection() {
                         </span>
                       </td>
                       <td className="py-4 px-4 text-right">
-                        <div>
-                          <span className="text-2xl font-extrabold text-[#333333] dark:text-white">
-                            ${isAnnual ? plan.yearlyPrice : plan.monthlyPrice.toFixed(2)}
+                        {plan.contactUs ? (
+                          <span className="text-lg font-bold text-[#333333] dark:text-white">
+                            Custom
                           </span>
-                          <span className="text-sm text-[#6B7280] dark:text-[#94A3B8]">
-                            {isAnnual ? '/yr' : '/mo'}
-                          </span>
-                        </div>
-                        {isAnnual && (
-                          <p className="text-xs text-[#6B7280] dark:text-[#94A3B8]">
-                            ${(plan.yearlyPrice / 12).toFixed(2)}/mo
-                          </p>
+                        ) : (
+                          <>
+                            <div>
+                              <span className="text-2xl font-extrabold text-[#333333] dark:text-white">
+                                ${isAnnual ? plan.yearlyPrice : plan.monthlyPrice?.toFixed(2)}
+                              </span>
+                              <span className="text-sm text-[#6B7280] dark:text-[#94A3B8]">
+                                {isAnnual ? '/yr' : '/mo'}
+                              </span>
+                            </div>
+                            {isAnnual && plan.yearlyPrice && (
+                              <p className="text-xs text-[#6B7280] dark:text-[#94A3B8]">
+                                ${(plan.yearlyPrice / 12).toFixed(2)}/mo
+                              </p>
+                            )}
+                          </>
                         )}
                       </td>
                       <td className="py-4 px-4">
-                        {session ? (
+                        {plan.contactUs ? (
+                          <Link
+                            to="/contact"
+                            className="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-bold bg-[#333333] hover:bg-[#1a1a1a] dark:bg-white dark:hover:bg-stone-200 text-white dark:text-[#333333] transition-colors"
+                          >
+                            Contact Us
+                          </Link>
+                        ) : session ? (
                           <a
                             href={getCheckoutUrl(priceId)}
                             className="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-bold bg-[#D4A017] hover:bg-[#B8890F] text-white transition-colors"
