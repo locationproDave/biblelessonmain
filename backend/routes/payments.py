@@ -15,6 +15,18 @@ logger = logging.getLogger(__name__)
 # Stripe API setup
 STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY')
 
+# Add-ons Configuration (for organization plans)
+ADD_ONS = {
+    "biblical_map_quiz": {
+        "id": "biblical_map_quiz",
+        "name": "Biblical Map & Quiz Generator",
+        "price": 1.99,
+        "interval": "month",
+        "description": "Unlock AI-powered Biblical Map Generator and Quiz Generator features",
+        "features": ["biblicalMapQuiz"]
+    }
+}
+
 # Pricing Plans Configuration
 PRICING_PLANS = {
     # Individual Plans
