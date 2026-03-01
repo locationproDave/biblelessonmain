@@ -456,9 +456,15 @@ function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-stone-400 dark:text-stone-500">
-            {t('footer.copyright', { year: String(new Date().getFullYear()) })}
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-xs text-stone-400 dark:text-stone-500">
+              {t('footer.copyright', { year: String(new Date().getFullYear()) })}
+            </p>
+            <div className="inline-flex items-center gap-1.5 px-2 py-1 bg-blue-900/90 text-white rounded text-[10px] font-bold tracking-wide">
+              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 7v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V7l-9-5zm0 10.99h7c-.5 4-3.1 7.5-7 8.9v-8.9zm-7 0V8l7-3.9v8.9H5z"/></svg>
+              VETERAN OWNED
+            </div>
+          </div>
           <p className="text-xs text-stone-400 dark:text-stone-500 italic">
             {t('footer.proverb')}
           </p>
