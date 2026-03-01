@@ -448,6 +448,22 @@ async def extract_biblical_locations(request: BiblicalMapExtractRequest, authori
     if not session:
         raise HTTPException(status_code=401, detail="Unauthorized")
     
+    # Check feature access for Biblical Map Generator
+    access = await check_biblical_map_quiz_access(token)
+    if not access.get("hasAccess"):
+        raise HTTPException(
+            status_code=403, 
+            detail={
+                "error": "feature_locked",
+                "feature": "Biblical Map Generator",
+                "reason": access.get("reason"),
+                "upgradeRequired": access.get("upgradeRequired", False),
+                "suggestedPlan": access.get("suggestedPlan"),
+                "addOn": access.get("addOn"),
+                "canPurchase": access.get("canPurchase", False)
+            }
+        )
+    
     # Use content from request if provided, otherwise look up in database
     title = request.lessonTitle
     passage = request.lessonPassage
