@@ -31,6 +31,7 @@ interface PricingPlan {
     curriculumPlanner: boolean
     teamMembers: number
     priority: boolean
+    quizGenerator?: boolean
     classes?: string
     multiSite?: boolean
     dedicatedSupport?: boolean
