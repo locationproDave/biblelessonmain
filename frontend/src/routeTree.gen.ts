@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VacationBibleSchoolRouteImport } from './routes/vacation-bible-school'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as TeamRouteImport } from './routes/team'
@@ -46,6 +47,11 @@ import { Route as CheckoutSuccessRouteImport } from './routes/checkout/success'
 import { Route as ArticleSlugRouteImport } from './routes/article/$slug'
 import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
 
+const VacationBibleSchoolRoute = VacationBibleSchoolRouteImport.update({
+  id: '/vacation-bible-school',
+  path: '/vacation-bible-school',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -252,6 +258,7 @@ export interface FileRoutesByFullPath {
   '/team': typeof TeamRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/vacation-bible-school': typeof VacationBibleSchoolRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/article/$slug': typeof ArticleSlugRoute
   '/checkout/success': typeof CheckoutSuccessRoute
@@ -290,6 +297,7 @@ export interface FileRoutesByTo {
   '/team': typeof TeamRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/vacation-bible-school': typeof VacationBibleSchoolRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/article/$slug': typeof ArticleSlugRoute
   '/checkout/success': typeof CheckoutSuccessRoute
@@ -329,6 +337,7 @@ export interface FileRoutesById {
   '/team': typeof TeamRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/vacation-bible-school': typeof VacationBibleSchoolRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/article/$slug': typeof ArticleSlugRoute
   '/checkout/success': typeof CheckoutSuccessRoute
@@ -369,6 +378,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/templates'
     | '/terms'
+    | '/vacation-bible-school'
     | '/admin/dashboard'
     | '/article/$slug'
     | '/checkout/success'
@@ -407,6 +417,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/templates'
     | '/terms'
+    | '/vacation-bible-school'
     | '/admin/dashboard'
     | '/article/$slug'
     | '/checkout/success'
@@ -445,6 +456,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/templates'
     | '/terms'
+    | '/vacation-bible-school'
     | '/admin/dashboard'
     | '/article/$slug'
     | '/checkout/success'
@@ -484,6 +496,7 @@ export interface RootRouteChildren {
   TeamRoute: typeof TeamRoute
   TemplatesRoute: typeof TemplatesRoute
   TermsRoute: typeof TermsRoute
+  VacationBibleSchoolRoute: typeof VacationBibleSchoolRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   ArticleSlugRoute: typeof ArticleSlugRoute
   CheckoutSuccessRoute: typeof CheckoutSuccessRoute
@@ -500,6 +513,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vacation-bible-school': {
+      id: '/vacation-bible-school'
+      path: '/vacation-bible-school'
+      fullPath: '/vacation-bible-school'
+      preLoaderRoute: typeof VacationBibleSchoolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -780,6 +800,7 @@ const rootRouteChildren: RootRouteChildren = {
   TeamRoute: TeamRoute,
   TemplatesRoute: TemplatesRoute,
   TermsRoute: TermsRoute,
+  VacationBibleSchoolRoute: VacationBibleSchoolRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   ArticleSlugRoute: ArticleSlugRoute,
   CheckoutSuccessRoute: CheckoutSuccessRoute,
