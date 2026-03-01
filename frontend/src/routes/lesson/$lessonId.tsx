@@ -612,35 +612,6 @@ function LessonViewPage() {
 
   const closeDrawer = useCallback(() => { setDrawerOpen(false); setDrawerRef('') }, [])
 
-  const handleExtractLocations = useCallback(async () => {
-    setMapLoading(true)
-    try {
-      // Prepare lesson content for the API
-      const lessonContent = lesson.sections.map(s => `${s.title}: ${s.content}`).join('\n\n')
-      const data = await biblicalMapAPI.extractLocations(
-        lessonId,
-        lesson.title,
-        lesson.passage,
-        lessonContent
-      )
-      setMapData(data)
-    } catch (error) {
-      console.error('Failed to extract locations:', error)
-    } finally {
-      setMapLoading(false)
-    }
-  }, [lessonId, lesson])
-
-  useEffect(() => {
-    const loadCachedMap = async () => {
-      try {
-        const cached = await biblicalMapAPI.getCachedMapData(lessonId)
-        if (cached) setMapData(cached)
-      } catch {}
-    }
-    loadCachedMap()
-  }, [lessonId])
-
   const handleInsertIntoLesson = useCallback((text: string, reference: string) => {
     const targetIdx = insertTargetSection !== null ? insertTargetSection : (expandedSections.size > 0 ? [...expandedSections][expandedSections.size - 1] : 0)
     setLesson(prev => {
