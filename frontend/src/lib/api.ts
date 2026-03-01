@@ -597,6 +597,30 @@ export const subscriptionAPI = {
     return response.data;
   },
   
+  checkFeatureAccess: async (featureName: string): Promise<{
+    hasAccess: boolean;
+    reason?: string;
+    upgradeRequired?: boolean;
+    suggestedPlan?: string;
+    addOn?: {
+      id: string;
+      name: string;
+      price: number;
+      interval: string;
+      description: string;
+    };
+    canPurchase?: boolean;
+    includedInPlan?: boolean;
+  }> => {
+    const response = await api.get(`/feature-access/${featureName}`);
+    return response.data;
+  },
+  
+  purchaseAddOn: async (addOnId: string): Promise<{ success: boolean; message: string; addOn: any }> => {
+    const response = await api.post(`/add-on/purchase/${addOnId}`);
+    return response.data;
+  },
+  
   createCheckoutSession: async (planId: string, originUrl: string): Promise<{ url: string; sessionId: string }> => {
     const response = await api.post('/checkout/create-session', { planId, originUrl });
     return response.data;
