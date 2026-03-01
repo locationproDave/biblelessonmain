@@ -4,19 +4,17 @@ import { lessonStore, SAMPLE_LESSONS, type LessonData, type LessonSection, type 
 import { ScriptureLookup, InlineScriptureText } from '@/components/ScriptureLookup'
 import { ScriptureDrawer } from '@/components/ScriptureDrawer'
 import { Editor, AddSectionModal } from '@/components/Editor'
-import { BiblicalMap, type BiblicalMapData } from '@/components/BiblicalMap'
 import { QuizGenerator } from '@/components/Quiz'
 import { AISupplyList } from '@/components/AISupplyList'
 import { CalendarSync } from '@/components/CalendarSync'
 import { ExportLesson } from '@/components/ExportLesson'
 import { PresenceIndicator } from '@/components/PresenceIndicator'
 import { FeatureGate } from '@/components/FeatureGate'
-import { biblicalMapAPI } from '@/lib/api'
 import { useSession } from '@/lib/auth-client'
 import { useI18n } from '@/i18n'
 import { 
   BookOpen, Pencil, Plus, Search, Printer, FileText, FileDown, Share2, 
-  ChevronDown, ChevronUp, Pin, Map, Brain, Package, Users, Clock, Heart, 
+  ChevronDown, ChevronUp, Pin, Brain, Package, Users, Clock, Heart, 
   ClipboardList, CheckCircle, Square, MessageCircle, Check, MoreHorizontal, 
   Calendar, Copy, X, Download, Eye, EyeOff, ChevronRight, ChevronLeft,
   Play, Pause, RotateCcw, Layers, Quote, Lightbulb, Home, Settings, Menu,
