@@ -342,7 +342,11 @@ function PricingPage() {
                 <p className="text-sm text-stone-500 dark:text-stone-400 mb-4 min-h-[40px]">{plan.description}</p>
 
                 <div className="mb-4">
-                  {plan.monthlyEquivalent ? (
+                  {plan.price === 'contact' ? (
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-2xl font-bold text-stone-900 dark:text-stone-100">Contact Us</span>
+                    </div>
+                  ) : plan.monthlyEquivalent ? (
                     <>
                       <div className="flex items-baseline gap-1">
                         <span className="text-3xl font-bold text-stone-900 dark:text-stone-100">${plan.monthlyEquivalent.toFixed(2)}</span>
@@ -365,25 +369,34 @@ function PricingPage() {
                   )}
                 </div>
 
-                <button
-                  onClick={() => handleCheckout(plan.id)}
-                  disabled={checkoutLoading === plan.id}
-                  data-testid={`checkout-btn-${plan.id}`}
-                  className={`w-full py-2.5 px-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
-                    isPopular(plan.id)
-                      ? 'bg-amber-600 hover:bg-amber-700 text-white shadow-md'
-                      : 'bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-stone-200 text-white dark:text-stone-900'
-                  } disabled:opacity-50`}
-                >
-                  {checkoutLoading === plan.id ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" strokeWidth={1.5} />
-                      {t('pricing.processing')}
-                    </>
-                  ) : (
-                    t('pricing.getStarted')
-                  )}
-                </button>
+                {plan.price === 'contact' ? (
+                  <Link
+                    to="/contact"
+                    className="w-full py-2.5 px-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-stone-200 text-white dark:text-stone-900"
+                  >
+                    Contact Sales
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => handleCheckout(plan.id)}
+                    disabled={checkoutLoading === plan.id}
+                    data-testid={`checkout-btn-${plan.id}`}
+                    className={`w-full py-2.5 px-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
+                      isPopular(plan.id)
+                        ? 'bg-amber-600 hover:bg-amber-700 text-white shadow-md'
+                        : 'bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-stone-200 text-white dark:text-stone-900'
+                    } disabled:opacity-50`}
+                  >
+                    {checkoutLoading === plan.id ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" strokeWidth={1.5} />
+                        {t('pricing.processing')}
+                      </>
+                    ) : (
+                      t('pricing.getStarted')
+                    )}
+                  </button>
+                )}
               </div>
 
               <div className="border-t border-stone-100 dark:border-stone-700 p-5 pt-4 flex-grow bg-stone-50/50 dark:bg-stone-800/30">
