@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useI18n } from '@/i18n'
-import { Anchor, Cross, Medal, Code, Users, BookOpen, Globe, Lightbulb, Heart, HandHeart, BookMarked, Star, Sparkles, Mail, ArrowRight } from 'lucide-react'
+import { Anchor, Cross, Medal, Code, Users, BookOpen, Globe, Lightbulb, Heart, HandHeart, BookMarked, Star, Sparkles, Mail, ArrowRight, Shield } from 'lucide-react'
 
 export const Route = createFileRoute('/about')({
   component: AboutPage,
