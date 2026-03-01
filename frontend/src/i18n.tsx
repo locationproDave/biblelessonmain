@@ -365,7 +365,7 @@ const translations: { en: TranslationDict } = {
     'pricing.subtitle': 'Choose the plan that fits your ministry. Cancel anytime.',
     'pricing.monthly': 'Monthly',
     'pricing.annual': 'Annual',
-    'pricing.save17': 'Save 17%',
+    'pricing.save17': 'Save 10%',
     'pricing.perMonth': '/month',
     'pricing.billedAnnually': 'billed annually',
     'pricing.billedMonthly': 'Billed monthly',
