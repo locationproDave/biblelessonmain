@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as SignupRouteImport } from './routes/signup'
@@ -18,6 +19,7 @@ import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ProgressInfoRouteImport } from './routes/progress-info'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
@@ -42,6 +44,11 @@ import { Route as CheckoutSuccessRouteImport } from './routes/checkout/success'
 import { Route as ArticleSlugRouteImport } from './routes/article/$slug'
 import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TemplatesRoute = TemplatesRouteImport.update({
   id: '/templates',
   path: '/templates',
@@ -85,6 +92,11 @@ const ProgressRoute = ProgressRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -215,6 +227,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRoute
   '/planner': typeof PlannerRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
   '/progress-info': typeof ProgressInfoRoute
@@ -224,6 +237,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/team': typeof TeamRoute
   '/templates': typeof TemplatesRoute
+  '/terms': typeof TermsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/article/$slug': typeof ArticleSlugRoute
   '/checkout/success': typeof CheckoutSuccessRoute
@@ -249,6 +263,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof OnboardingRoute
   '/planner': typeof PlannerRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
   '/progress-info': typeof ProgressInfoRoute
@@ -258,6 +273,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/team': typeof TeamRoute
   '/templates': typeof TemplatesRoute
+  '/terms': typeof TermsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/article/$slug': typeof ArticleSlugRoute
   '/checkout/success': typeof CheckoutSuccessRoute
@@ -284,6 +300,7 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRoute
   '/planner': typeof PlannerRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
   '/progress-info': typeof ProgressInfoRoute
@@ -293,6 +310,7 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/team': typeof TeamRoute
   '/templates': typeof TemplatesRoute
+  '/terms': typeof TermsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/article/$slug': typeof ArticleSlugRoute
   '/checkout/success': typeof CheckoutSuccessRoute
@@ -320,6 +338,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/planner'
     | '/pricing'
+    | '/privacy'
     | '/profile'
     | '/progress'
     | '/progress-info'
@@ -329,6 +348,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/team'
     | '/templates'
+    | '/terms'
     | '/admin/dashboard'
     | '/article/$slug'
     | '/checkout/success'
@@ -354,6 +374,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/planner'
     | '/pricing'
+    | '/privacy'
     | '/profile'
     | '/progress'
     | '/progress-info'
@@ -363,6 +384,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/team'
     | '/templates'
+    | '/terms'
     | '/admin/dashboard'
     | '/article/$slug'
     | '/checkout/success'
@@ -388,6 +410,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/planner'
     | '/pricing'
+    | '/privacy'
     | '/profile'
     | '/progress'
     | '/progress-info'
@@ -397,6 +420,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/team'
     | '/templates'
+    | '/terms'
     | '/admin/dashboard'
     | '/article/$slug'
     | '/checkout/success'
@@ -423,6 +447,7 @@ export interface RootRouteChildren {
   OnboardingRoute: typeof OnboardingRoute
   PlannerRoute: typeof PlannerRoute
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
   ProfileRoute: typeof ProfileRoute
   ProgressRoute: typeof ProgressRoute
   ProgressInfoRoute: typeof ProgressInfoRoute
@@ -432,6 +457,7 @@ export interface RootRouteChildren {
   SignupRoute: typeof SignupRoute
   TeamRoute: typeof TeamRoute
   TemplatesRoute: typeof TemplatesRoute
+  TermsRoute: typeof TermsRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   ArticleSlugRoute: typeof ArticleSlugRoute
   CheckoutSuccessRoute: typeof CheckoutSuccessRoute
@@ -448,6 +474,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/templates': {
       id: '/templates'
       path: '/templates'
@@ -509,6 +542,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -687,6 +727,7 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingRoute: OnboardingRoute,
   PlannerRoute: PlannerRoute,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
   ProfileRoute: ProfileRoute,
   ProgressRoute: ProgressRoute,
   ProgressInfoRoute: ProgressInfoRoute,
@@ -696,6 +737,7 @@ const rootRouteChildren: RootRouteChildren = {
   SignupRoute: SignupRoute,
   TeamRoute: TeamRoute,
   TemplatesRoute: TemplatesRoute,
+  TermsRoute: TermsRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   ArticleSlugRoute: ArticleSlugRoute,
   CheckoutSuccessRoute: CheckoutSuccessRoute,
