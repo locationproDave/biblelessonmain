@@ -342,7 +342,7 @@ function PricingPage() {
                 <p className="text-sm text-stone-500 dark:text-stone-400 mb-4 min-h-[40px]">{plan.description}</p>
 
                 <div className="mb-4">
-                  {plan.price === 'contact' ? (
+                  {String(plan.price) === 'contact' ? (
                     <div className="flex items-baseline gap-1">
                       <span className="text-2xl font-bold text-stone-900 dark:text-stone-100">Contact Us</span>
                     </div>
