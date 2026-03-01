@@ -1659,7 +1659,7 @@ function TeamSection({
                     joinedAt: new Date().toISOString()
                   }
                   setSalesReps([...salesReps, newRep])
-                  setNewRepForm({ name: '', email: '', phone: '', territory: '', commissionRate: 25, notes: '' })
+                  setNewRepForm(() => ({ name: '', email: '', phone: '', territory: '', commissionRate: 25, notes: '' }))
                   setShowAddRepModal(false)
                 }}
                 disabled={!newRepForm.name || !newRepForm.email}
