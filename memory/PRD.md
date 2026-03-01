@@ -92,13 +92,16 @@ AI-powered Sunday school lesson planning tool that generates complete, Scripture
 ## Roadmap
 
 ### P0 - Immediate
+- [x] Biblical Map & Quiz Generator with tiered access
+- [x] Public demo/showcase page at /features
 - [ ] Backend API for sales rep management
 - [ ] Referral code tracking in signup flow
 - [ ] Google Ads re-submission after legal pages deploy
 
 ### P1 - Short Term
-- [ ] Organization pricing page
+- [x] Organization pricing page (implemented with add-ons display)
 - [ ] Multi-seat license management
+- [ ] Stripe integration for organization plan purchases
 - [ ] Christian school mode (weekday scheduling, grade levels)
 
 ### P2 - Medium Term
