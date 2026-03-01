@@ -1459,18 +1459,6 @@ function LessonViewPage() {
                 </button>
                 
                 <button 
-                  onClick={() => togglePanel('map')} 
-                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                    activePanel === 'map' 
-                      ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400' 
-                      : 'bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20'
-                  }`}
-                  data-testid="show-map-btn"
-                >
-                  <Map className="w-4 h-4" strokeWidth={2} /> Biblical Map
-                </button>
-                
-                <button 
                   onClick={() => togglePanel('quiz')} 
                   className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                     activePanel === 'quiz' 
