@@ -65,6 +65,24 @@ function AdminDashboard() {
   })
   const [customSubLoading, setCustomSubLoading] = useState(false)
 
+  // Team/Sales Rep State
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'team'>('dashboard')
+  const [showAddRepModal, setShowAddRepModal] = useState(false)
+  const [copiedCode, setCopiedCode] = useState<string | null>(null)
+  const [newRepForm, setNewRepForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    territory: '',
+    commissionRate: 25,
+    notes: ''
+  })
+  
+  // Mock sales rep data (will be replaced with API)
+  const [salesReps, setSalesReps] = useState([
+    { id: '1', name: 'Demo Rep', email: 'demo@example.com', phone: '555-0100', territory: 'Southeast', code: 'DEMO25', commissionRate: 25, signups: 12, activeCustomers: 10, totalCommission: 297.00, status: 'active', joinedAt: '2026-01-15' },
+  ])
+
   const isAdmin = session?.user?.role === 'admin'
 
   // GA4 Property ID and Clarity Project ID
