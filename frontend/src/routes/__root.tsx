@@ -426,8 +426,8 @@ function Footer() {
               <li><Link to="/about" className="text-sm text-stone-500 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-500 transition-colors">{t('footer.aboutUs')}</Link></li>
               <li><Link to="/contact" className="text-sm text-stone-500 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-500 transition-colors">{t('footer.contactUs')}</Link></li>
               <li><Link to="/pricing" search={{ session_id: undefined, success: undefined, canceled: undefined }} className="text-sm text-stone-500 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-500 transition-colors">{t('footer.pricingPlans')}</Link></li>
-              <li><span className="text-sm text-stone-500 dark:text-stone-400">{t('footer.privacyPolicy')}</span></li>
-              <li><span className="text-sm text-stone-500 dark:text-stone-400">{t('footer.termsOfService')}</span></li>
+              <li><Link to="/privacy" className="text-sm text-stone-500 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-500 transition-colors">{t('footer.privacyPolicy')}</Link></li>
+              <li><Link to="/terms" className="text-sm text-stone-500 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-500 transition-colors">{t('footer.termsOfService')}</Link></li>
             </ul>
           </div>
 
