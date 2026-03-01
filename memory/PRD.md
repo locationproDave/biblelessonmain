@@ -123,14 +123,17 @@ AI-powered Sunday school lesson planning tool that generates complete, Scripture
 ### Frontend
 - `/app/frontend/src/routes/generate.tsx` - Lesson generation wizard
 - `/app/frontend/src/routes/admin/dashboard.tsx` - Admin dashboard with Team tab
+- `/app/frontend/src/routes/features.tsx` - **NEW** Features showcase/demo page
+- `/app/frontend/src/routes/pricing.tsx` - Pricing with add-ons display
+- `/app/frontend/src/components/FeatureGate.tsx` - **NEW** Feature access control component
 - `/app/frontend/src/routes/privacy.tsx` - Privacy policy
 - `/app/frontend/src/routes/terms.tsx` - Terms of service
 
 ### Backend
 - `/app/backend/main.py` - FastAPI entry point
 - `/app/backend/routes/admin.py` - Admin API endpoints
-- `/app/backend/ai.py` - Claude integration
-- `/app/backend/payments.py` - Stripe integration
+- `/app/backend/routes/ai.py` - Claude integration with feature access check
+- `/app/backend/routes/payments.py` - Stripe integration, pricing plans, add-ons
 
 ### Business Documents
 - `/app/artifacts/sales_commission_structure.md` - Full commission plan
