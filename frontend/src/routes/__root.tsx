@@ -452,6 +452,13 @@ function Footer() {
             {t('footer.proverb')}
           </p>
         </div>
+        
+        {/* EU Online Dispute Resolution */}
+        <div className="mt-6 pt-4 border-t border-stone-200 dark:border-stone-700 text-center">
+          <p className="text-xs text-stone-400 dark:text-stone-500">
+            EU Online Dispute Resolution: <a href="https://ec.europa.eu/odr" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-600 dark:hover:text-amber-500">https://ec.europa.eu/odr</a>
+          </p>
+        </div>
       </div>
     </footer>
   )
