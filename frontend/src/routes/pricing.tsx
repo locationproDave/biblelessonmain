@@ -442,6 +442,12 @@ function PricingPage() {
                     )}
                     <span className="text-sm text-stone-600 dark:text-stone-400">{t('pricing.curriculumPlanner')}</span>
                   </li>
+                  {plan.features.biblicalMapQuiz && (
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
+                      <span className="text-sm text-stone-600 dark:text-stone-400">Biblical Map & Quiz Generator</span>
+                    </li>
+                  )}
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
                     <span className="text-sm text-stone-600 dark:text-stone-400">
