@@ -33,7 +33,7 @@ function HomePage() {
       <PricingSection />
       <HowItWorksSection />
       <SampleLessonsSection />
-      <TestimonialsSection />
+      {/* Testimonials section - removed, will add back with real testimonials */}
       <CTASection />
     </div>
   )
