@@ -6,7 +6,7 @@ import Constants from 'expo-constants';
 // Get API URL with fallback
 const getApiUrl = () => {
   const configUrl = Constants.expoConfig?.extra?.apiUrl;
-  const defaultUrl = 'https://admin-portal-401.preview.emergentagent.com/api';
+  const defaultUrl = 'https://bible-lesson-preview.preview.emergentagent.com/api';
   const url = configUrl || defaultUrl;
   console.log('[API] Using API URL:', url);
   return url;

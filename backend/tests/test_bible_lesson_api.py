@@ -7,7 +7,7 @@ import requests
 import os
 import uuid
 
-BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://admin-portal-401.preview.emergentagent.com').rstrip('/') + "/api"
+BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://bible-lesson-preview.preview.emergentagent.com').rstrip('/') + "/api"
 
 # Test user credentials
 TEST_EMAIL = f"test_user_{uuid.uuid4().hex[:8]}@example.com"
