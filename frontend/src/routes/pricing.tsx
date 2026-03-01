@@ -369,7 +369,7 @@ function PricingPage() {
                   )}
                 </div>
 
-                {plan.price === 'contact' ? (
+                {String(plan.price) === 'contact' ? (
                   <Link
                     to="/contact"
                     className="w-full py-2.5 px-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-stone-200 text-white dark:text-stone-900"
