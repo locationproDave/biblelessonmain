@@ -385,17 +385,12 @@ function LessonViewPage() {
   const [insertTargetSection, setInsertTargetSection] = useState<number | null>(null)
   const [insertToast, setInsertToast] = useState<string | null>(null)
 
-  // Biblical Map state
-  const [showMap, setShowMap] = useState(false)
-  const [mapData, setMapData] = useState<BiblicalMapData | null>(null)
-  const [mapLoading, setMapLoading] = useState(false)
-
   // Quiz and AI Supply List state
   const [showQuiz, setShowQuiz] = useState(false)
   const [showAISupplyList, setShowAISupplyList] = useState(false)
 
   // Active tool panel
-  const [activePanel, setActivePanel] = useState<'none' | 'map' | 'quiz' | 'supplies'>('none')
+  const [activePanel, setActivePanel] = useState<'none' | 'quiz' | 'supplies'>('none')
   
   // Version History & Collaboration
   const [showVersionHistory, setShowVersionHistory] = useState(false)
