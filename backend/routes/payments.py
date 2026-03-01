@@ -43,7 +43,8 @@ PRICING_PLANS = {
             "emailDelivery": True,
             "curriculumPlanner": False,
             "teamMembers": 1,
-            "priority": False
+            "priority": False,
+            "biblicalMapQuiz": False
         },
         "description": "Perfect for individual teachers getting started"
     },
@@ -62,7 +63,8 @@ PRICING_PLANS = {
             "emailDelivery": True,
             "curriculumPlanner": False,
             "teamMembers": 1,
-            "priority": False
+            "priority": False,
+            "biblicalMapQuiz": False
         },
         "description": "Perfect for individual teachers getting started"
     },
