@@ -341,21 +341,9 @@ function GeneratePage() {
       setAutoGenerateTriggered(true)
       const fmt = search.format || 'Interactive'
       const ag = search.ageGroup || 'Elementary (6-10)'
-      // Inline smart defaults to avoid hoisting issues
-      const sd: Partial<LessonConfig['customize']> = (() => {
-        const d = { activities: true, crafts: true, memoryVerse: true, discussion: true, prayer: true, parentTakeHome: true }
-        if (fmt.includes('Discussion')) return { ...d, activities: false, crafts: false }
-        if (fmt.includes('Activity')) return { ...d, parentTakeHome: false }
-        if (fmt.includes('Traditional')) return { ...d, activities: false, crafts: false }
-        if (ag.includes('Adult')) return { ...d, activities: false, crafts: false, parentTakeHome: false }
-        if (ag.includes('Preschool')) return { ...d, discussion: false, memoryVerse: false }
-        if (ag.includes('Preteen') || ag.includes('Teen')) return { ...d, crafts: false, parentTakeHome: false }
-        return d
-      })()
       setConfig(prev => ({
         ...prev,
         audience: { ...prev.audience, ageGroup: ag, format: fmt },
-        customize: { ...prev.customize, ...sd },
       }))
       setTimeout(() => {
         handleGenerateRef.current()
