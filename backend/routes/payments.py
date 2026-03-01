@@ -166,7 +166,7 @@ PRICING_PLANS = {
     "enterprise": {
         "id": "enterprise",
         "name": "Enterprise",
-        "price": 89.99,
+        "price": "contact",
         "interval": "month",
         "lessonsLimit": 9999,
         "features": {
@@ -175,7 +175,7 @@ PRICING_PLANS = {
             "supplyLists": True,
             "emailDelivery": True,
             "curriculumPlanner": True,
-            "teamMembers": 999,
+            "teamMembers": "Unlimited",
             "priority": True,
             "dedicatedSupport": True
         },
@@ -184,18 +184,16 @@ PRICING_PLANS = {
     "enterprise_annual": {
         "id": "enterprise_annual",
         "name": "Enterprise",
-        "price": 972,
-        "monthlyEquivalent": 81.00,
+        "price": "contact",
         "interval": "year",
         "lessonsLimit": 9999,
-        "savings": "Save 10%",
         "features": {
             "lessons": "Unlimited",
             "quizzes": True,
             "supplyLists": True,
             "emailDelivery": True,
             "curriculumPlanner": True,
-            "teamMembers": 999,
+            "teamMembers": "Unlimited",
             "priority": True,
             "dedicatedSupport": True
         },
