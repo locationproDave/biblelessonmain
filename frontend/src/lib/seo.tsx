@@ -85,6 +85,21 @@ export const pageSEO: Record<string, SEOProps> = {
     description: 'Track which lessons you\'ve taught, monitor student engagement, and ensure complete Bible coverage throughout the year.',
     keywords: 'teaching progress, lesson tracker, curriculum progress, Sunday school monitoring',
   },
+  '/sunday-school-lessons': {
+    title: 'Free Sunday School Lessons & Curriculum | Bible Lesson Planner',
+    description: 'Create engaging Sunday school lessons for all ages with our AI-powered lesson planner. Free printable Bible lessons, activities, and curriculum for Preschool through Adult classes.',
+    keywords: 'Sunday school lessons, free Sunday school curriculum, children\'s church lessons, Sunday school activities, Bible lessons for kids, youth Sunday school, adult Bible class, printable Sunday school lessons',
+  },
+  '/bible-lesson-plans': {
+    title: 'Free Bible Lesson Plans | AI-Powered Lesson Plan Generator',
+    description: 'Create comprehensive Bible lesson plans in minutes. Free printable lesson plans for Sunday school, youth groups, and Bible studies. All 66 books of the Bible, 20+ translations.',
+    keywords: 'Bible lesson plans, free Bible lessons, Bible study curriculum, Christian lesson plans, church lesson plans, youth Bible study, Bible teaching resources, printable Bible lessons',
+  },
+  '/vacation-bible-school': {
+    title: 'VBS Curriculum & Vacation Bible School Lessons | Bible Lesson Planner',
+    description: 'Plan your Vacation Bible School with our AI-powered curriculum generator. Free VBS themes, lessons, crafts, and activities for all ages. Create a week of unforgettable Bible learning.',
+    keywords: 'VBS curriculum, Vacation Bible School, VBS lessons, VBS themes, summer Bible program, church VBS, kids VBS activities, VBS crafts, free VBS curriculum',
+  },
 }
 
 export function useSEO(pageProps?: SEOProps) {
