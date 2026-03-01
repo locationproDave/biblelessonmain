@@ -16,6 +16,21 @@ logger = logging.getLogger(__name__)
 # Anthropic Claude API Key
 ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY')
 
+# Add-ons Configuration (mirror from payments.py for feature checking)
+ADD_ONS = {
+    "biblical_map_quiz": {
+        "id": "biblical_map_quiz",
+        "name": "Biblical Map & Quiz Generator",
+        "price": 1.99,
+        "interval": "month",
+        "description": "Unlock AI-powered Biblical Map Generator and Quiz Generator features",
+        "features": ["biblicalMapQuiz"]
+    }
+}
+
+# Plans that include biblicalMapQuiz feature
+PLANS_WITH_MAP_QUIZ = ["unlimited", "unlimited_annual", "enterprise", "enterprise_annual"]
+
 def serialize_doc(doc: dict) -> dict:
     if doc is None:
         return None
@@ -24,6 +39,49 @@ def serialize_doc(doc: dict) -> dict:
         if isinstance(value, datetime):
             result[key] = value.isoformat()
     return result
+
+async def check_biblical_map_quiz_access(token: str) -> dict:
+    """Check if user has access to Biblical Map and Quiz features"""
+    if not token:
+        return {"hasAccess": False, "reason": "not_authenticated"}
+    
+    session = await db.sessions.find_one({"token": token})
+    if not session:
+        return {"hasAccess": False, "reason": "invalid_session"}
+    
+    # Get subscription
+    subscription = await db.subscriptions.find_one({"userId": session["userId"]})
+    if not subscription:
+        return {"hasAccess": False, "reason": "no_subscription", "upgradeRequired": True}
+    
+    plan_id = subscription.get("planId", "free")
+    
+    # Check if plan includes the feature
+    if plan_id in PLANS_WITH_MAP_QUIZ:
+        return {"hasAccess": True, "includedInPlan": True}
+    
+    # Check if user has the add-on
+    user_add_ons = subscription.get("addOns", [])
+    if "biblical_map_quiz" in user_add_ons:
+        return {"hasAccess": True, "addOn": "biblical_map_quiz"}
+    
+    # Check if add-on can be purchased (org plans)
+    is_org_plan = plan_id in ["team", "team_annual", "ministry", "ministry_annual"]
+    if is_org_plan:
+        return {
+            "hasAccess": False,
+            "reason": "add_on_required",
+            "addOn": ADD_ONS["biblical_map_quiz"],
+            "canPurchase": True
+        }
+    
+    # Individual starter plan - needs to upgrade to Unlimited
+    return {
+        "hasAccess": False,
+        "reason": "upgrade_required",
+        "upgradeRequired": True,
+        "suggestedPlan": "unlimited"
+    }
 
 async def generate_with_ai(prompt: str, session_id: str = None) -> str:
     """Helper function to generate content with Claude AI"""
