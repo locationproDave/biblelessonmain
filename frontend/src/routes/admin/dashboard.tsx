@@ -197,19 +197,49 @@ function AdminDashboard() {
             </p>
           </div>
           
-          {/* Period Selector */}
-          <div className="relative">
-            <select
-              value={period}
-              onChange={(e) => setPeriod(e.target.value)}
-              className="appearance-none bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-2.5 pr-10 text-sm font-medium text-stone-700 dark:text-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
-              data-testid="period-selector"
-            >
-              {periodOptions.map(opt => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 pointer-events-none" />
+          <div className="flex items-center gap-3">
+            {/* Tab Switcher */}
+            <div className="flex bg-stone-100 dark:bg-stone-700 rounded-xl p-1">
+              <button
+                onClick={() => setActiveTab('dashboard')}
+                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  activeTab === 'dashboard'
+                    ? 'bg-white dark:bg-stone-600 text-stone-900 dark:text-stone-100 shadow-sm'
+                    : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
+                }`}
+              >
+                <BarChart3 className="w-4 h-4 inline mr-1.5" />
+                Analytics
+              </button>
+              <button
+                onClick={() => setActiveTab('team')}
+                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  activeTab === 'team'
+                    ? 'bg-white dark:bg-stone-600 text-stone-900 dark:text-stone-100 shadow-sm'
+                    : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
+                }`}
+              >
+                <Users className="w-4 h-4 inline mr-1.5" />
+                Team
+              </button>
+            </div>
+            
+            {/* Period Selector */}
+            {activeTab === 'dashboard' && (
+              <div className="relative">
+                <select
+                  value={period}
+                  onChange={(e) => setPeriod(e.target.value)}
+                  className="appearance-none bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-2.5 pr-10 text-sm font-medium text-stone-700 dark:text-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+                  data-testid="period-selector"
+                >
+                  {periodOptions.map(opt => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 pointer-events-none" />
+              </div>
+            )}
           </div>
         </div>
 
