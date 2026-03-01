@@ -17,14 +17,15 @@ STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY')
 
 # Pricing Plans Configuration
 PRICING_PLANS = {
+    # Individual Plans
     "starter": {
         "id": "starter",
         "name": "Starter",
-        "price": 9.99,
+        "price": 5.99,
         "interval": "month",
-        "lessonsLimit": 6,
+        "lessonsLimit": 4,
         "features": {
-            "lessons": 6,
+            "lessons": 4,
             "quizzes": True,
             "supplyLists": True,
             "emailDelivery": True,
@@ -32,18 +33,18 @@ PRICING_PLANS = {
             "teamMembers": 1,
             "priority": False
         },
-        "description": "Perfect for individual teachers"
+        "description": "Perfect for individual teachers getting started"
     },
     "starter_annual": {
         "id": "starter_annual",
         "name": "Starter",
-        "price": 99.99,
-        "monthlyEquivalent": 8.33,
+        "price": 65,
+        "monthlyEquivalent": 5.42,
         "interval": "year",
-        "lessonsLimit": 6,
-        "savings": "Save $20/year",
+        "lessonsLimit": 4,
+        "savings": "Save 10%",
         "features": {
-            "lessons": 6,
+            "lessons": 4,
             "quizzes": True,
             "supplyLists": True,
             "emailDelivery": True,
@@ -51,35 +52,53 @@ PRICING_PLANS = {
             "teamMembers": 1,
             "priority": False
         },
-        "description": "Perfect for individual teachers"
+        "description": "Perfect for individual teachers getting started"
     },
     "unlimited": {
         "id": "unlimited",
         "name": "Unlimited",
-        "price": 19.99,
+        "price": 9.99,
         "interval": "month",
-        "lessonsLimit": 100,
+        "lessonsLimit": 999,
         "features": {
             "lessons": "Unlimited",
             "quizzes": True,
             "supplyLists": True,
             "emailDelivery": True,
             "curriculumPlanner": True,
-            "teamMembers": 3,
+            "teamMembers": 1,
             "priority": True
         },
-        "description": "Best for active teachers"
+        "description": "For dedicated teachers who need unlimited access"
     },
     "unlimited_annual": {
         "id": "unlimited_annual",
         "name": "Unlimited",
-        "price": 199.99,
-        "monthlyEquivalent": 16.67,
+        "price": 99,
+        "monthlyEquivalent": 8.25,
         "interval": "year",
-        "lessonsLimit": 100,
-        "savings": "Save $40/year",
+        "lessonsLimit": 999,
+        "savings": "Save 10%",
         "features": {
             "lessons": "Unlimited",
+            "quizzes": True,
+            "supplyLists": True,
+            "emailDelivery": True,
+            "curriculumPlanner": True,
+            "teamMembers": 1,
+            "priority": True
+        },
+        "description": "For dedicated teachers who need unlimited access"
+    },
+    # Organization Plans
+    "team": {
+        "id": "team",
+        "name": "Team",
+        "price": 12.99,
+        "interval": "month",
+        "lessonsLimit": 12,
+        "features": {
+            "lessons": 12,
             "quizzes": True,
             "supplyLists": True,
             "emailDelivery": True,
@@ -87,67 +106,174 @@ PRICING_PLANS = {
             "teamMembers": 3,
             "priority": True
         },
-        "description": "Best for active teachers"
+        "description": "Small groups and teaching teams"
     },
-    "small_church": {
-        "id": "small_church",
-        "name": "Small Church",
+    "team_annual": {
+        "id": "team_annual",
+        "name": "Team",
+        "price": 140,
+        "monthlyEquivalent": 11.67,
+        "interval": "year",
+        "lessonsLimit": 12,
+        "savings": "Save 10%",
+        "features": {
+            "lessons": 12,
+            "quizzes": True,
+            "supplyLists": True,
+            "emailDelivery": True,
+            "curriculumPlanner": True,
+            "teamMembers": 3,
+            "priority": True
+        },
+        "description": "Small groups and teaching teams"
+    },
+    "ministry": {
+        "id": "ministry",
+        "name": "Ministry",
+        "price": 19.99,
+        "interval": "month",
+        "lessonsLimit": 24,
+        "features": {
+            "lessons": 24,
+            "quizzes": True,
+            "supplyLists": True,
+            "emailDelivery": True,
+            "curriculumPlanner": True,
+            "teamMembers": 6,
+            "priority": True
+        },
+        "description": "Growing ministries and small churches"
+    },
+    "ministry_annual": {
+        "id": "ministry_annual",
+        "name": "Ministry",
+        "price": 216,
+        "monthlyEquivalent": 18.00,
+        "interval": "year",
+        "lessonsLimit": 24,
+        "savings": "Save 10%",
+        "features": {
+            "lessons": 24,
+            "quizzes": True,
+            "supplyLists": True,
+            "emailDelivery": True,
+            "curriculumPlanner": True,
+            "teamMembers": 6,
+            "priority": True
+        },
+        "description": "Growing ministries and small churches"
+    },
+    "church": {
+        "id": "church",
+        "name": "Church",
         "price": 29.99,
         "interval": "month",
-        "lessonsLimit": 20,
+        "lessonsLimit": 40,
         "features": {
-            "lessons": 20,
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 3,
-            "priority": True,
-            "classes": "1-3"
-        },
-        "description": "For churches with 1-3 classes"
-    },
-    "small_church_annual": {
-        "id": "small_church_annual",
-        "name": "Small Church",
-        "price": 299.99,
-        "monthlyEquivalent": 25.00,
-        "interval": "year",
-        "lessonsLimit": 20,
-        "savings": "Save $60/year",
-        "features": {
-            "lessons": 20,
-            "quizzes": True,
-            "supplyLists": True,
-            "emailDelivery": True,
-            "curriculumPlanner": True,
-            "teamMembers": 3,
-            "priority": True,
-            "classes": "1-3"
-        },
-        "description": "For churches with 1-3 classes"
-    },
-    "medium_church": {
-        "id": "medium_church",
-        "name": "Medium Church",
-        "price": 59.99,
-        "interval": "month",
-        "lessonsLimit": 50,
-        "features": {
-            "lessons": 50,
+            "lessons": 40,
             "quizzes": True,
             "supplyLists": True,
             "emailDelivery": True,
             "curriculumPlanner": True,
             "teamMembers": 10,
-            "priority": True,
-            "classes": "4-8"
+            "priority": True
         },
-        "description": "For churches with 4-8 classes"
+        "description": "Mid-size churches and programs"
     },
-    "medium_church_annual": {
-        "id": "medium_church_annual",
-        "name": "Medium Church",
+    "church_annual": {
+        "id": "church_annual",
+        "name": "Church",
+        "price": 324,
+        "monthlyEquivalent": 27.00,
+        "interval": "year",
+        "lessonsLimit": 40,
+        "savings": "Save 10%",
+        "features": {
+            "lessons": 40,
+            "quizzes": True,
+            "supplyLists": True,
+            "emailDelivery": True,
+            "curriculumPlanner": True,
+            "teamMembers": 10,
+            "priority": True
+        },
+        "description": "Mid-size churches and programs"
+    },
+    "school": {
+        "id": "school",
+        "name": "School",
+        "price": 49.99,
+        "interval": "month",
+        "lessonsLimit": 80,
+        "features": {
+            "lessons": 80,
+            "quizzes": True,
+            "supplyLists": True,
+            "emailDelivery": True,
+            "curriculumPlanner": True,
+            "teamMembers": 20,
+            "priority": True
+        },
+        "description": "Christian schools and large programs"
+    },
+    "school_annual": {
+        "id": "school_annual",
+        "name": "School",
+        "price": 540,
+        "monthlyEquivalent": 45.00,
+        "interval": "year",
+        "lessonsLimit": 80,
+        "savings": "Save 10%",
+        "features": {
+            "lessons": 80,
+            "quizzes": True,
+            "supplyLists": True,
+            "emailDelivery": True,
+            "curriculumPlanner": True,
+            "teamMembers": 20,
+            "priority": True
+        },
+        "description": "Christian schools and large programs"
+    },
+    "org_unlimited": {
+        "id": "org_unlimited",
+        "name": "Unlimited",
+        "price": 89.99,
+        "interval": "month",
+        "lessonsLimit": 9999,
+        "features": {
+            "lessons": "Unlimited",
+            "quizzes": True,
+            "supplyLists": True,
+            "emailDelivery": True,
+            "curriculumPlanner": True,
+            "teamMembers": 999,
+            "priority": True,
+            "dedicatedSupport": True
+        },
+        "description": "Large churches, schools, and districts"
+    },
+    "org_unlimited_annual": {
+        "id": "org_unlimited_annual",
+        "name": "Unlimited",
+        "price": 972,
+        "monthlyEquivalent": 81.00,
+        "interval": "year",
+        "lessonsLimit": 9999,
+        "savings": "Save 10%",
+        "features": {
+            "lessons": "Unlimited",
+            "quizzes": True,
+            "supplyLists": True,
+            "emailDelivery": True,
+            "curriculumPlanner": True,
+            "teamMembers": 999,
+            "priority": True,
+            "dedicatedSupport": True
+        },
+        "description": "Large churches, schools, and districts"
+    }
+}
         "price": 599.99,
         "monthlyEquivalent": 50.00,
         "interval": "year",
