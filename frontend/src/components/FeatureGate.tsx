@@ -200,19 +200,18 @@ export function FeatureGateButton({
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const checkAccess = async () => {
+      try {
+        const result = await subscriptionAPI.checkFeatureAccess(featureName)
+        setAccess(result)
+      } catch {
+        setAccess({ hasAccess: false, reason: 'not_authenticated' })
+      } finally {
+        setLoading(false)
+      }
+    }
     checkAccess()
   }, [featureName])
-
-  const checkAccess = async () => {
-    try {
-      const result = await subscriptionAPI.checkFeatureAccess(featureName)
-      setAccess(result)
-    } catch {
-      setAccess({ hasAccess: false, reason: 'not_authenticated' })
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const hasAccess = access?.hasAccess
   const isLocked = !hasAccess && !loading
