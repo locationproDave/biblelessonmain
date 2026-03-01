@@ -30,6 +30,7 @@ import { Route as GenerateRouteImport } from './routes/generate'
 import { Route as CurriculumInfoRouteImport } from './routes/curriculum-info'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BibleLessonPlansRouteImport } from './routes/bible-lesson-plans'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SeriesIndexRouteImport } from './routes/series/index'
@@ -150,6 +151,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BibleLessonPlansRoute = BibleLessonPlansRouteImport.update({
+  id: '/bible-lesson-plans',
+  path: '/bible-lesson-plans',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -224,6 +230,7 @@ const AdminDashboardRoute = AdminDashboardRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/bible-lesson-plans': typeof BibleLessonPlansRoute
   '/contact': typeof ContactRoute
   '/curriculum': typeof CurriculumRoute
   '/curriculum-info': typeof CurriculumInfoRoute
@@ -261,6 +268,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/bible-lesson-plans': typeof BibleLessonPlansRoute
   '/contact': typeof ContactRoute
   '/curriculum': typeof CurriculumRoute
   '/curriculum-info': typeof CurriculumInfoRoute
@@ -299,6 +307,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/bible-lesson-plans': typeof BibleLessonPlansRoute
   '/contact': typeof ContactRoute
   '/curriculum': typeof CurriculumRoute
   '/curriculum-info': typeof CurriculumInfoRoute
@@ -338,6 +347,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/bible-lesson-plans'
     | '/contact'
     | '/curriculum'
     | '/curriculum-info'
@@ -375,6 +385,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/bible-lesson-plans'
     | '/contact'
     | '/curriculum'
     | '/curriculum-info'
@@ -412,6 +423,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/bible-lesson-plans'
     | '/contact'
     | '/curriculum'
     | '/curriculum-info'
@@ -450,6 +462,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BibleLessonPlansRoute: typeof BibleLessonPlansRoute
   ContactRoute: typeof ContactRoute
   CurriculumRoute: typeof CurriculumRoute
   CurriculumInfoRoute: typeof CurriculumInfoRoute
@@ -634,6 +647,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bible-lesson-plans': {
+      id: '/bible-lesson-plans'
+      path: '/bible-lesson-plans'
+      fullPath: '/bible-lesson-plans'
+      preLoaderRoute: typeof BibleLessonPlansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -738,6 +758,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BibleLessonPlansRoute: BibleLessonPlansRoute,
   ContactRoute: ContactRoute,
   CurriculumRoute: CurriculumRoute,
   CurriculumInfoRoute: CurriculumInfoRoute,
