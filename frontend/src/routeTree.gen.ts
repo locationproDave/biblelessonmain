@@ -26,6 +26,7 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as LessonsRouteImport } from './routes/lessons'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as GenerateRouteImport } from './routes/generate'
+import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as CurriculumInfoRouteImport } from './routes/curriculum-info'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -129,6 +130,11 @@ const GenerateRoute = GenerateRouteImport.update({
   path: '/generate',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CurriculumInfoRoute = CurriculumInfoRouteImport.update({
   id: '/curriculum-info',
   path: '/curriculum-info',
@@ -221,6 +227,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/curriculum': typeof CurriculumRoute
   '/curriculum-info': typeof CurriculumInfoRoute
+  '/features': typeof FeaturesRoute
   '/generate': typeof GenerateRoute
   '/help': typeof HelpRoute
   '/lessons': typeof LessonsRoute
@@ -257,6 +264,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/curriculum': typeof CurriculumRoute
   '/curriculum-info': typeof CurriculumInfoRoute
+  '/features': typeof FeaturesRoute
   '/generate': typeof GenerateRoute
   '/help': typeof HelpRoute
   '/lessons': typeof LessonsRoute
@@ -294,6 +302,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/curriculum': typeof CurriculumRoute
   '/curriculum-info': typeof CurriculumInfoRoute
+  '/features': typeof FeaturesRoute
   '/generate': typeof GenerateRoute
   '/help': typeof HelpRoute
   '/lessons': typeof LessonsRoute
@@ -332,6 +341,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/curriculum'
     | '/curriculum-info'
+    | '/features'
     | '/generate'
     | '/help'
     | '/lessons'
@@ -368,6 +378,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/curriculum'
     | '/curriculum-info'
+    | '/features'
     | '/generate'
     | '/help'
     | '/lessons'
@@ -404,6 +415,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/curriculum'
     | '/curriculum-info'
+    | '/features'
     | '/generate'
     | '/help'
     | '/lessons'
@@ -441,6 +453,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CurriculumRoute: typeof CurriculumRoute
   CurriculumInfoRoute: typeof CurriculumInfoRoute
+  FeaturesRoute: typeof FeaturesRoute
   GenerateRoute: typeof GenerateRoute
   HelpRoute: typeof HelpRoute
   LessonsRoute: typeof LessonsRoute
@@ -593,6 +606,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GenerateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/curriculum-info': {
       id: '/curriculum-info'
       path: '/curriculum-info'
@@ -721,6 +741,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CurriculumRoute: CurriculumRoute,
   CurriculumInfoRoute: CurriculumInfoRoute,
+  FeaturesRoute: FeaturesRoute,
   GenerateRoute: GenerateRoute,
   HelpRoute: HelpRoute,
   LessonsRoute: LessonsRoute,
