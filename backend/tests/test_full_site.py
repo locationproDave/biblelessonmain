@@ -6,7 +6,7 @@ import pytest
 import requests
 import os
 
-BASE_URL = os.environ.get('VITE_API_URL', 'https://bible-lesson-preview.preview.emergentagent.com/api')
+BASE_URL = os.environ.get('VITE_API_URL', 'https://claude-ai-features.preview.emergentagent.com/api')
 
 
 class TestHealthEndpoints:

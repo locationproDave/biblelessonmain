@@ -1,149 +1,165 @@
 <analysis>An analysis of the conversation history has been performed to create a summary that will be useful to the next agent.
 
 **original_problem_statement:**
-The initial project involved fixing a broken full-stack application (i18n issues, 405 errors), then scaffolding a React Native mobile app. The scope expanded significantly to include:
-1.  Building out a full admin dashboard with analytics.
-2.  Migrating the entire backend from the Emergent preview environment to a production-ready stack on Railway and MongoDB Atlas.
-3.  Refactoring the backend to use the user's direct API keys for third-party services like Claude (Anthropic), Stripe, and Resend, removing all dependencies on .
-4.  Debugging a series of complex Vercel deployment errors related to dependency conflicts and out-of-sync GitHub repositories.
-5.  Providing extensive, step-by-step guidance on setting up Google Ads, Google Business Profile, and Stripe Webhooks.
-6.  Implementing an SEO improvement plan, including technical fixes and creating a marketing guide.
-7.  Creating an RSS feed and a 30-day social media content calendar (with images and a bulk upload CSV for Buffer) to automate marketing.
-8.  Adding a new feature for admins to create custom subscription plans for users.
+The initial project involved fixing a broken full-stack application (i18n issues, 405 errors) and scaffolding a React Native mobile app. The scope has since expanded significantly to cover a full production migration to a Vercel/Railway/MongoDB Atlas stack, removing dependencies on , building out an admin dashboard, implementing marketing/SEO strategies (including an RSS feed and a 30-day social media plan for Buffer), and adding new features like custom subscriptions and sales team management.
+
+Recent user requests focused on:
+1.  Iteratively debugging and refining a  file for social media automation.
+2.  Rewriting social media content to be more professional and feature-focused.
+3.  Adding legal pages (Privacy Policy, Terms of Service) and an EU ODR link to resolve Google Ads disapprovals.
+4.  Fixing a UI bug where lesson customization options were pre-selected.
+5.  Scaffolding a Team management feature for commission-based sales reps in the admin dashboard.
+6.  Removing placeholder testimonials from the homepage.
+7.  Defining a detailed new pricing structure for individual and organization plans.
+8.  Fixing two non-functional features: Biblical Map generator and Quiz generator.
+9.  Improving the UI design of the organization pricing cards.
 
 **User's preferred language**: English
 
 **what currently exists?**
 The project is a live, production-ready, full-stack application.
-*   **Frontend:** A Vite + React application deployed on Vercel, accessible at .
-*   **Backend:** A FastAPI application deployed on Railway. It is fully independent and uses the user's API keys for all services.
+*   **Frontend:** A Vite + React application on Vercel (). It features a new, detailed pricing page for individuals and organizations, and a scaffolded Team management tab in the admin dashboard.
+*   **Backend:** A FastAPI application on Railway, using direct user API keys for all services. The  endpoint has been updated to serve the new pricing structure. Backend routes for team management () have been created but are not fully implemented.
 *   **Database:** A free-tier MongoDB Atlas cluster.
-*   **Admin Dashboard:** A comprehensive dashboard with user management, analytics (including an embedded GA4 section), and a feature to assign custom subscription plans.
-*   **Social Media Automation:** An RSS feed () and a pre-filled CSV file () for bulk uploading 30 days of content to Buffer.
-*   **Mobile App:** A scaffolded but incomplete React Native project exists in .
+*   **Admin Dashboard:** A comprehensive dashboard with user management, analytics, custom subscription assignment, and a new (partially implemented) Team management section.
+*   **Broken Features:** The Biblical Map generator and Quiz generator pages exist but are non-functional.
 
 **Last working item**:
-*   **Last item agent was working:** The agent created a  file formatted specifically for Buffer's bulk upload feature. This was in response to the user's feedback that a Markdown file was not supported. The CSV contains 30 days of post content and direct image URLs with  extensions.
-*   **Status:** USER VERIFICATION PENDING
-*   **Agent Testing Done:** N/A
-*   **Which testing method agent to use?** NA. The user must download the CSV from their GitHub repo (after changes are saved) and upload it to their Buffer account.
+*   **Last item agent was working:** The user reported that the Biblical Map generator and Quiz generator features do not function at all and requested they be fixed using the Claude API. The agent had just begun investigation by identifying the relevant source files.
+*   **Status:** NOT STARTED
+*   **Agent Testing Done:** N
+*   **Which testing method agent to use?** After implementing the features, use the  tool to verify the UI and a  command against the new backend endpoints to confirm functionality. If the fix is complex, consider using the .
 *   **User Testing Done:** N
 
 **All Pending/In progress Issue list**:
-There are no known bugs or technical issues at this time.
+*   **Issue 1: Biblical Map and Quiz Generators are broken (P0)**
+    *   **Description:** The features at  and  are not functional. The user wants them to be powered by the Claude API.
+    *   **Next debug checklist:**
+        1.  Examine  and  to understand the current (broken) implementation.
+        2.  Create new backend endpoints in a relevant file (e.g., ) to handle requests for map data and quiz generation. These endpoints should call the Claude API with appropriate prompts.
+        3.  Wire up the frontend components to call these new backend endpoints and display the results.
+    *   **Why fix this issue:** To deliver core functionality promised by the UI.
+    *   **Status:** NOT STARTED
+    *   **Should Test frontend/backend/both after fix?** Both.
+
+*   **Issue 2: Poor design on Organization pricing cards (P1)**
+    *   **Description:** The user wants the organization pricing cards on the pricing page to be wider, better aligned, and have a design that better matches the rest of the site.
+    *   **Next debug checklist:**
+        1.  View .
+        2.  Identify the component rendering the organization pricing cards.
+        3.  Use  to adjust the Tailwind CSS classes (e.g., increase , adjust grid columns , improve spacing and shadows) to meet the user's design request.
+    *   **Why fix this issue:** To improve UI/UX and visual appeal for potential customers.
+    *   **Status:** NOT STARTED
+    *   **Should Test frontend/backend/both after fix?** Frontend.
 
 **In progress Task List**:
-*   **Task 1: Set up Social Media Auto-posting (P0)**
-    *   **Where to resume:** The user needs to download the  file and upload it to their Buffer account to schedule 30 days of posts.
-    *   **What will be achieved with this?** Automation of the social media marketing content calendar.
-    *   **Status:** USER VERIFICATION PENDING
-    *   **Should Test frontend/backend/both after fix?** N/A
-    *   **Blocked on something:** User action is required to complete the task outside the Emergent environment.
+*   **Task 1: Complete Team Management Feature (P2)**
+    *   **Description:** A feature for admins to manage sales representatives was started. The backend API routes and a basic frontend UI tab have been created.
+    *   **Where to resume:**
+        1.  Flesh out the frontend component . Implement UI for inviting new reps (modal form), viewing a table of existing reps, and tracking their stats (referrals, commissions).
+        2.  Connect the frontend UI to the backend endpoints in  to fetch, add, and manage team members.
+    *   **What will be achieved with this?** A functional portal for managing a commission-based sales team.
+    *   **Status:** IN PROGRESS
+    *   **Should Test frontend/backend/both after fix?** Both.
 
 **Upcoming and Future Tasks**
 *   **Upcoming Tasks:**
-    *   **Verify Resend Domain (P0):** The user needs to add the DNS records provided by Resend to their domain registrar. This is critical for ensuring emails sent from  are delivered successfully.
-    *   **Test Full Checkout Flow (P1):** The user should perform a real test purchase on the live site using a Stripe test card to confirm the end-to-end payment and subscription upgrade flow is working correctly with the Railway backend and Stripe webhooks.
+    *   **P0: Implement Organization Plan Purchase Logic:** The backend and frontend show the new organization plans, but the Stripe integration in  has not been updated to handle the purchase and provisioning of these multi-seat plans. This is a critical blocker for selling to organizations.
+    *   **P1: Verify Resend Domain:** The user still needs to add DNS records to their domain registrar to ensure email deliverability from . This is a user-blocking task.
+    *   **P2: Test Full Checkout Flow:** Once org plans are purchasable, the user should test the entire flow on the live site.
 *   **Future Tasks:**
+    *   Regenerate the  with unique, professional landscape/nature images as previously requested.
     *   Complete and deploy the mobile app in .
     *   Set up a custom domain for the Railway backend (e.g., ).
-    *   Build out a blog/articles section to improve content SEO.
-    *   Implement keyword ranking tracking via Google Search Console or a third-party tool.
-    *   Continue link-building and local SEO efforts as outlined in .
+    *   Build out a blog/articles section for SEO.
+    *   Implement keyword ranking tracking.
+    *   Continue link-building and local SEO efforts.
 
 **Completed work in this session**
-*   **Production Migration & Decoupling:**
-    *   Successfully migrated the backend from the Emergent preview environment to Railway.
-    *   Set up a new production database on MongoDB Atlas.
-    *   Refactored the entire backend (, , ) to use the user's direct API keys for Claude, Stripe, and Resend, removing the  dependency.
-*   **Feature Development:**
-    *   Added a GA4 Analytics section to the admin dashboard.
-    *   Implemented a feature for admins to create and assign custom subscription plans to users via the dashboard.
-*   **Deployment & Debugging:**
-    *   Resolved numerous Vercel deployment failures by guiding the user to fix dependency conflicts (), sync their outdated GitHub repo, and correctly configure environment variables.
-    *   Fixed a recurring missing pricing cards bug by ensuring the  was correctly set and redeployed in Vercel.
-*   **Marketing & SEO:**
-    *   Provided comprehensive setup guidance for Google Ads (copy, images, keywords, targeting, budget).
-    *   Audited and implemented technical SEO fixes (removed obsolete hreflang tags).
-    *   Created an RSS feed ().
-    *   Created a 30-day social media content plan, including images and a  file for easy scheduling.
+- **Pricing Overhaul:** Redefined the entire pricing structure for both individuals and organizations (e.g., Starter, Ministry, Enterprise tiers) and implemented the changes on the frontend ( page) and in the backend pricing API ().
+- **Team Feature Scaffolding:** Created backend endpoints () and a frontend component () for a sales rep management system.
+- **UI/UX Fixes:**
+    - Removed placeholder testimonials from the homepage ().
+    - Fixed the lesson generator to have custom extras be un-selected by default.
+- **Google Ads Compliance:** Added Privacy Policy () and Terms of Service () pages, and included the EU ODR link in the site footer to resolve ad disapprovals.
+- **Social Media Content:** Iteratively debugged the  file to perfection (handling columns, encoding, date formats) and rewrote the content multiple times to match the user's desired professional tone.
 
 **Earlier issues found/mentioned but not fixed**
 *   **Duplicate  endpoint:** An old  file in the backend might still contain a duplicate health check. This is a minor cleanup item and does not affect functionality.
 
 **Known issue recurrence from previous fork**
-*   **Vercel Deployment Failures:** The user repeatedly encountered deployment issues on Vercel. The root cause was consistently a misconfiguration in the Vercel project settings (e.g., missing , incorrect root directory, dependency conflicts from an out-of-sync repo). This is a configuration management challenge, not a code bug. The agent resolved it by providing step-by-step guidance.
+*   **Vercel Deployment Failures:** This remains a potential risk related to user configuration management in their Vercel project (e.g., missing env vars, out-of-sync repo), not a code bug.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
-*   **Decoupled Production Stack:** The application is now fully decoupled, with the frontend on Vercel, backend on Railway, and database on MongoDB Atlas. This is a robust, production-ready architecture.
-*   **Direct SDK Integration:** The backend uses official SDKs for Anthropic, Stripe, and Resend, configured via environment variables on Railway. The reliance on Emergent's integration library has been completely removed.
-*   **Environment-Variable-Driven Configuration:** The connection between the frontend and backend, and the backend and its services, is managed entirely through environment variables in Vercel and Railway.
-*   **Content Syndication:** An  feed is generated from the application's content to automate social media posting via third-party tools like Buffer.
+*   **Decoupled Production Stack:** Vercel (frontend), Railway (backend), MongoDB Atlas (database).
+*   **API-Driven Pricing:** The frontend  page dynamically fetches plan details from the backend's  endpoint, allowing for pricing changes without frontend redeployment.
+*   **Component-Based Admin UI:** The admin dashboard is being refactored into modular components like , , and the new .
 
 **key DB schema**
 *   **users:** 
 *   **subscriptions:** 
 *   **lessons:** 
+*   **teams:**  (Proposed for Team feature)
+*   **referrals:**  (Proposed for Team feature)
 
 **All files of reference**
-*   : Contains new endpoints for custom subscription management.
-*   , , : Refactored to use direct SDKs instead of .
-*   : Contains the new GA4 and custom subscription UI.
-*   : Updated with Google Ads tracking ID and SEO fixes.
-*   : Newly created file for the RSS feed.
-*   : New CSV file for bulk uploading posts to Buffer.
-*   : The full social media content plan.
-*   : A guide with SEO and marketing action items.
+*   : Broken feature to be fixed.
+*   : Broken feature to be fixed.
+*   : Contains the UI for the new pricing plans.
+*   : Contains the data source for the new pricing plans.
+*   : Modified to include the Team tab and new component structure.
+*   : New component for the Team management UI.
+*   : New file containing backend logic for the Team feature.
+*   : Modified to remove the testimonials section.
+*   : New legal page.
+*   : New legal page.
+*   : Final, user-approved version of the social media content CSV.
 
 **Critical Info for New Agent**
-*   **The application is LIVE and fully migrated off Emergent's infrastructure.** Do not reference or use Emergent preview URLs or the  library. The backend is on Railway, the DB on MongoDB Atlas.
-*   **User requires step-by-step guidance for 3rd-party tools.** A significant portion of the work involved walking the user through setups on Vercel, Railway, Stripe, Google Ads, and Google Business Profile. Be prepared to provide clear, explicit instructions for external platforms.
-*   **Environment variables are critical.** Any production issues, especially on the frontend, are likely related to misconfigured environment variables in Vercel. Always confirm  is set correctly and a redeploy has occurred.
-*   The next task is user-driven. The user must download the  file and upload it to their Buffer account. You should confirm with the user if they were able to do this.
+*   **The application is LIVE.** The backend is on Railway, the DB on MongoDB Atlas. Do not use Emergent preview URLs.
+*   **Organization plans are NOT purchasable yet.** The UI displays the new org plans, but the backend Stripe integration in  needs to be updated to create these multi-seat subscriptions. This is a critical next step to monetize organizations.
+*   The immediate priority is to fix the broken Map and Quiz generator features as requested by the user.
 
 **documents and test reports created in this job**
-*   
-*   
-*   
-*   
-*    (updated)
+*    (and its many iterations, e.g., )
+*    (User-provided debug file)
 
 **Last 10 User Messages and any pending HUMAN messages**
-10. **LATEST:** User provides a screenshot of Buffer's required CSV format. (Status: **RESOLVED**)
-9.  User states that Buffer requires a CSV, not a Markdown file, for bulk uploads. (Status: **RESOLVED**)
-8.  User asks if the images created will work for both web and mobile posts. (Status: **RESOLVED**)
-7.  User provides new creative direction for social media images: no people... beautiful nature images with sunsets/sunrises water... (Status: **RESOLVED**)
-6.  User asks how to handle images for social media posts. (Status: **RESOLVED**)
-5.  User asks if the agent can perform ongoing social media management. (Agent explained its capabilities and offered to create a content bank). (Status: **RESOLVED**)
-4.  User provides their Facebook Page URL. (Status: Acknowledged)
-3.  User provides a detailed plain-text guide on how to set up social media auto-posting with RSS. (Status: **RESOLVED**)
-2.  User clarifies the name of the social media tool is OpenClaw AI. (Status: Acknowledged)
-1.  User asks for help setting up auto-posting to Facebook with a tool called myclaw. (Status: In Progress)
+10. **LATEST:** User reports Biblical Map and Quiz generator do not function at all and asks for a fix using Claude. (Status: **PENDING**)
+9.  User requests a better design for the org pricing cards. (Status: **PENDING**)
+8.  User provides final pricing for organization tiers and asks for Enterprise to be a Contact Us plan. (Status: **RESOLVED**)
+7.  User fine-tunes the organization plan pricing. (Status: **RESOLVED**)
+6.  User asks for profit/cost projections over 2 years, which the agent provided. (Status: **RESOLVED**)
+5.  User asks about lesson limits for organization plans. (Status: **RESOLVED**)
+4.  User defines a new set of individual and organization pricing tiers. (Status: **RESOLVED**)
+3.  User requests to see the pricing table again. (Status: **RESOLVED**)
+2.  User asks not to implement the rep commission layout for now. (Status: **RESOLVED**)
+1.  User asks how to price the app for churches and schools. (Status: **RESOLVED**)
 
 **Project Health Check:**
-*   **Web App:** **Stable & Production-Ready**. Deployed on a scalable, independent stack.
-*   **Mobile App:** **Scaffolding**. Project exists but is not functional or complete.
-*   **Mocked:** None. All integrations are live with user-provided keys.
+*   **Web App:** **Stable & Production-Ready**. The core application is live, but some new features are incomplete or broken.
+*   **Mobile App:** **Scaffolding**. Project exists but is not functional.
+*   **Mocked:** None.
 
 **3rd Party Integrations**
-*   **Anthropic (Claude):** Powers all AI features (lesson generation, chatbot). Uses user's API Key.
-*   **Stripe:** Handles payments and subscriptions. Uses user's live API Key.
-*   **Resend:** Sends transactional emails. Uses user's API Key.
+*   **Anthropic (Claude):** Powers AI features.
+*   **Stripe:** Handles payments and subscriptions.
+*   **Resend:** Sends transactional emails.
 *   **MongoDB Atlas:** Production database.
 *   **Vercel:** Frontend hosting.
 *   **Railway:** Backend hosting.
-*   **Google Analytics (GA4):** For site analytics.
-*   **Google Ads:** For marketing campaigns.
-*   **Buffer (pending user setup):** For social media automation.
+*   **Google Analytics (GA4):** Site analytics.
+*   **Buffer (pending user setup):** Social media automation.
 
 **Testing status**
-*   **Testing agent used after significant changes:** NO. Most work involved migration, setup, and debugging, which were tested via , screenshots, and direct user verification on live sites.
+*   **Testing agent used after significant changes:** NO
 *   **Troubleshoot agent used after agent stuck in loop:** NO
 *   **Test files created:** None.
-*   **Known regressions:** None.
+*   **Known regressions:** The Biblical Map and Quiz generator features are non-functional.
 
 **What agent forgot to execute**
-*   The agent did not remove the old  file which contains a duplicate  endpoint. This is a minor code hygiene issue with no impact on functionality.</analysis>
+*   The backend logic to handle the *purchase* of the new organization plans was not implemented. The API only returns the pricing data, but the checkout flow doesn't support creating these subscriptions in Stripe yet.
+*   The agent did not regenerate the social media CSV with unique landscape images, which the user requested after finding duplicates.</analysis>

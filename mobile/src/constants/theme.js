@@ -84,4 +84,4 @@ export const FontSizes = {
   display: 40,
 };
 
-export const API_BASE_URL = 'https://bible-lesson-preview.preview.emergentagent.com/api';
+export const API_BASE_URL = 'https://claude-ai-features.preview.emergentagent.com/api';
