@@ -120,4 +120,26 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- SEO Landing Pages - High Priority Keyword Targets -->
+  <url>
+    <loc>https://biblelessonplanner.com/sunday-school-lessons</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://biblelessonplanner.com/bible-lesson-plans</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://biblelessonplanner.com/vacation-bible-school</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>
