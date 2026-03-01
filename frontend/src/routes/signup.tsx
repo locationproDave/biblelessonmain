@@ -627,14 +627,14 @@ function SignUpPage() {
                           <span className="text-sm text-stone-600 dark:text-stone-400">Email Delivery</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          {(plan.features as any).quizGenerator ? (
+                          {plan.features.quizGenerator ? (
                             <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           ) : (
                             <X className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5" strokeWidth={2} />
                           )}
-                          <span className={`text-sm ${(plan.features as any).quizGenerator ? 'text-stone-600 dark:text-stone-400' : 'text-stone-400 dark:text-stone-500'}`}>Quiz Generator</span>
+                          <span className={`text-sm ${plan.features.quizGenerator ? 'text-stone-600 dark:text-stone-400' : 'text-stone-400 dark:text-stone-500'}`}>Quiz Generator</span>
                         </li>
-                        {!(plan.features as any).quizGenerator && planType === 'organization' && !plan.id.includes('enterprise') && (
+                        {!plan.features.quizGenerator && planType === 'organization' && !plan.id.includes('enterprise') && (
                           <li className="flex items-start gap-2 -mt-1 ml-6">
                             <span className="text-xs text-amber-600 font-medium">+${plan.id.includes('team') ? '2.99' : '4.99'}/mo add-on</span>
                           </li>
