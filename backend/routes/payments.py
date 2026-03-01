@@ -23,7 +23,8 @@ ADD_ONS = {
         "price": 1.99,
         "interval": "month",
         "description": "Unlock AI-powered Biblical Map Generator and Quiz Generator features",
-        "features": ["biblicalMapQuiz"]
+        "features": ["biblicalMapQuiz"],
+        "featureLabels": ["Biblical Map Generator", "Quiz Generator"]
     }
 }
 
