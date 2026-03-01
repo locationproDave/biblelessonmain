@@ -61,7 +61,16 @@ AI-powered Sunday school lesson planning tool that generates complete, Scripture
 
 ## Changelog
 
-### March 2026
+### March 2026 (Latest)
+- **NEW** Biblical Map & Quiz Generator feature implemented with tiered access:
+  - Available on Unlimited plan for individuals (included)
+  - $1.99/month add-on for Organization plans (Team, Ministry)
+  - Included free in Enterprise plan
+- **NEW** Created `/features` showcase page with interactive demos
+- **NEW** Added feature access control system (`/api/feature-access/{feature}`)
+- **NEW** Added add-ons system for organization plans (`/api/pricing/add-ons`)
+- Updated pricing cards UI for organization plans
+- Added "See Map & Quiz Demo" button to homepage
 - Added Privacy Policy and Terms of Service pages
 - Added EU ODR link to footer
 - Built Team management section in admin dashboard
