@@ -313,12 +313,10 @@ function PricingPage() {
             <div
               key={plan.id}
               data-testid={`plan-card-${plan.id}`}
-              className={`relative flex flex-col rounded-2xl border bg-white dark:bg-stone-800/50 overflow-hidden transition-all hover:shadow-xl h-full ${
+              className={`relative flex flex-col rounded-2xl border bg-white dark:bg-stone-800/50 overflow-hidden transition-all hover:shadow-lg h-full ${
                 isPopular(plan.id)
-                  ? 'border-amber-400 dark:border-amber-600 shadow-lg ring-1 ring-amber-400/30'
-                  : plan.id.includes('enterprise')
-                    ? 'border-indigo-300 dark:border-indigo-600 shadow-md bg-gradient-to-b from-indigo-50/50 to-white dark:from-indigo-950/20 dark:to-stone-800/50'
-                    : 'border-stone-200 dark:border-stone-700 shadow-sm'
+                  ? 'border-amber-400 dark:border-amber-600 shadow-md'
+                  : 'border-stone-200 dark:border-stone-700'
               }`}
             >
               {isPopular(plan.id) && (
